@@ -25,8 +25,8 @@ func get_health() -> int:
 
 func take_damage( damage : int ) -> void:
 	var damage_taken := damage - armor
+	_health -= damage_taken
 	emit_signal("damage_taken", damage_taken)
-	_health -= damage
 	if _health <= 0:
 		emit_signal("health_depleted")
 

@@ -33,8 +33,8 @@ func _physics_process(delta : float) -> void:
             destroy_entity()
 
 #Entity methods
-func destroy_entity():
-	queue_free()
+func get_animation_key() -> String:
+	return anim_state + anim_direction
 
 func is_intangible() -> bool:
 	return (current_knockback_time > 0 && current_intangibility_time < intangibility_time)
@@ -44,12 +44,15 @@ func in_hitstun() -> bool:
 
 func in_knockback() -> bool:
 	return (knockback_time > 0 && current_knockback_time < knockback_time)
-	
-func get_animation_key() -> String:
-	return anim_state + anim_direction
+
+func destroy_entity() -> void:
+	queue_free()
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
+
+func move():
+    move_and_slide(vector.normalized() * current_speed, Vector2())
 
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
