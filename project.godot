@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Engine/Entities/Entity.gd"
 }, {
 "base": "Node",
+"class": "Enums",
+"language": "GDScript",
+"path": "res://Engine/Enums.gd"
+}, {
+"base": "Node",
 "class": "Health",
 "language": "GDScript",
 "path": "res://Engine/Entities/Health.gd"
@@ -29,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Hitbox.gd"
 }, {
+"base": "Node2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Engine/Entities/Item.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
@@ -37,8 +47,10 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "DamageResponse": "",
 "Entity": "",
+"Enums": "",
 "Health": "",
 "Hitbox": "",
+"Item": "",
 "StateMachine": ""
 }
 

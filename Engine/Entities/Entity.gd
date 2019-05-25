@@ -9,7 +9,7 @@ export(int) var static_speed := 0
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
 
-onready var health := get_node("health") as Health
+onready var health := $Health as Health
 
 var current_speed := 0
 var vector := Vector2()
@@ -44,9 +44,15 @@ func in_hitstun() -> bool:
 
 func in_knockback() -> bool:
 	return (knockback_time > 0 && current_knockback_time < knockback_time)
+	
+func get_animation_key() -> String:
+	return anim_state + anim_direction
+
+func enable(enabled : bool) -> void:
+	set_physics_process(enabled)
 
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
-	self.set_collision_layer_bit(0, false)
+	set_collision_layer_bit(0, false)
 	emit_signal("entity_marked_dead", self)
 	_death_marked = true
