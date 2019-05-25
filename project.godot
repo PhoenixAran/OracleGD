@@ -8,15 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "DamageResponse",
+"language": "GDScript",
+"path": "res://Engine/Entities/DamageResponse.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://Engine/Entities/Entity.gd"
+}, {
+"base": "Node",
+"class": "Health",
+"language": "GDScript",
+"path": "res://Engine/Entities/Health.gd"
+}, {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://Engine/Entities/Hitbox.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Engine/FSM/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"DamageResponse": "",
+"Entity": "",
+"Health": "",
+"Hitbox": "",
+"StateMachine": ""
 }
 
 [application]
 
 config/name="OracleGD"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
 
 [rendering]
 
