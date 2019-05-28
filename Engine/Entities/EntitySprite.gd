@@ -17,6 +17,6 @@ func _on_hit(damage : int) -> void:
 		set_self_modulate(hit_color)
 
 func _physics_process(delta : float) -> void:
-	if !modulating && !entity.is_intangible():
+	if !_modulating && !entity.is_intangible():
 		set_self_modulate(default_color)
-		_modulating := false
+		_modulating = false

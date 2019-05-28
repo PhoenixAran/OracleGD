@@ -12,6 +12,8 @@ export(float) var knockback_speed := 150.0
 export(int) var hitstun_time := 30
 export(int) var reflect_value := 0
 export(int) var reflect_resistance := 0
+#used to flip enemies upside down or break stuff
+export(int) var force := 0
 
 onready var parent := get_parent() as Node2D
 

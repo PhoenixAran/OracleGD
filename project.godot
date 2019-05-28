@@ -59,6 +59,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
 }, {
+"base": "State",
+"class": "PlayerIdle",
+"language": "GDScript",
+"path": "res://Scripts/Player/States/PlayerIdle.gd"
+}, {
+"base": "State",
+"class": "PlayerMove",
+"language": "GDScript",
+"path": "res://Scripts/Player/States/PlayerMove.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -80,6 +90,8 @@ _global_script_class_icons={
 "Item": "",
 "Mover": "",
 "Player": "",
+"PlayerIdle": "",
+"PlayerMove": "",
 "State": "",
 "StateMachine": ""
 }
@@ -87,6 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="OracleGD"
+run/main_scene="res://Scenes/Player/Player.tscn"
 config/icon="res://icon.png"
 
 [debug]

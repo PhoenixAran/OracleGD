@@ -5,13 +5,16 @@ signal entity_hit
 signal entity_marked_dead(entity)
 signal entity_destroyed()
 
-export(int) var static_speed := 0
+export(int) var static_speed := 70
+export(int) var friction := -500
+export(int) var acceleration := 1500
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
 
 onready var health := $Health as Health
 
 var current_speed := 0
+var current_friction := 0
 var vector := Vector2()
 var _death_marked := false
 
@@ -46,20 +49,41 @@ func in_knockback() -> bool:
 	return (knockback_time > 0 && current_knockback_time < knockback_time)
 
 func destroy_entity() -> void:
-    emit_signal("entity_destroyed", self)
+	emit_signal("entity_destroyed", self)
 	queue_free()
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
 func take_damage(value : int) -> int:
-    var damage_value := value - armor
-    if (damage_value > 0):
-        health.take_damage(value)
-    return damage_value
+	var damage_value := value
+	if (damage_value > 0):
+    	health.take_damage(value)
+	return damage_value
+	
+func match_animation_direction(input_vector : Vector2):
+	var direction := anim_direction
+	if input_vector == Vector2(-1, -1) && direction != "up" && direction != "left":
+		direction = "up"
+	elif input_vector == Vector2(1, 1) && direction != "down" && direction != "right":
+		direction = "down"
+	elif input_vector == Vector2(1, -1) && direction != "up" && direction != "right":
+		direction = "up"
+	elif input_vector == Vector2(-1, 1) && direction != "down" && direction != "left":
+		direction = "left"
+	elif input_vector == Vector2(0, -1) && direction != "up":
+		direction = "up"
+	elif input_vector == Vector2(0, 1) && direction != "down":
+		direction = "down"
+	elif input_vector == Vector2(-1, 0) && direction != "left":
+		direction = "left"
+	elif input_vector == Vector2(1, 0) && direction != "right":
+		direction = "right"
+	
+	anim_direction = direction
 
-func move() -> void:
-    move_and_slide(vector.normalized() * current_speed, Vector2())
+func move(delta : float) -> void:
+	move_and_slide(vector.normalized() * current_speed, Vector2())
 
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:

@@ -10,8 +10,9 @@ func _ready() -> void:
 	var children := get_children()
 	for child in children:
 		child.connect("state_changed", self, "change_state")
+	_current_state = get_node(_default_state) as State
 
-func _initialize() -> void:
+func initialize() -> void:
 	var children = get_children()
 	for child in children:
 		(child as State).initialize()

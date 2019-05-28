@@ -3,13 +3,16 @@ class_name State
 
 signal state_changed(state)
 
+func initialize() -> void:
+	pass
+
 func reason() -> void:
     pass
 
 func begin() -> void:
     pass
 
-func update(float : delta) -> void:
+func update(delta : float) -> void:
     pass
 
 func end() -> void:
