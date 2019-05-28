@@ -3,7 +3,7 @@ class_name Entity
 
 signal entity_hit
 signal entity_marked_dead(entity)
-signal entity_destroyed(entity)
+signal entity_destroyed()
 
 export(int) var static_speed := 0
 export(String) var anim_state := "idle"
@@ -46,12 +46,19 @@ func in_knockback() -> bool:
 	return (knockback_time > 0 && current_knockback_time < knockback_time)
 
 func destroy_entity() -> void:
+    emit_signal("entity_destroyed", self)
 	queue_free()
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
-func move():
+func take_damage(value : int) -> int:
+    var damage_value := value - armor
+    if (damage_value > 0):
+        health.take_damage(value)
+    return damage_value
+
+func move() -> void:
     move_and_slide(vector.normalized() * current_speed, Vector2())
 
 #signal callback responses

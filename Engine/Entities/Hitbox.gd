@@ -1,22 +1,21 @@
 extends Area2D
 class_name Hitbox
 
-signal on_damage_other
-signal on_damage_resisted
+signal hitbox_entered(hitbox, response)
 
-onready var _owner := get_parent() as Node2D
+export(bool) var can_hit_multiple := false
+export(bool) var can_be_reflected := false
 
-export(bool) var _use_parent_as_source := false
-export(bool) var can_hit_multiple := true
 export(int) var damage := 5
-export(float) var knockback_speed := 30.0
-export(int) var knockback := 30
-export(int) var hitstun := 30
+export(int) var knockback_time := 30
+export(float) var knockback_speed := 150.0
+export(int) var hitstun_time := 30
 export(int) var reflect_value := 0
+export(int) var reflect_resistance := 0
+
+onready var parent := get_parent() as Node2D
 
 func _physics_process(delta : float) -> void:
-	for i in range(100):
-		create_damage_response(15)
 	check_collisions()
 
 func check_collisions() -> void:
@@ -24,21 +23,23 @@ func check_collisions() -> void:
 	if areas.size() > 0:
 		if can_hit_multiple:
 			for area in areas:
-				area.take_damage(self)
+				on_collision((area as Hitbox))
 		else:
-			areas[0].take_damage(self)
+			on_collision((areas[0] as Hitbox))
 
-func get_damage_source() -> Vector2:
-	if _use_parent_as_source:
-		return _owner.global_position
-	return self.global_position
+func on_collision(other : Hitbox) -> void:
+	var response := other.take_damage(self)
+	emit_signal("hitbox_entered", other, response)
 
-func take_damage(hitbox : Hitbox) -> Dictionary:
-	return create_damage_response(hitbox.damage, self.reflect_value, false)
+func take_damage(other : Hitbox) -> Dictionary:
+	return _create_damage_response(0, reflect_value, false)
 
-func create_damage_response(damage_taken : int, reflect_response := 0, resist := false) -> Dictionary:
+#creates a damage response dictionary. Easier than manually creating each key
+func _create_damage_response(damage_taken := 0, reflect_value := 0,
+ 		resist := false, recoil := false) -> Dictionary:
 	return {
-		damage_taken : damage_taken,
-		reflect_response : reflect_response,
-		resist : resist
+		damage_taken = damage_taken,
+		reflect_value = reflect_value,
+		resist = resist,
+		recoil = recoil
 	}

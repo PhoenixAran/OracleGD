@@ -1,11 +1,10 @@
 extends Node
 class_name StateMachine
 
-signal on_initialized(state_machine)
+export(String) var _default_state : String
 
-export(String) var _default_state
-var _current_state
-var _last_state
+var _current_state : State
+var _last_state : State
 
 func _ready() -> void:
 	var children := get_children()
@@ -13,20 +12,19 @@ func _ready() -> void:
 		child.connect("state_changed", self, "change_state")
 
 func _initialize() -> void:
+	var children = get_children()
 	for child in children:
-		if child.has_method("initialize"):
-			child.initialize()
+		(child as State).initialize()
 
 func _physics_process(delta : float) -> void:
-	if _current_state.has_method("reason"):
-		_current_state.reason()
+	_current_state.reason()
 	#the update method is mandatory. no need to check for it
 	_current_state.update(delta)
 
+#acts as method and signal response
 func change_state(state : String) -> void:
-	if _current_state != null && _last_state.has_method("end"):
-		_last_state.end()
+	if _current_state != null:
+		_current_state.end()
 	_last_state = _current_state
 	_current_state = get_node(state)
-	if _current_state.has_method("begin"):
-		_current_state.begin()
+	_current_state.begin()
