@@ -1,17 +1,18 @@
 extends KinematicBody2D
 class_name Entity
 
+#should be emitted after the combat variables are set
 signal entity_hit
+signal entity_bumped
 signal entity_marked_dead(entity)
 signal entity_destroyed
+signal entity_immobilized
 
 export(int) var static_speed := 70
 export(int) var friction := -500
 export(int) var acceleration := 1500
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
-
-onready var health := $Health as Health
 
 var current_speed := 0
 var current_friction := 0
@@ -29,11 +30,15 @@ var hitstun_time := 0
 var knockback_time := 0
 var intangibility_time := 0
 
+#Nodes / Resources
+onready var health := $Health as Health
+var interactions := InteractionResolver.new()
+
 #Godot API Callbacks
 func _physics_process(delta : float) -> void:
     if _death_marked:
         if in_hitstun() && !in_knockback():
-            destroy_entity()
+            destroy()
 
 #Entity methods
 func move(delta : float) -> void:
@@ -54,7 +59,7 @@ func in_hitstun() -> bool:
 func in_knockback() -> bool:
 	return (knockback_time > 0 && current_knockback_time < knockback_time)
 
-func destroy_entity() -> void:
+func destroy() -> void:
 	emit_signal("entity_destroyed", self)
 	queue_free()
 
@@ -79,11 +84,26 @@ func reset_combat_variables() -> void:
 	current_knockback_time = 0
 	current_knockback_speed = 0
 	
-func take_damage(value : int) -> void:
-	var damage_value := value
+func take_damage(damage_info : Dictionary) -> void:
+	var damage_value : int = damage_info.damage
 	if (damage_value > 0):
-    	health.take_damage(value)
-	
+    	health.take_damage(damage_value)
+	current_intangibility_time = damage_info.intangibility_time
+	current_hitstun_time = damage_info.hitstun_time
+	current_knockback_speed = damage_info.knockback_speed
+	current_knockback_time = damage_info.knockback_time	
+	emit_signal("entity_hit")
+
+func bump(speed : float, direction : Vector2, time : int) -> void:
+	current_knockback_time = time
+	current_knockback_speed = speed
+	vector = direction
+	emit_signal("entity_bumped")
+
+func immobilize(time : int) -> void:
+	current_hitstun_time = time
+	emit_signal("entity_immobilized")
+
 func match_animation_direction(input_vector : Vector2):
 	var direction := anim_direction
 	if input_vector == Vector2(-1, -1) && direction != "up" && direction != "left":
@@ -110,3 +130,4 @@ func _on_health_depleted(damage : int) -> void:
 	set_collision_layer_bit(0, false)
 	emit_signal("entity_marked_dead", self)
 	_death_marked = true
+	

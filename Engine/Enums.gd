@@ -25,3 +25,11 @@ enum CollisionType {
 	EXPLOSION,
 	THROWN_PROJECTILE
 }
+
+#Generic AI states that monster scripts can switch case on. 
+enum EnemyState {
+	SEEKING,
+	ATTACKING,
+	IN_HITSTUN,
+	IN_KNOCKBACK
+}

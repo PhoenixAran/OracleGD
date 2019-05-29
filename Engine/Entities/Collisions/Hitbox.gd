@@ -27,6 +27,14 @@ func set_detect_only(value : bool) -> void:
 	if detect_only != value:
 		detect_only = value
 		set_physics_process(!detect_only)
+		
+func get_damage_info() -> Dictionary:
+	return {
+		damage = damage,
+		knockback_time = knockback_time,
+		knockback_speed = knockback_speed,
+		hitstun_time = hitstun_time
+	}
 
 func check_collisions() -> void:
 	var areas := get_overlapping_areas()

@@ -2,7 +2,7 @@ extends Node
 class_name Health
 
 export(int) var _max_health := 4 setget set_max_health, get_max_health
-export(int) var _health := 4 setget, get_health
+export(int) var _health := 4 setget set_health, get_health
 export(int) var armor := 0
 
 signal max_health_changed(new_max_health)
@@ -12,7 +12,7 @@ signal health_depleted
 func get_max_health() -> int:
 	return _max_health
 
-func set_max_health(value) -> void:
+func set_max_health(value : int) -> void:
 	_max_health = value
 	emit_signal("max_health_changed", _max_health)
 	if value < _health:
@@ -22,8 +22,14 @@ func set_max_health(value) -> void:
 func get_health() -> int:
 	return _health
 
+func set_health(value : int) -> void:
+	_health = value
+	emit_signal("health_changed", _health)
+	if value <= 0:
+		emit_signal("health_depleted")
+
 func take_damage( damage : int ) -> void:
-	assert(damage <= 0)
+	assert(damage >= 0)
 	var actual_damage := damage - armor
 	if actual_damage > 0:
 		_health -= damage - armor

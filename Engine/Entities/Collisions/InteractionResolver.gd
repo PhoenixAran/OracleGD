@@ -12,7 +12,8 @@ func get_interaction(type : Interaction) -> Interaction:
 func has_interaction(type) -> bool:
 	return _interaction_map.has(type)
 	
-func resolve_interaction(type, receiver : Hitbox, sender : Hitbox) -> void:
+func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
+	var type = sender.TYPE
 	if has_interaction(type):
 		get_interaction(type).resolve(receiver, sender)
 	else:
