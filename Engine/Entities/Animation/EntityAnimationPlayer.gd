@@ -9,6 +9,5 @@ func _physics_process(delta : float) -> void:
 	if auto_detect_change:
 		var animation_key = _parent.get_animation_key()
 		if !is_playing() || animation_key != current_animation:
-			print("swapping track from " + current_animation + " to " + animation_key)
 			stop()
 			play(animation_key)

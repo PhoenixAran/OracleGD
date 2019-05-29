@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Engine/Entities/EntityAnimationPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Engine/Entities/Animation/EntityAnimationPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=3]
-[ext_resource path="res://Engine/Entities/EntitySprite.gd" type="Script" id=4]
+[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=5]
 [ext_resource path="res://Engine/FSM/StateMachine.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=7]
@@ -312,7 +312,6 @@ _max_health = 36
 _health = 36
 
 [node name="PlayerController" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 _default_state = "PlayerIdle"
 

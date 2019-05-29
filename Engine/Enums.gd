@@ -12,8 +12,16 @@ enum ItemMoveType {
 	MOVE
 }
 
-enum WeaponType {
+enum CollisionType {
+	#Entities
+	PLAYER,
+	MONSTER,
+	NPC,
+	
+	#Weapons
 	SWORD,
 	ARROW,
-	HAMMER
+	HAMMER,
+	EXPLOSION,
+	THROWN_PROJECTILE
 }

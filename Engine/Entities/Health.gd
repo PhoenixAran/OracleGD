@@ -3,6 +3,7 @@ class_name Health
 
 export(int) var _max_health := 4 setget set_max_health, get_max_health
 export(int) var _health := 4 setget, get_health
+export(int) var armor := 0
 
 signal max_health_changed(new_max_health)
 signal health_changed(health)
@@ -23,8 +24,10 @@ func get_health() -> int:
 
 func take_damage( damage : int ) -> void:
 	assert(damage <= 0)
-	_health -= damage
-	emit_signal("health_changed", _health)
+	var actual_damage := damage - armor
+	if actual_damage > 0:
+		_health -= damage - armor
+		emit_signal("health_changed", _health)
 	if _health <= 0:
 		emit_signal("health_depleted")
 

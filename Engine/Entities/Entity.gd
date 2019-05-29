@@ -3,7 +3,7 @@ class_name Entity
 
 signal entity_hit
 signal entity_marked_dead(entity)
-signal entity_destroyed()
+signal entity_destroyed
 
 export(int) var static_speed := 70
 export(int) var friction := -500
@@ -36,8 +36,14 @@ func _physics_process(delta : float) -> void:
             destroy_entity()
 
 #Entity methods
+func move(delta : float) -> void:
+	move_and_slide(vector.normalized() * current_speed, Vector2())
+
 func get_animation_key() -> String:
 	return anim_state + anim_direction
+
+func is_dead() -> bool:
+	return _death_marked
 
 func is_intangible() -> bool:
 	return (current_knockback_time > 0 && current_intangibility_time < intangibility_time)
@@ -55,6 +61,24 @@ func destroy_entity() -> void:
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
+func update_combat_variables():
+	if is_intangible():
+		current_intangibility_time += 1
+	if in_hitstun():
+		current_hitstun_time += 1
+	if in_knockback():
+		current_knockback_time += 1
+
+func reset_combat_variables():
+	hitstun_time = 0
+	knockback_time = 0
+	intangibility_time = 0
+	
+	current_intangibility_time = 0
+	current_hitstun_time = 0
+	current_knockback_time = 0
+	current_knockback_speed = 0
+	
 func take_damage(value : int) -> int:
 	var damage_value := value
 	if (damage_value > 0):
@@ -81,10 +105,7 @@ func match_animation_direction(input_vector : Vector2):
 		direction = "right"
 	
 	anim_direction = direction
-
-func move(delta : float) -> void:
-	move_and_slide(vector.normalized() * current_speed, Vector2())
-
+	
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
 	set_collision_layer_bit(0, false)
