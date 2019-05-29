@@ -1,7 +1,7 @@
 class_name InteractionResolver
 
 var _interaction_map := { }
-var _default_interaction
+var _default_interaction := DamageInteraction.new()
 
 func set_interaction(type, interaction : Interaction) -> void:
 	_interaction_map[type] = interaction
@@ -17,5 +17,4 @@ func resolve_interaction(type, receiver : Hitbox, sender : Hitbox) -> void:
 		get_interaction(type).resolve(receiver, sender)
 	else:
 		_default_interaction.resolve(receiver, sender)
-	var interaction = get_interaction(type)
 	

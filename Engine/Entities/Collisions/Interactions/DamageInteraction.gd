@@ -1,6 +1,8 @@
 class_name DamageInteraction
 
 func resolve(receiver : Hitbox, sender : Hitbox) -> void:
-	receiver.call("take_damage", sender)
+	var receiver_entity := receiver.get_parent() as Entity
+	receiver_entity.take_damage(sender.damage)
 	sender.notify_did_damage(receiver)
+	
 	

@@ -61,7 +61,7 @@ func destroy_entity() -> void:
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
-func update_combat_variables():
+func update_combat_variables() -> void:
 	if is_intangible():
 		current_intangibility_time += 1
 	if in_hitstun():
@@ -69,7 +69,7 @@ func update_combat_variables():
 	if in_knockback():
 		current_knockback_time += 1
 
-func reset_combat_variables():
+func reset_combat_variables() -> void:
 	hitstun_time = 0
 	knockback_time = 0
 	intangibility_time = 0
@@ -79,11 +79,10 @@ func reset_combat_variables():
 	current_knockback_time = 0
 	current_knockback_speed = 0
 	
-func take_damage(value : int) -> int:
+func take_damage(value : int) -> void:
 	var damage_value := value
 	if (damage_value > 0):
     	health.take_damage(value)
-	return damage_value
 	
 func match_animation_direction(input_vector : Vector2):
 	var direction := anim_direction
