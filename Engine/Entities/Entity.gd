@@ -9,8 +9,6 @@ signal entity_destroyed
 signal entity_immobilized
 
 export(int) var static_speed := 70
-export(int) var friction := -500
-export(int) var acceleration := 1500
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
 
@@ -19,19 +17,13 @@ var current_friction := 0
 var vector := Vector2()
 var _death_marked := false
 
-#combat state variables
-var current_intangibility_time := 0
-var current_hitstun_time := 0
-var current_knockback_time := 0
-var current_knockback_speed := 0.0
-
-#temporary storage for combat state mutation
-var hitstun_time := 0
-var knockback_time := 0
-var intangibility_time := 0
+#temporary storage for external "forces"
+var external_vector_force := Vector2.ZERO
+var external_magnitude := 0
 
 #Nodes / Resources
 onready var health := $Health as Health
+onready var combat := $Combat as Combat
 var interactions := InteractionResolver.new()
 
 #Godot API Callbacks
@@ -42,7 +34,9 @@ func _physics_process(delta : float) -> void:
 
 #Entity methods
 func move(delta : float) -> void:
-	move_and_slide(vector.normalized() * current_speed, Vector2())
+	var linear_velocity := vector.normalized() * current_speed
+	linear_velocity += external_vector_force.normalized() * external_magnitude
+	move_and_slide(linear_velocity, Vector2())
 
 func get_animation_key() -> String:
 	return anim_state + anim_direction
@@ -51,13 +45,13 @@ func is_dead() -> bool:
 	return _death_marked
 
 func is_intangible() -> bool:
-	return (current_knockback_time > 0 && current_intangibility_time < intangibility_time)
+	return combat.is_intangible()
 
 func in_hitstun() -> bool:
-	return (hitstun_time > 0 && current_hitstun_time < hitstun_time)
-
+	return combat.in_hitstun()
+	
 func in_knockback() -> bool:
-	return (knockback_time > 0 && current_knockback_time < knockback_time)
+	return combat.in_hitstun()
 
 func destroy() -> void:
 	emit_signal("entity_destroyed", self)
@@ -66,42 +60,27 @@ func destroy() -> void:
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
-func update_combat_variables() -> void:
-	if is_intangible():
-		current_intangibility_time += 1
-	if in_hitstun():
-		current_hitstun_time += 1
-	if in_knockback():
-		current_knockback_time += 1
-
 func reset_combat_variables() -> void:
-	hitstun_time = 0
-	knockback_time = 0
-	intangibility_time = 0
-	
-	current_intangibility_time = 0
-	current_hitstun_time = 0
-	current_knockback_time = 0
-	current_knockback_speed = 0
+	pass
 	
 func take_damage(damage_info : Dictionary) -> void:
 	var damage_value : int = damage_info.damage
 	if (damage_value > 0):
     	health.take_damage(damage_value)
-	current_intangibility_time = damage_info.intangibility_time
-	current_hitstun_time = damage_info.hitstun_time
-	current_knockback_speed = damage_info.knockback_speed
-	current_knockback_time = damage_info.knockback_time	
+	combat.current_intangibility_time = damage_info.intangibility_time
+	combat.current_hitstun_time = damage_info.hitstun_time
+	combat.current_knockback_speed = damage_info.knockback_speed
+	combat.current_knockback_time = damage_info.knockback_time	
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
-	current_knockback_time = time
-	current_knockback_speed = speed
+	combat.current_knockback_time = time
+	combat.current_knockback_speed = speed
 	vector = direction
 	emit_signal("entity_bumped")
 
 func immobilize(time : int) -> void:
-	current_hitstun_time = time
+	combat.current_hitstun_time = time
 	emit_signal("entity_immobilized")
 
 func match_animation_direction(input_vector : Vector2):

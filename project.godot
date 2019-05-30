@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Combat",
+"language": "GDScript",
+"path": "res://Engine/Entities/Combat.gd"
+}, {
 "base": "Reference",
 "class": "DamageInteraction",
 "language": "GDScript",
@@ -95,6 +100,7 @@ _global_script_classes=[ {
 "path": "res://Engine/FSM/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Combat": "",
 "DamageInteraction": "",
 "Entity": "",
 "EntityAnimationPlayer": "",

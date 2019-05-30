@@ -43,4 +43,4 @@ func heal( amount : int ) -> void:
 	emit_signal("health_changed", _health)
 
 func is_depleted() -> bool:
-	return _health < 0
+	return _health <= 0
