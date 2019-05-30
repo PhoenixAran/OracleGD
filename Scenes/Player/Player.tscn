@@ -542,10 +542,10 @@ script = ExtResource( 4 )
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 5 )
-offset = Vector2( -4.22222, 0 )
+offset = Vector2( 0, 0.333333 )
 vframes = 5
 hframes = 6
-frame = 12
+frame = 8
 script = ExtResource( 6 )
 hit_color = Color( 1, 1, 1, 0.34902 )
 
