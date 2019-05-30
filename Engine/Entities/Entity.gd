@@ -11,6 +11,7 @@ export(int) var static_speed := 70
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
 
+#declarations
 var current_speed := 0
 var current_friction := 0
 var vector := Vector2()
@@ -55,20 +56,22 @@ func in_hitstun() -> bool:
 func in_knockback() -> bool:
 	return combat.in_hitstun()
 
+func reset_combat_variables() -> void:
+	combat.reset_combat_variables()
+
 func destroy() -> void:
 	emit_signal("entity_destroyed", self)
 	queue_free()
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
-
-func reset_combat_variables() -> void:
-	pass
 	
 func take_damage(damage_info : Dictionary) -> void:
 	var damage_value : int = damage_info.damage
+	
 	if (damage_value > 0):
     	health.take_damage(damage_value)
+	
 	combat.current_intangibility_time = damage_info.intangibility_time
 	combat.current_hitstun_time = damage_info.hitstun_time
 	combat.current_knockback_speed = damage_info.knockback_speed
@@ -102,8 +105,7 @@ func match_animation_direction(input_vector : Vector2):
 	elif input_vector == Vector2(-1, 0) && direction != "left":
 		direction = "left"
 	elif input_vector == Vector2(1, 0) && direction != "right":
-		direction = "right"
-	
+		direction = "right"	
 	anim_direction = direction
 	
 #signal callback responses

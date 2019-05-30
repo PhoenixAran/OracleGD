@@ -9,6 +9,8 @@ func _ready() -> void:
 	connect("entity_hit", self, "_on_entity_hit")
 	#getting bumped is pretty much just a hit without damage or hitstun
 	connect("entity_bumped", self, "_on_entity_hit")
+	#getting immobolized is just getting hit without knockback or damage
+	connect("entity_immobolized", self, "_on_entity_hit")
 	player_controller.initialize()
 	
 #Signal callbacks
