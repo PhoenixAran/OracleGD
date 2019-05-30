@@ -5,7 +5,7 @@ onready var player_controller := $PlayerController as StateMachine
 onready var hitbox := $Hitbox as Hitbox
 
 func _ready() -> void:
-	health.connect("health_depleted", self, "on_health_depleted")
+	health.connect("health_depleted", self, "_on_health_depleted")
 	connect("entity_hit", self, "_on_entity_hit")
 	#getting bumped is pretty much just a hit without damage or hitstun
 	connect("entity_bumped", self, "_on_entity_hit")
