@@ -98,6 +98,16 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Engine/FSM/StateMachine.gd"
+}, {
+"base": "Entity",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://Engine/Entities/Unit.gd"
+}, {
+"base": "Sprite",
+"class": "UnitSprite",
+"language": "GDScript",
+"path": "res://Engine/Entities/Animation/UnitSprite.gd"
 } ]
 _global_script_class_icons={
 "Combat": "",
@@ -117,7 +127,9 @@ _global_script_class_icons={
 "PlayerMove": "",
 "PlayerSword": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Unit": "",
+"UnitSprite": ""
 }
 
 [application]

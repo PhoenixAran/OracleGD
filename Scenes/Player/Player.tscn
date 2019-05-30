@@ -12,7 +12,7 @@
 [ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=10]
 [ext_resource path="res://Engine/Entities/Mover.gd" type="Script" id=11]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=1]
 resource_name = "attackdown"
 length = 2.5
 loop = true
@@ -54,7 +54,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 2 ), Vector2( 0, 4 ), Vector2( 0, 2 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=2]
 resource_name = "attackleft"
 length = 2.5
 loop = true
@@ -96,7 +96,7 @@ tracks/2/keys = {
 "values": [ Vector2( -2, 0 ), Vector2( -6, 0 ), Vector2( -2, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=3]
 resource_name = "attackright"
 length = 2.5
 loop = true
@@ -138,8 +138,7 @@ tracks/2/keys = {
 "values": [ Vector2( 2, 0 ), Vector2( 6, 0 ), Vector2( 2, 0 ) ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "attackup"
+[sub_resource type="Animation" id=4]
 length = 2.5
 loop = true
 step = 0.5
@@ -180,8 +179,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, -3 ), Vector2( 0, -2 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idledown"
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 step = 0.5
@@ -222,8 +220,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idleleft"
+[sub_resource type="Animation" id=6]
 length = 0.5
 loop = true
 step = 0.5
@@ -264,8 +261,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idleright"
+[sub_resource type="Animation" id=7]
 length = 0.5
 loop = true
 step = 0.5
@@ -306,7 +302,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 length = 0.5
 loop = true
 step = 0.5
@@ -347,7 +343,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -387,7 +383,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -427,7 +423,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -467,7 +463,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -507,10 +503,10 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 4, 5 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 5, 6 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -529,18 +525,18 @@ script = ExtResource( 3 )
 [node name="EntityAnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 playback_speed = 10.0
-anims/attackdown = SubResource( 12 )
-anims/attackleft = SubResource( 13 )
-anims/attackright = SubResource( 14 )
-anims/attackup = SubResource( 1 )
-anims/idledown = SubResource( 2 )
-anims/idleleft = SubResource( 3 )
-anims/idleright = SubResource( 4 )
-anims/idleup = SubResource( 5 )
-anims/movedown = SubResource( 6 )
-anims/moveleft = SubResource( 7 )
-anims/moveright = SubResource( 8 )
-anims/moveup = SubResource( 9 )
+anims/attackdown = SubResource( 1 )
+anims/attackleft = SubResource( 2 )
+anims/attackright = SubResource( 3 )
+anims/attackup = SubResource( 4 )
+anims/idledown = SubResource( 5 )
+anims/idleleft = SubResource( 6 )
+anims/idleright = SubResource( 7 )
+anims/idleup = SubResource( 8 )
+anims/movedown = SubResource( 9 )
+anims/moveleft = SubResource( 10 )
+anims/moveright = SubResource( 11 )
+anims/moveup = SubResource( 12 )
 script = ExtResource( 4 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
@@ -555,7 +551,7 @@ hit_color = Color( 1, 1, 1, 0.34902 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-shape = SubResource( 10 )
+shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 editor/display_folded = true
@@ -570,7 +566,7 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 11 )
+shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
 script = ExtResource( 8 )

@@ -1,7 +1,6 @@
 extends KinematicBody2D
 class_name Entity
 
-#should be emitted after the combat variables are set
 signal entity_hit
 signal entity_bumped
 signal entity_marked_dead(entity)
@@ -31,6 +30,9 @@ func _physics_process(delta : float) -> void:
     if _death_marked:
         if in_hitstun() && !in_knockback():
             destroy()
+
+func _ready() -> void:
+	health.connect("health_depleted", self, "on_health_depleted")
 
 #Entity methods
 func move(delta : float) -> void:
