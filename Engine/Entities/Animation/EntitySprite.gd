@@ -4,19 +4,15 @@ class_name EntitySprite
 export(Color, RGBA) var hit_color := Color(1, 1, 1, 0.35)
 export(Color, RGBA) var default_color := Color(1, 1, 1, 1)
 
+var modulating := false
 onready var entity := get_parent() as Entity
 
-var _modulating := false
-
-func _ready() -> void:
-	entity.connect("entity_hit", self, "_on_hit")
-
-func _on_hit(damage : int) -> void:
-	if !_modulating:
-		_modulating = true
+func _physics_process(delta : float) -> void:
+	if modulating && entity.is_intangible():
 		set_self_modulate(hit_color)
 
-func _physics_process(delta : float) -> void:
-	if !_modulating && !entity.is_intangible():
-		set_self_modulate(default_color)
-		_modulating = false
+func _on_entity_hit() -> void:
+	#only set entity to be clear if the owner is intangible
+	if entity.is_intangible():
+		modulating = true
+		set_self_modulate(hit_color)

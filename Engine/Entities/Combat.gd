@@ -40,3 +40,9 @@ func update_combat_variables() -> void:
 		current_hitstun_time += 1
 	if in_knockback():
 		current_knockback_time += 1
+
+func set_combat_variables(variables : Dictionary) -> void:
+	intangibility_time = variables.intangibility_time
+	hitstun_time = variables.hitstun_time
+	knockback_time = variables.knockback_time
+	current_knockback_speed = variables.knockback_speed

@@ -1,10 +1,10 @@
 extends State
 class_name PlayerMove
 
-var player : Entity
+var player : Player
 
-func initialize() -> void:
-	player = get_node("../../") as Entity
+func initialize(context) -> void:
+	player = context as Player
 	player.current_speed = player.static_speed
 	
 func begin() -> void:
@@ -26,3 +26,5 @@ func update(delta : float):
 	if input_vector == Vector2.ZERO:
 		_change_state("PlayerIdle")
 	
+	player.move()
+	player.update_animation()

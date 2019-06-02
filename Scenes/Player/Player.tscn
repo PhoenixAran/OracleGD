@@ -1,16 +1,14 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
 [ext_resource path="res://Engine/Entities/Combat.gd" type="Script" id=3]
-[ext_resource path="res://Engine/Entities/Animation/EntityAnimationPlayer.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=5]
-[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=6]
-[ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=7]
-[ext_resource path="res://Engine/FSM/StateMachine.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=10]
-[ext_resource path="res://Engine/Entities/Mover.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=4]
+[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=5]
+[ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -30,7 +28,7 @@ tracks/0/keys = {
 "values": [ 8, 9 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -72,7 +70,7 @@ tracks/0/keys = {
 "values": [ 12, 13, 14 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -114,7 +112,7 @@ tracks/0/keys = {
 "values": [ 15, 16, 17 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -155,7 +153,7 @@ tracks/0/keys = {
 "values": [ 10, 11 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -196,7 +194,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -237,7 +235,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -278,7 +276,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -319,7 +317,7 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -359,7 +357,7 @@ tracks/0/keys = {
 "values": [ 1, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -399,7 +397,7 @@ tracks/0/keys = {
 "values": [ 5, 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -439,7 +437,7 @@ tracks/0/keys = {
 "values": [ 7, 6 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -479,7 +477,7 @@ tracks/0/keys = {
 "values": [ 3, 2 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EntityAnimationPlayer:playback_speed")
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -522,7 +520,7 @@ _health = 36
 [node name="Combat" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="EntityAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 playback_speed = 10.0
 anims/attackdown = SubResource( 1 )
@@ -537,17 +535,15 @@ anims/movedown = SubResource( 9 )
 anims/moveleft = SubResource( 10 )
 anims/moveright = SubResource( 11 )
 anims/moveup = SubResource( 12 )
-script = ExtResource( 4 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, 0.333333 )
 vframes = 5
 hframes = 6
 frame = 8
-script = ExtResource( 6 )
-hit_color = Color( 1, 1, 1, 0.34902 )
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
@@ -557,7 +553,7 @@ shape = SubResource( 13 )
 editor/display_folded = true
 collision_layer = 0
 collision_mask = 4
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 TYPE = 0
 detect_only = true
 damage = 0
@@ -569,14 +565,11 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 _default_state = "PlayerIdle"
 
 [node name="PlayerIdle" type="Node" parent="PlayerController"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="PlayerMove" type="Node" parent="PlayerController"]
-script = ExtResource( 10 )
-
-[node name="Mover" type="Node" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 9 )

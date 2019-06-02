@@ -12,10 +12,10 @@ func _ready() -> void:
 		child.connect("state_changed", self, "change_state")
 	_current_state = get_node(_default_state) as State
 
-func initialize() -> void:
+func initialize(context) -> void:
 	var children = get_children()
 	for child in children:
-		(child as State).initialize()
+		(child as State).initialize(context)
 
 func _physics_process(delta : float) -> void:
 	_current_state.reason()
@@ -29,3 +29,9 @@ func change_state(state : String) -> void:
 	_last_state = _current_state
 	_current_state = get_node(state)
 	_current_state.begin()
+
+func current_state() -> String:
+	return _current_state.name
+
+func last_state() -> String:
+	return _last_state.name

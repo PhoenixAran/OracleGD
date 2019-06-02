@@ -3,7 +3,7 @@ class_name State
 
 signal state_changed(state)
 
-func initialize() -> void:
+func initialize(context) -> void:
 	pass
 
 func reason() -> void:

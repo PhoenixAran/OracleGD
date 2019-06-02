@@ -3,10 +3,11 @@ class_name PlayerIdle
 
 var player : Entity
 
-func initialize() -> void:
-	player = get_node("../../") as Entity
+
+func initialize(context) -> void:
+	player = context as Entity
 	player.current_speed = player.static_speed
-	
+
 func begin() -> void:
 	player.anim_state = "idle"
 
@@ -20,9 +21,9 @@ func update(delta : float):
 		input_vector.x = -1
 	if Input.is_action_pressed("ui_right"):
 		input_vector.x = 1
-	
+
 	player.vector = input_vector
 	player.match_animation_direction(input_vector)
 	if input_vector != Vector2.ZERO:
 		_change_state("PlayerMove")
-	
+	player.update_animation()

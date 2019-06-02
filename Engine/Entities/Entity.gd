@@ -3,9 +3,9 @@ class_name Entity
 
 signal entity_hit
 signal entity_bumped
+signal entity_immobilized
 signal entity_marked_dead(entity)
 signal entity_destroyed
-signal entity_immobilized
 
 export(int) var static_speed := 70
 export(String) var anim_state := "idle"
@@ -16,14 +16,12 @@ var current_speed := 0
 var current_friction := 0
 var vector := Vector2()
 var _death_marked := false
-
-#temporary storage for external "forces"
-var external_vector_force := Vector2.ZERO
-var external_magnitude := 0
+var external_force := Vector2.ZERO
 
 #Nodes / Resources
 onready var health := $Health as Health
 onready var combat := $Combat as Combat
+onready var animation_player = $AnimationPlayer as AnimationPlayer
 var interactions := InteractionResolver.new()
 
 #Godot API Callbacks
@@ -36,9 +34,14 @@ func _ready() -> void:
 	health.connect("health_depleted", self, "on_health_depleted")
 
 #Entity methods
-func move(delta : float) -> void:
+func update_animation(force_update := false):
+	var key = get_animation_key()
+	if force_update || animation_player.current_animation != key:
+		animation_player.play(key)
+
+func move() -> void:
 	var linear_velocity := vector.normalized() * current_speed
-	linear_velocity += external_vector_force.normalized() * external_magnitude
+	linear_velocity += external_force
 	move_and_slide(linear_velocity, Vector2())
 
 func get_animation_key() -> String:
@@ -59,6 +62,12 @@ func in_knockback() -> bool:
 func reset_combat_variables() -> void:
 	combat.reset_combat_variables()
 
+func add_external_force(external_vector : Vector2, magnitude : float) -> void:
+	external_force += external_vector * magnitude
+	
+func remove_external_force(external_vector : Vector2, magnitude : float) -> void:
+	external_force -= external_vector * magnitude
+
 func destroy() -> void:
 	emit_signal("entity_destroyed", self)
 	queue_free()
@@ -68,18 +77,13 @@ func enable(enabled : bool) -> void:
 	
 func take_damage(damage_info : Dictionary) -> void:
 	var damage_value : int = damage_info.damage
-	
 	if (damage_value > 0):
     	health.take_damage(damage_value)
-	
-	combat.current_intangibility_time = damage_info.intangibility_time
-	combat.current_hitstun_time = damage_info.hitstun_time
-	combat.current_knockback_speed = damage_info.knockback_speed
-	combat.current_knockback_time = damage_info.knockback_time	
+	combat.set_combat_variables(damage_info)
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
-	combat.current_knockback_time = time
+	combat.knockback_time = time
 	combat.current_knockback_speed = speed
 	vector = direction
 	emit_signal("entity_bumped")
@@ -107,10 +111,9 @@ func match_animation_direction(input_vector : Vector2):
 	elif input_vector == Vector2(1, 0) && direction != "right":
 		direction = "right"	
 	anim_direction = direction
-	
+
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
 	set_collision_layer_bit(0, false)
 	emit_signal("entity_marked_dead", self)
-	_death_marked = true
-	
+	_death_marked = true	

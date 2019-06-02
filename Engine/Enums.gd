@@ -12,6 +12,13 @@ enum ItemMoveType {
 	MOVE
 }
 
+enum TileType {
+	WATER,
+	OCEAN,
+	HOLE,
+	LAVA	
+}
+
 enum CollisionType {
 	#Entities
 	PLAYER,
