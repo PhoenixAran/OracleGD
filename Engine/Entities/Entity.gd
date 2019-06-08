@@ -55,7 +55,7 @@ func is_intangible() -> bool:
 
 func in_hitstun() -> bool:
 	return combat.in_hitstun()
-	
+
 func in_knockback() -> bool:
 	return combat.in_hitstun()
 
@@ -64,7 +64,7 @@ func reset_combat_variables() -> void:
 
 func add_external_force(external_vector : Vector2, magnitude : float) -> void:
 	external_force += external_vector * magnitude
-	
+
 func remove_external_force(external_vector : Vector2, magnitude : float) -> void:
 	external_force -= external_vector * magnitude
 
@@ -74,7 +74,7 @@ func destroy() -> void:
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
-	
+
 func take_damage(damage_info : Dictionary) -> void:
 	var damage_value : int = damage_info.damage
 	if (damage_value > 0):
@@ -109,11 +109,11 @@ func match_animation_direction(input_vector : Vector2):
 	elif input_vector == Vector2(-1, 0) && direction != "left":
 		direction = "left"
 	elif input_vector == Vector2(1, 0) && direction != "right":
-		direction = "right"	
+		direction = "right"
 	anim_direction = direction
 
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
 	set_collision_layer_bit(0, false)
 	emit_signal("entity_marked_dead", self)
-	_death_marked = true	
+	_death_marked = true

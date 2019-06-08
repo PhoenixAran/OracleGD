@@ -15,3 +15,4 @@ func _ready() -> void:
 #Signal callbacks
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	interactions.resolve_interaction(hitbox, other_hitbox)
+
