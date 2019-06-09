@@ -11,7 +11,7 @@ func initialize(context) -> void:
 func begin() -> void:
 	player.anim_state = "idle"
 
-func update(delta : float):
+func update(delta : float) -> void:
 	var input_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
 		input_vector.y = -1
@@ -24,6 +24,8 @@ func update(delta : float):
 
 	player.vector = input_vector
 	player.match_animation_direction(input_vector)
-	if input_vector != Vector2.ZERO:
+
+	if Input.is_action_just_pressed("attack"):
+		_change_state("PlayerAttack")
+	elif input_vector != Vector2.ZERO:
 		_change_state("PlayerMove")
-	player.update_animation()

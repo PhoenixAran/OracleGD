@@ -5,6 +5,8 @@ signal hitbox_entered(other_hitbox)
 signal damaged_other(other_hitbox)
 signal resisted(other_hitbox)
 
+onready var _collision_shape := $CollisionShape2D as CollisionShape2D
+
 #Config
 export(Enums.CollisionType) var TYPE = Enums.CollisionType.NPC
 export(bool) var can_hit_multiple := false
@@ -22,12 +24,15 @@ func _ready() -> void:
 
 func _physics_process(delta : float) -> void:
 	check_collisions()
-		
+
+func _enable_area(enabled := true) -> void:
+	_collision_shape.set_disabled(!enabled)
+
 func set_detect_only(value : bool) -> void:
 	if detect_only != value:
 		detect_only = value
 		set_physics_process(!detect_only)
-		
+
 func get_damage_info() -> Dictionary:
 	return {
 		damage = damage,
@@ -44,7 +49,7 @@ func check_collisions() -> void:
 				(area as Hitbox).report_collision(self)
 		else:
 			(areas[0] as Hitbox).report_collision(self)
-			
+
 #raises the hitbox hitbox_entered signal
 func report_collision(hitbox : Hitbox):
 	emit_signal("hitbox_entered", hitbox)

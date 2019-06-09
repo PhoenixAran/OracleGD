@@ -2,10 +2,12 @@ extends State
 class_name PlayerMove
 
 var player : Player
+var item : Item
 
 func initialize(context) -> void:
 	player = context as Player
 	player.current_speed = player.static_speed
+	item = player.get_node("Item") as Item
 	
 func begin() -> void:
 	player.anim_state = "move"
@@ -25,6 +27,7 @@ func update(delta : float):
 	player.match_animation_direction(input_vector)
 	if input_vector == Vector2.ZERO:
 		_change_state("PlayerIdle")
-	
-	player.move()
-	player.update_animation()
+	elif Input.is_action_just_pressed("attack"):
+		_change_state("PlayerAttack")
+	else:		
+		player.move()

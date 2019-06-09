@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/States/PlayerAttack.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -508,7 +510,7 @@ extents = Vector2( 4, 5 )
 extents = Vector2( 5, 6 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 3
+collision_layer = 2
 collision_mask = 3
 script = ExtResource( 1 )
 
@@ -549,6 +551,7 @@ position = Vector2( 0, 2 )
 shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 6 )
@@ -563,6 +566,7 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 7 )
 _default_state = "PlayerIdle"
 
@@ -571,3 +575,8 @@ script = ExtResource( 8 )
 
 [node name="PlayerMove" type="Node" parent="PlayerController"]
 script = ExtResource( 9 )
+
+[node name="PlayerAttack" type="Node" parent="PlayerController"]
+script = ExtResource( 10 )
+
+[node name="Item" parent="." instance=ExtResource( 11 )]
