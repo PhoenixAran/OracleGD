@@ -566,7 +566,6 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 7 )
 _default_state = "PlayerIdle"
 

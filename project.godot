@@ -85,6 +85,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Player/PlayerController.gd"
 }, {
 "base": "State",
+"class": "PlayerHitstun",
+"language": "GDScript",
+"path": "res://Scripts/Player/States/PlayerHitstun.gd"
+}, {
+"base": "State",
 "class": "PlayerIdle",
 "language": "GDScript",
 "path": "res://Scripts/Player/States/PlayerIdle.gd"
@@ -125,6 +130,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerAttack": "",
 "PlayerController": "",
+"PlayerHitstun": "",
 "PlayerIdle": "",
 "PlayerMove": "",
 "PlayerSword": "",
