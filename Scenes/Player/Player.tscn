@@ -539,7 +539,6 @@ anims/moveup = SubResource( 12 )
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 4 )
-offset = Vector2( 0, 0.333333 )
 vframes = 5
 hframes = 6
 frame = 8
@@ -550,7 +549,6 @@ position = Vector2( 0, 2 )
 shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 6 )

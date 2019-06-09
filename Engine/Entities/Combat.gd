@@ -1,5 +1,6 @@
 extends Node
 class_name Combat
+
 #combat state variables
 var current_intangibility_time := 0
 var current_hitstun_time := 0
