@@ -12,9 +12,11 @@ func _ready() -> void:
 		child.connect("state_changed", self, "change_state")
 	_current_state = get_node(_default_state) as State
 
+#context is dynamic so state machines can be used on anything
 func initialize(context) -> void:
 	var children = get_children()
 	for child in children:
+		assert(child is State)
 		(child as State).initialize(context)
 
 func _physics_process(delta : float) -> void:

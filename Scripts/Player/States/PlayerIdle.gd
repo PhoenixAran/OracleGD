@@ -9,6 +9,7 @@ func initialize(context) -> void:
 	player.current_speed = player.static_speed
 
 func begin() -> void:
+	player.reset_combat_variables()
 	player.anim_state = "idle"
 
 func update(delta : float) -> void:
@@ -29,3 +30,4 @@ func update(delta : float) -> void:
 		_change_state("PlayerAttack")
 	elif input_vector != Vector2.ZERO:
 		_change_state("PlayerMove")
+		player.move()

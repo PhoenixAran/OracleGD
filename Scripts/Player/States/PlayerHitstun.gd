@@ -15,3 +15,5 @@ func update(delta : float) -> void:
 			_change_state("PlayerKnockback")
 		else:
 			_change_state("PlayerIdle")
+	elif !player.in_knockback():
+		player.reset_movement_variables()

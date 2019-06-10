@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -10,7 +10,9 @@
 [ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player/States/PlayerAttack.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Player/States/PlayerHitstun.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Player/States/PlayerKnockback.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -566,6 +568,7 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 7 )
 _default_state = "PlayerIdle"
 
@@ -578,4 +581,10 @@ script = ExtResource( 9 )
 [node name="PlayerAttack" type="Node" parent="PlayerController"]
 script = ExtResource( 10 )
 
-[node name="Item" parent="." instance=ExtResource( 11 )]
+[node name="PlayerHitstun" type="Node" parent="PlayerController"]
+script = ExtResource( 11 )
+
+[node name="PlayerKnockback" type="Node" parent="PlayerController"]
+script = ExtResource( 12 )
+
+[node name="Item" parent="." instance=ExtResource( 13 )]

@@ -7,6 +7,10 @@ signal entity_immobilized
 signal entity_marked_dead(entity)
 signal entity_destroyed
 
+#Enum import
+const CollisionType = Enums.CollisionType
+
+#Exports
 export(int) var static_speed := 70
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
@@ -61,6 +65,10 @@ func in_knockback() -> bool:
 
 func reset_combat_variables() -> void:
 	combat.reset_combat_variables()
+
+func reset_movement_variables() -> void:
+	current_speed = static_speed
+	vector = Vector2.ZERO
 
 func add_external_force(external_vector : Vector2, magnitude : float) -> void:
 	external_force += external_vector * magnitude

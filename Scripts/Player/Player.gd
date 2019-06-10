@@ -6,8 +6,11 @@ onready var hitbox := $Hitbox as Hitbox
 onready var sprite := $EntitySprite as EntitySprite
 onready var item := $Item as Item
 
+#Godot API 
 func _ready() -> void:
 	player_controller.initialize(self)
+	_set_up_interactions()
+	reset_movement_variables()
 	health.connect("health_depleted", self, "_on_health_depleted")
 	item.connect("item_used", self, "_on_item_used")
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
@@ -17,6 +20,10 @@ func _ready() -> void:
 	
 func _physics_process(delta : float) -> void:
 	update_animation()
+
+#Player methods
+func _set_up_interactions() -> void:
+	interactions.set_interaction(CollisionType.MONSTER, DamageInteraction.new())
 
 #Signal callbacks
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:

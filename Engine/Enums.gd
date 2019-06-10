@@ -16,7 +16,7 @@ enum TileType {
 	WATER,
 	OCEAN,
 	HOLE,
-	LAVA	
+	LAVA
 }
 
 enum CollisionType {
