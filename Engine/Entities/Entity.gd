@@ -38,8 +38,8 @@ func _ready() -> void:
 	health.connect("health_depleted", self, "on_health_depleted")
 
 #Entity methods
-func update_animation(force_update := false):
-	var key = get_animation_key()
+func update_animation(force_update := false) -> void:
+	var key := get_animation_key()
 	if force_update || animation_player.current_animation != key:
 		animation_player.play(key)
 

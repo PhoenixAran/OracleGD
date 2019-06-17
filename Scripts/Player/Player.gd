@@ -20,6 +20,7 @@ func _ready() -> void:
 	
 func _physics_process(delta : float) -> void:
 	update_animation()
+	move()
 
 #Player methods
 func _set_up_interactions() -> void:

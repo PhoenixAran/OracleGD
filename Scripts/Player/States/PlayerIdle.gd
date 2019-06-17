@@ -30,4 +30,3 @@ func update(delta : float) -> void:
 		_change_state("PlayerAttack")
 	elif input_vector != Vector2.ZERO:
 		_change_state("PlayerMove")
-		player.move()

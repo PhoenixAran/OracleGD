@@ -29,5 +29,3 @@ func update(delta : float):
 		_change_state("PlayerIdle")
 	elif Input.is_action_just_pressed("attack"):
 		_change_state("PlayerAttack")
-	else:		
-		player.move()

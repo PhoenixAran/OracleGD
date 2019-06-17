@@ -526,7 +526,7 @@ script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
-playback_speed = 10.0
+playback_speed = 5.0
 anims/attackdown = SubResource( 1 )
 anims/attackleft = SubResource( 2 )
 anims/attackright = SubResource( 3 )
@@ -545,7 +545,7 @@ scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 4 )
 vframes = 5
 hframes = 6
-frame = 8
+frame = 2
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

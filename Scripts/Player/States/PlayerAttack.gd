@@ -10,6 +10,7 @@ func initialize(context) -> void:
 func begin() -> void:
 	player.anim_state = "attack"
 	player.update_animation()
+	player.vector = Vector2()
 	item = player.get_node("Item") as Item
 	assert(item != null)
 	item.use_item(player.anim_direction)
