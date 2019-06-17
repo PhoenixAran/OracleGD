@@ -8,7 +8,7 @@ var modulating := false
 onready var entity := get_parent() as Entity
 
 func _physics_process(delta : float) -> void:
-	if modulating && entity.is_intangible():
+	if modulating and entity.is_intangible():
 		set_self_modulate(hit_color)
 
 func _on_entity_hit() -> void:

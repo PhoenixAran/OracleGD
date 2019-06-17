@@ -17,5 +17,5 @@ func begin() -> void:
 
 
 func update(delta : float) -> void:
-	if !item.in_use():
+	if not item.in_use():
 		_change_state("PlayerIdle")	

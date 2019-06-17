@@ -16,13 +16,13 @@ func _physics_process(delta : float) -> void:
 	update_combat_variables()
 
 func is_intangible() -> bool:
-	return (current_knockback_time > 0 && current_intangibility_time < intangibility_time)
+	return (current_knockback_time > 0 and current_intangibility_time < intangibility_time)
 
 func in_hitstun() -> bool:
-	return (hitstun_time > 0 && current_hitstun_time < hitstun_time)
+	return (hitstun_time > 0 and current_hitstun_time < hitstun_time)
 
 func in_knockback() -> bool:
-	return (knockback_time > 0 && current_knockback_time < knockback_time)
+	return (knockback_time > 0 and current_knockback_time < knockback_time)
 	
 func reset_combat_variables() -> void:
 	hitstun_time = 0

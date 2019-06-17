@@ -31,7 +31,7 @@ var interactions := InteractionResolver.new()
 #Godot API Callbacks
 func _physics_process(delta : float) -> void:
     if _death_marked:
-        if in_hitstun() && !in_knockback():
+        if in_hitstun() and not in_knockback():
             destroy()
 
 func _ready() -> void:
@@ -40,7 +40,7 @@ func _ready() -> void:
 #Entity methods
 func update_animation(force_update := false) -> void:
 	var key := get_animation_key()
-	if force_update || animation_player.current_animation != key:
+	if force_update or animation_player.current_animation != key:
 		animation_player.play(key)
 
 func move() -> void:
@@ -102,21 +102,21 @@ func immobilize(time : int) -> void:
 
 func match_animation_direction(input_vector : Vector2):
 	var direction := anim_direction
-	if input_vector == Vector2(-1, -1) && direction != "up" && direction != "left":
+	if input_vector == Vector2(-1, -1) and direction != "up" and direction != "left":
 		direction = "up"
-	elif input_vector == Vector2(1, 1) && direction != "down" && direction != "right":
+	elif input_vector == Vector2(1, 1) and direction != "down" and direction != "right":
 		direction = "down"
-	elif input_vector == Vector2(1, -1) && direction != "up" && direction != "right":
+	elif input_vector == Vector2(1, -1) and direction != "up" and direction != "right":
 		direction = "up"
-	elif input_vector == Vector2(-1, 1) && direction != "down" && direction != "left":
+	elif input_vector == Vector2(-1, 1) and direction != "down" and direction != "left":
 		direction = "left"
-	elif input_vector == Vector2(0, -1) && direction != "up":
+	elif input_vector == Vector2(0, -1) and direction != "up":
 		direction = "up"
-	elif input_vector == Vector2(0, 1) && direction != "down":
+	elif input_vector == Vector2(0, 1) and direction != "down":
 		direction = "down"
-	elif input_vector == Vector2(-1, 0) && direction != "left":
+	elif input_vector == Vector2(-1, 0) and direction != "left":
 		direction = "left"
-	elif input_vector == Vector2(1, 0) && direction != "right":
+	elif input_vector == Vector2(1, 0) and direction != "right":
 		direction = "right"
 	anim_direction = direction
 

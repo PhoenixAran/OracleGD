@@ -10,7 +10,7 @@ func begin() -> void:
 	player.anim_state = "idle"
 
 func update(delta : float) -> void:
-	if !player.in_hitstun():
+	if not player.in_hitstun():
 		if player.in_knockback():
 			_change_state("PlayerKnockback")
 		else:
