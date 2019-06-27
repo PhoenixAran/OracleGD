@@ -29,13 +29,13 @@ func set_health(value : int) -> void:
 		emit_signal("health_depleted")
 
 func take_damage( damage : int ) -> void:
-	assert(damage >= 0)
-	var actual_damage := damage - armor
-	if actual_damage > 0:
-		_health -= damage - armor
-		emit_signal("health_changed", _health)
-	if _health <= 0:
-		emit_signal("health_depleted")
+	if 0 < damage:
+		var actual_damage := damage - armor
+		if 0 < actual_damage:
+			_health -= damage - armor
+			emit_signal("health_changed", _health)
+		if _health <= 0:
+			emit_signal("health_depleted")
 
 func heal( amount : int ) -> void:
 	assert(amount >= 0)

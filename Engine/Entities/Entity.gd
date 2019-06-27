@@ -26,7 +26,7 @@ var external_force := Vector2.ZERO
 onready var health := $Health as Health
 onready var combat := $Combat as Combat
 onready var animation_player = $AnimationPlayer as AnimationPlayer
-var interactions := InteractionResolver.new()
+onready var interactions := InteractionResolver.new()
 
 #Godot API Callbacks
 func _physics_process(delta : float) -> void:
@@ -43,7 +43,7 @@ func update_animation(force_update := false) -> void:
 	if force_update or animation_player.current_animation != key:
 		animation_player.play(key)
 
-func move() -> void:
+func update_movement() -> void:
 	var linear_velocity := vector.normalized() * current_speed
 	linear_velocity += external_force
 	move_and_slide(linear_velocity, Vector2())
@@ -83,11 +83,13 @@ func destroy() -> void:
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 
+func set_vector_away(other_vector : Vector2) -> void:
+	vector = global_position - other_vector
+
 func take_damage(damage_info : Dictionary) -> void:
-	var damage_value : int = damage_info.damage
-	if (damage_value > 0):
-    	health.take_damage(damage_value)
 	combat.set_combat_variables(damage_info)
+	health.take_damage(damage_info.damage)
+	set_vector_away(damage_info.source_position)
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
@@ -100,7 +102,7 @@ func immobilize(time : int) -> void:
 	combat.current_hitstun_time = time
 	emit_signal("entity_immobilized")
 
-func match_animation_direction(input_vector : Vector2):
+func match_animation_direction(input_vector : Vector2) -> void:
 	var direction := anim_direction
 	if input_vector == Vector2(-1, -1) and direction != "up" and direction != "left":
 		direction = "up"
@@ -122,6 +124,6 @@ func match_animation_direction(input_vector : Vector2):
 
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
-	set_collision_layer_bit(0, false)
+	collision_layer = 0
 	emit_signal("entity_marked_dead", self)
 	_death_marked = true

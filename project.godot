@@ -75,6 +75,11 @@ _global_script_classes=[ {
 "path": "res://Engine/Entities/Item.gd"
 }, {
 "base": "Entity",
+"class": "Monster",
+"language": "GDScript",
+"path": "res://Scripts/Monster/Monster.gd"
+}, {
+"base": "Entity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
@@ -114,6 +119,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/Items/PlayerSword.gd"
 }, {
+"base": "Monster",
+"class": "SimpleWanderMonster",
+"language": "GDScript",
+"path": "res://Scripts/Monster/SimpleWanderMonster.gd"
+}, {
+"base": "SimpleWanderMonster",
+"class": "Stalfos",
+"language": "GDScript",
+"path": "res://Scripts/Monster/Stalfos/Stalfos.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -138,6 +153,7 @@ _global_script_class_icons={
 "Interaction": "",
 "InteractionResolver": "",
 "Item": "",
+"Monster": "",
 "Player": "",
 "PlayerAttack": "",
 "PlayerController": "",
@@ -146,6 +162,8 @@ _global_script_class_icons={
 "PlayerKnockback": "",
 "PlayerMove": "",
 "PlayerSword": "",
+"SimpleWanderMonster": "",
+"Stalfos": "",
 "State": "",
 "StateMachine": ""
 }

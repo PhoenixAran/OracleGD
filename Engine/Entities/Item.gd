@@ -13,9 +13,6 @@ func use_item(direction : String):
 func stop_use():
 	_can_use = false
 
-func _ready():
-	pass
-
 func can_use() -> bool: 
 	return _can_use
 

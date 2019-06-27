@@ -36,9 +36,10 @@ func set_detect_only(value : bool) -> void:
 func get_damage_info() -> Dictionary:
 	return {
 		damage = damage,
+		source_position = global_position,
 		knockback_time = knockback_time,
 		knockback_speed = knockback_speed,
-		hitstun_time = hitstun_time
+		hitstun_time = hitstun_time, 
 	}
 
 func check_collisions() -> void:
