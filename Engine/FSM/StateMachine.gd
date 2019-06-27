@@ -19,7 +19,7 @@ func initialize(context) -> void:
 		assert(child is State)
 		(child as State).initialize(context)
 
-func _physics_process(delta : float) -> void:
+func update(delta : float) -> void:
 	_current_state.reason()
 	#the update method is mandatory. no need to check for it
 	_current_state.update(delta)

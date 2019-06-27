@@ -1,7 +1,7 @@
 class_name InteractionResolver
 
 var _interaction_map := { }
-var _default_interaction := DamageInteraction.new()
+var _default_interaction := Interactions.Ignore
 
 func set_interaction(type, interaction : Interaction) -> void:
 	_interaction_map[type] = interaction

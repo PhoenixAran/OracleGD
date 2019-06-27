@@ -174,6 +174,10 @@ config/name="OracleGD"
 run/main_scene="res://Scenes/Player/Player.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Interactions="*res://Engine/Interactions.gd"
+
 [debug]
 
 gdscript/warnings/unused_variable=false

@@ -22,12 +22,13 @@ func _ready() -> void:
 	connect("entity_hit", item, "_on_entity_hit")
 	
 func _physics_process(delta : float) -> void:
+	player_controller.update(delta)
 	update_animation()
 	update_movement()
 
 #Player methods
 func _set_up_interactions() -> void:
-	interactions.set_interaction(CollisionType.MONSTER, DamageInteraction.new())
+	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 
 #Signal callbacks
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
