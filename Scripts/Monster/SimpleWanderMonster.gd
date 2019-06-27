@@ -31,6 +31,7 @@ func update_ai() -> void:
 
 #randomly changes direction
 func change_direction() -> void:
+	move_time = 0
 	var index := randi() % directions.size()
 	vector = directions[index]
 	if has_animation_direction:
