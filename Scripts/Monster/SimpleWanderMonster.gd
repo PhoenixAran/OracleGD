@@ -47,16 +47,19 @@ func update_ai() -> void:
 						state = EnemyState.MOVING
 						reset_combat_variables()
 						reset_movement_variables()
+						change_direction()
 			EnemyState.IN_HITSTUN:
 				if not in_hitstun():
 					state = EnemyState.MOVING
 					reset_combat_variables()
 					reset_movement_variables()
+					change_direction()
 			EnemyState.IN_KNOCKBACK:
 				if not in_knockback():
 					state = EnemyState.MOVING
 					reset_combat_variables()
 					reset_movement_variables()
+					change_direction()
 
 #randomly changes direction
 func change_direction() -> void:

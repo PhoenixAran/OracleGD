@@ -39,8 +39,9 @@ func update_combat_variables() -> void:
 		current_knockback_time += 1
 
 func set_combat_variables(variables : Dictionary) -> void:
-	#TODO formula for intangibility time
-	intangibility_time = 5
 	hitstun_time = variables.hitstun_time
 	knockback_time = variables.knockback_time
 	current_knockback_speed = variables.knockback_speed
+
+func set_intangibility(frames : int) -> void:
+	intangibility_time = frames

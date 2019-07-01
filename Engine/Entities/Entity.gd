@@ -25,7 +25,7 @@ var external_force := Vector2.ZERO
 #Nodes / Resources
 onready var animation_player = $AnimationPlayer as AnimationPlayer
 onready var entity_sprite = $EntitySprite as EntitySprite
-onready var combat := Combat.new()
+onready var combat := Combat.new() as Combat
 onready var health := $Health as Health
 onready var interactions := InteractionResolver.new()
 
@@ -83,14 +83,17 @@ func enable(enabled : bool) -> void:
 
 func set_vector_away(other_vector : Vector2) -> void:
 	vector = global_position - other_vector
-	print(vector)
+
+func set_intangibility(frames : int) -> void:
+	combat.set_intangibility(frames)
+	entity_sprite.set_modulate_time(frames)
 
 func take_damage(damage_info : Dictionary) -> void:
+	set_intangibility(15)
 	combat.set_combat_variables(damage_info)
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
 	current_speed = damage_info.knockback_speed
-	entity_sprite.set_modulate_time(5)
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
