@@ -9,7 +9,6 @@ onready var item := $Item as Item
 #Godot API 
 func _ready() -> void:
 	player_controller.initialize(self)
-	var test := global_transform
 	_set_up_interactions()
 	reset_movement_variables()
 	health.connect("health_depleted", self, "_on_health_depleted")
@@ -20,8 +19,9 @@ func _ready() -> void:
 	connect("entity_hit", player_controller, "_on_entity_hit")
 	connect("entity_hit", sprite, "_on_entity_hit")
 	connect("entity_hit", item, "_on_entity_hit")
-	
+
 func _physics_process(delta : float) -> void:
+	combat.update_combat_variables()
 	player_controller.update(delta)
 	update_animation()
 	update_movement()

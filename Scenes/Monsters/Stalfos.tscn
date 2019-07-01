@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Monster/Stalfos/Stalfos.gd" type="Script" id=1]
+[ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Monsters/Stalfos.png" type="Texture" id=3]
+[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]
+[ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "move"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7, 8 )
+
+[node name="Stalfos" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 1 )
+static_speed = 25
+move_length = 60
+default_animation = "move"
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 2 )
+_max_health = 6
+_health = 6
+
+[node name="EntitySprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 3
+frame = 1
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
+anims/move = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource( 5 )
+TYPE = 1
+can_hit_multiple = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 3 )

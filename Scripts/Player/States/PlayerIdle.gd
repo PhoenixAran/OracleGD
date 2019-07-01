@@ -23,10 +23,10 @@ func update(delta : float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		input_vector.x = 1
 
-	player.vector = input_vector
 	player.match_animation_direction(input_vector)
 
 	if Input.is_action_just_pressed("attack"):
 		_change_state("PlayerAttack")
 	elif input_vector != Vector2.ZERO:
+		player.vector = input_vector
 		_change_state("PlayerMove")

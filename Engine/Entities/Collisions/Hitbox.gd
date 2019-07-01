@@ -26,7 +26,7 @@ func _physics_process(delta : float) -> void:
 	check_collisions()
 
 func _enable_area(enabled := true) -> void:
-	_collision_shape.set_disabled(!enabled)
+	_collision_shape.set_disabled(not enabled)
 
 func set_detect_only(value : bool) -> void:
 	if detect_only != value:

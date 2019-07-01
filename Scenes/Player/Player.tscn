@@ -1,18 +1,17 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
-[ext_resource path="res://Engine/Entities/Combat.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=4]
-[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=5]
-[ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Player/States/PlayerAttack.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/Player/States/PlayerHitstun.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Player/States/PlayerKnockback.gd" type="Script" id=12]
-[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]
+[ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player/States/PlayerAttack.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/States/PlayerHitstun.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Player/States/PlayerKnockback.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -521,12 +520,9 @@ script = ExtResource( 2 )
 _max_health = 36
 _health = 36
 
-[node name="Combat" type="Node" parent="."]
-script = ExtResource( 3 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
-playback_speed = 5.0
+playback_speed = 10.0
 anims/attackdown = SubResource( 1 )
 anims/attackleft = SubResource( 2 )
 anims/attackright = SubResource( 3 )
@@ -542,11 +538,11 @@ anims/moveup = SubResource( 12 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 vframes = 5
 hframes = 6
-frame = 2
-script = ExtResource( 5 )
+frame = 8
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
@@ -556,7 +552,7 @@ shape = SubResource( 13 )
 editor/display_folded = true
 collision_layer = 0
 collision_mask = 4
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 TYPE = 0
 detect_only = true
 damage = 0
@@ -569,22 +565,22 @@ shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 _default_state = "PlayerIdle"
 
 [node name="PlayerIdle" type="Node" parent="PlayerController"]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="PlayerMove" type="Node" parent="PlayerController"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="PlayerAttack" type="Node" parent="PlayerController"]
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 
 [node name="PlayerHitstun" type="Node" parent="PlayerController"]
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 
 [node name="PlayerKnockback" type="Node" parent="PlayerController"]
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
-[node name="Item" parent="." instance=ExtResource( 13 )]
+[node name="Item" parent="." instance=ExtResource( 12 )]

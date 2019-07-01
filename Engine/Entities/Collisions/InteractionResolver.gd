@@ -6,7 +6,7 @@ var _default_interaction := Interactions.Ignore
 func set_interaction(type, interaction : Interaction) -> void:
 	_interaction_map[type] = interaction
 
-func get_interaction(type : Interaction) -> Interaction:
+func get_interaction(type) -> Interaction:
 	return _interaction_map[type] as Interaction
 
 func remove_interaction(type : Interaction) -> void:

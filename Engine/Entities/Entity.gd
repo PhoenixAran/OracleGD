@@ -23,9 +23,9 @@ var _death_marked := false
 var external_force := Vector2.ZERO
 
 #Nodes / Resources
-onready var health := $Health as Health
-onready var combat := $Combat as Combat
 onready var animation_player = $AnimationPlayer as AnimationPlayer
+onready var combat := Combat.new()
+onready var health := $Health as Health
 onready var interactions := InteractionResolver.new()
 
 #Godot API Callbacks
@@ -33,9 +33,6 @@ func _physics_process(delta : float) -> void:
     if _death_marked:
         if in_hitstun() and not in_knockback():
             destroy()
-
-func _ready() -> void:
-	health.connect("health_depleted", self, "on_health_depleted")
 
 #Entity methods
 func update_animation(force_update := false) -> void:
@@ -85,11 +82,13 @@ func enable(enabled : bool) -> void:
 
 func set_vector_away(other_vector : Vector2) -> void:
 	vector = global_position - other_vector
+	print(vector)
 
 func take_damage(damage_info : Dictionary) -> void:
 	combat.set_combat_variables(damage_info)
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
+	current_speed = damage_info.knockback_speed
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:

@@ -3,9 +3,9 @@ class_name PlayerController
 
 #signal callbacks
 func _on_entity_hit() -> void:
-	pass
+	change_state("PlayerHistun")
 
 func _on_entity_bump() -> void:
-	pass
+	change_state("PlayerKnockback")
 
 	

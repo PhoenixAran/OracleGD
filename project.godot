@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "Reference",
 "class": "Combat",
 "language": "GDScript",
 "path": "res://Engine/Entities/Combat.gd"
@@ -171,7 +171,7 @@ _global_script_class_icons={
 [application]
 
 config/name="OracleGD"
-run/main_scene="res://Scenes/Player/Player.tscn"
+run/main_scene="res://Scenes/TestScenes/CombatTest.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -184,6 +184,7 @@ gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 

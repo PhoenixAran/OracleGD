@@ -7,5 +7,5 @@ func _ready() -> void:
 	animation_player.connect("animation_finished", self, "destroy")
 	animation_player.play("death")
 
-func destroy() -> void:
+func destroy(anim_name : String) -> void:
 	queue_free() 

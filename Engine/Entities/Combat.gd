@@ -1,4 +1,3 @@
-extends Node
 class_name Combat
 
 #combat state variables
@@ -11,9 +10,6 @@ var current_knockback_speed := 0.0
 var hitstun_time := 0
 var knockback_time := 0
 var intangibility_time := 0
-
-func _physics_process(delta : float) -> void:
-	update_combat_variables()
 
 func is_intangible() -> bool:
 	return (current_knockback_time > 0 and current_intangibility_time < intangibility_time)
@@ -43,7 +39,8 @@ func update_combat_variables() -> void:
 		current_knockback_time += 1
 
 func set_combat_variables(variables : Dictionary) -> void:
-	intangibility_time = variables.intangibility_time
+	#TODO formula for intangibility time
+	intangibility_time = 5
 	hitstun_time = variables.hitstun_time
 	knockback_time = variables.knockback_time
 	current_knockback_speed = variables.knockback_speed

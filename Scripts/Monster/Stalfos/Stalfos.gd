@@ -6,6 +6,8 @@ func _ready() -> void:
 	health.connect("health_depleted", self, "_on_health_depleted")
 	hitbox.connect("hitbox_entered", self, "_on_hitbox_entered")
 	animation_player.play(default_animation)
+	current_speed = static_speed
 	#Initialize the first direction
 	change_direction()
 	connect("entity_hit", self, "_on_entity_hit")
+	connect("entity_hit", $EntitySprite, "_on_entity_hit")
