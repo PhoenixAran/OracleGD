@@ -10,4 +10,3 @@ func _ready() -> void:
 	#Initialize the first direction
 	change_direction()
 	connect("entity_hit", self, "_on_entity_hit")
-	connect("entity_hit", $EntitySprite, "_on_entity_hit")

@@ -6,7 +6,7 @@
 [node name="CombatTest" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 18, 37 )
+position = Vector2( 18, 39 )
 
 [node name="Stalfos" parent="." instance=ExtResource( 2 )]
 position = Vector2( 75, 28 )
