@@ -6,7 +6,6 @@ const animation_directions := ["up", "down", "left", "right"]
 
 onready var hitbox := $Hitbox as Hitbox
 
-
 export(bool) var has_animation_direction := false
 export(int) var move_length := 30
 export(String) var default_animation
@@ -15,6 +14,7 @@ var move_time := 0
 var state = Enums.EnemyState.MOVING
 
 func _physics_process(delta : float) -> void:
+	poll_death()
 	combat.update_combat_variables()
 	update_ai()
 	update_animation()
@@ -28,38 +28,35 @@ func update_animation(force_update := false) -> void:
 			animation_player.play(key)
 
 func update_ai() -> void:
-	if _death_marked:
-		if not in_hitstun() and not in_knockback():
-			destroy()
-	else:
-		match state:
-			EnemyState.MOVING:
-				move_time += 1
-				if move_length <= move_time:
-					change_direction()
-			EnemyState.HURT:
-				if not ( in_hitstun() and in_knockback() ):
-					if in_hitstun():
-						state = EnemyState.IN_HITSTUN
-					elif in_knockback():
-						state = EnemyState.IN_KNOCKBACK
-					else:
-						state = EnemyState.MOVING
-						reset_combat_variables()
-						reset_movement_variables()
-						change_direction()
-			EnemyState.IN_HITSTUN:
-				if not in_hitstun():
+	match state:
+		EnemyState.MOVING:
+			move_time += 1
+			if move_length <= move_time:
+				change_direction()
+		EnemyState.HURT:
+			if not ( in_hitstun() and in_knockback() ):
+				if in_hitstun():
+					state = EnemyState.IN_HITSTUN
+				elif in_knockback():
+					state = EnemyState.IN_KNOCKBACK
+				else:
 					state = EnemyState.MOVING
-					reset_combat_variables()
-					reset_movement_variables()
-					change_direction()
-			EnemyState.IN_KNOCKBACK:
-				if not in_knockback():
-					state = EnemyState.MOVING
-					reset_combat_variables()
-					reset_movement_variables()
-					change_direction()
+					prep_for_move_state()
+		EnemyState.IN_HITSTUN:
+			if not in_hitstun():
+				state = EnemyState.MOVING
+				prep_for_move_state()
+		EnemyState.IN_KNOCKBACK:
+			if not in_knockback():
+				state = EnemyState.MOVING
+				prep_for_move_state()
+		EnemyState.DEAD:
+			pass
+
+func prep_for_move_state() -> void:
+	reset_combat_variables()
+	reset_movement_variables()
+	change_direction()
 
 #randomly changes direction
 func change_direction() -> void:
@@ -81,3 +78,8 @@ func _on_entity_hit() -> void:
 		state = EnemyState.IN_HITSTUN
 	elif in_knockback():
 		state = EnemyState.IN_KNOCKBACK
+
+#Override
+func _on_health_depleted(damage : int) -> void:
+	._on_health_depleted(damage)
+	state = EnemyState.DEAD

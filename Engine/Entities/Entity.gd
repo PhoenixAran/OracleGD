@@ -46,6 +46,10 @@ func update_movement() -> void:
 	linear_velocity += external_force
 	move_and_slide(linear_velocity, Vector2())
 
+func poll_death() -> void:
+	if _death_marked and not in_hitstun() and not in_knockback():
+		destroy()
+
 func get_animation_key() -> String:
 	return anim_state + anim_direction
 

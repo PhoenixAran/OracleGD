@@ -62,6 +62,9 @@ collision_mask = 4
 script = ExtResource( 5 )
 TYPE = 1
 can_hit_multiple = true
+knockback_time = 8
+knockback_speed = 100.0
+hitstun_time = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 3 )

@@ -17,9 +17,10 @@ func _ready() -> void:
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
-	connect("entity_hit", item, "_on_entity_hit")
+	connect("entity_hit", item, "_on_owner_hit")
 
 func _physics_process(delta : float) -> void:
+	poll_death()
 	combat.update_combat_variables()
 	player_controller.update(delta)
 	update_animation()

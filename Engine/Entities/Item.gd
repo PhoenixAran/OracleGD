@@ -7,10 +7,10 @@ export(bool) var _can_use := true setget, can_use
 export(bool) var _in_use := false setget, in_use
 export(Enums.ItemMoveType) var move_type = Enums.ItemMoveType.NO_MOVE
 
-func use_item(direction : String):
+func use_item(direction : String) -> void:
 	_in_use = true
 
-func stop_use():
+func stop_use() -> void:
 	_can_use = false
 
 func can_use() -> bool: 

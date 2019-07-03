@@ -26,9 +26,10 @@ func use_item(direction : String) -> void:
 
 func stop_use() -> void:
 	animation_player.stop()
+	_in_use = false
 	if sprite.is_visible():
     	sprite.set_visible(false)
-	hitbox.set_enabled(false)
+	hitbox.enable_area(false)
 
-func _on_owner_hurt() -> void:
+func _on_owner_hit() -> void:
 	stop_use()

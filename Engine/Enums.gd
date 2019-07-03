@@ -35,6 +35,7 @@ enum CollisionType {
 
 #Generic AI states that monster scripts can switch case on. 
 enum EnemyState {
+	DEAD,
 	IDLE,
 	HURT,
 	MOVING,

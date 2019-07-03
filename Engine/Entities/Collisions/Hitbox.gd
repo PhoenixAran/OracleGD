@@ -11,6 +11,7 @@ onready var _collision_shape := $CollisionShape2D as CollisionShape2D
 export(Enums.CollisionType) var TYPE = Enums.CollisionType.NPC
 export(bool) var can_hit_multiple := false
 export(bool) var detect_only setget set_detect_only
+export(bool) var use_parent_as_source := true
 
 #Damage details
 export(int) var damage := 5
@@ -25,18 +26,18 @@ func _ready() -> void:
 func _physics_process(delta : float) -> void:
 	check_collisions()
 
-func _enable_area(enabled := true) -> void:
+func enable_area(enabled := true) -> void:
 	_collision_shape.set_disabled(not enabled)
 
 func set_detect_only(value : bool) -> void:
 	if detect_only != value:
 		detect_only = value
-		set_physics_process(!detect_only)
+		set_physics_process(not detect_only)
 
 func get_damage_info() -> Dictionary:
 	return {
 		damage = damage,
-		source_position = global_position,
+		source_position = get_parent().global_position if use_parent_as_source else global_position,
 		knockback_time = knockback_time,
 		knockback_speed = knockback_speed,
 		hitstun_time = hitstun_time, 
