@@ -11,8 +11,8 @@ func begin() -> void:
 	
 func update(delta : float) -> void:
 	if not player.in_knockback():
-		_change_state("PlayerIdle")
 		player.reset_movement_variables()
+		_change_state("PlayerIdle")
 	elif not player.in_hitstun():
 		#player can use their item mid knockback
 		if Input.IsActionJustPressed("attack"):

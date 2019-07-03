@@ -5,7 +5,10 @@ signal entity_hit
 signal entity_bumped
 signal entity_immobilized
 signal entity_marked_dead(entity)
-signal entity_destroyed
+signal entity_destroyed(entity)
+
+signal projectile_created(entity)
+signal entity_created(entity)
 
 #Enum import
 const CollisionType = Enums.CollisionType
@@ -31,9 +34,9 @@ onready var interactions := InteractionResolver.new()
 
 #Godot API Callbacks
 func _physics_process(delta : float) -> void:
-    if _death_marked:
-        if in_hitstun() and not in_knockback():
-            destroy()
+	if _death_marked:
+		if in_hitstun() and not in_knockback():
+			destroy()
 
 #Entity methods
 func update_animation(force_update := false) -> void:

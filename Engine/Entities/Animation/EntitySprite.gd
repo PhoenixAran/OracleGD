@@ -10,7 +10,7 @@ var time := 0
 
 func _physics_process(delta : float) -> void:
 	if modulating: 
-		if current_time <= time:		
+		if current_time <= time:
 			current_time += 1
 		else:
 			modulating = false

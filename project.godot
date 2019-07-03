@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Entity.gd"
 }, {
+"base": "TileMap",
+"class": "EntityPlacer",
+"language": "GDScript",
+"path": "res://Engine/Level/EntityPlacer.gd"
+}, {
 "base": "Sprite",
 "class": "EntitySprite",
 "language": "GDScript",
@@ -73,6 +78,11 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://Engine/Entities/Item.gd"
+}, {
+"base": "Node",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Engine/Level/Level.gd"
 }, {
 "base": "Entity",
 "class": "Monster",
@@ -119,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/Items/PlayerSword.gd"
 }, {
+"base": "TileMap",
+"class": "Room",
+"language": "GDScript",
+"path": "res://Engine/Level/Room.gd"
+}, {
 "base": "Monster",
 "class": "SimpleWanderMonster",
 "language": "GDScript",
@@ -145,6 +160,7 @@ _global_script_class_icons={
 "DamageInteraction": "",
 "DefaultDeath": "",
 "Entity": "",
+"EntityPlacer": "",
 "EntitySprite": "",
 "Enums": "",
 "EnvironmentalCollisionBox": "",
@@ -153,6 +169,7 @@ _global_script_class_icons={
 "Interaction": "",
 "InteractionResolver": "",
 "Item": "",
+"Level": "",
 "Monster": "",
 "Player": "",
 "PlayerAttack": "",
@@ -162,6 +179,7 @@ _global_script_class_icons={
 "PlayerKnockback": "",
 "PlayerMove": "",
 "PlayerSword": "",
+"Room": "",
 "SimpleWanderMonster": "",
 "Stalfos": "",
 "State": "",

@@ -8,6 +8,7 @@ func destroy() -> void:
 	var effect = death_effect.instance()
 	effect.transform = global_transform
 	get_parent().add_child(effect)
+	emit_signal("entity_destroyed", self)
 	queue_free()
 
 

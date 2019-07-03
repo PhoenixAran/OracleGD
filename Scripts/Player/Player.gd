@@ -26,6 +26,16 @@ func _physics_process(delta : float) -> void:
 	update_animation()
 	update_movement()
 
+#Override
+func enable(enabled : bool) -> void:
+	set_physics_process(enabled)
+	hitbox.set_physics_process(enabled)
+	item.enable(enabled)
+	if enabled:
+		animation_player.play()
+	else:
+		animation_player.stop(false)
+
 #Player methods
 func _set_up_interactions() -> void:
 	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)

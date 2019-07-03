@@ -18,3 +18,6 @@ func can_use() -> bool:
 
 func in_use() -> bool:
 	return _in_use
+
+func enable(enabled : bool) -> void:
+	pass

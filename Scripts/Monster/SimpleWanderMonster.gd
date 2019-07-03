@@ -58,6 +58,14 @@ func prep_for_move_state() -> void:
 	reset_movement_variables()
 	change_direction()
 
+func enabled(enabled : bool) -> void:
+	set_physics_process(enabled)
+	hitbox.set_physics_process(enabled)
+	if enabled:
+		animation_player.play()
+	else:
+		animation_player.stop()
+
 #randomly changes direction
 func change_direction() -> void:
 	move_time = 0

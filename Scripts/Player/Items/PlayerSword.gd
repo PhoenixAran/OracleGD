@@ -31,5 +31,13 @@ func stop_use() -> void:
     	sprite.set_visible(false)
 	hitbox.enable_area(false)
 
+func enable(enabled : bool) -> void:
+	set_physics_process(enabled)
+	hitbox.set_physics_process(enabled)
+	if enabled:
+		animation_player.play()
+	else:
+		animation_player.stop(false)
+
 func _on_owner_hit() -> void:
 	stop_use()
