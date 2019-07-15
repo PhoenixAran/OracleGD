@@ -21,3 +21,6 @@ func in_use() -> bool:
 
 func enable(enabled : bool) -> void:
 	pass
+
+func overrides_interaction(sender : Hitbox) -> bool:
+	return false

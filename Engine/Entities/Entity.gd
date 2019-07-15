@@ -52,6 +52,9 @@ func update_movement() -> void:
 func poll_death() -> void:
 	if _death_marked and not in_hitstun() and not in_knockback():
 		destroy()
+		
+func update_combat_variables() -> void:
+	combat.update_combat_variables()
 
 func get_animation_key() -> String:
 	return anim_state + anim_direction

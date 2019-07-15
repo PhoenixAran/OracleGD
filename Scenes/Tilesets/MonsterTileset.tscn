@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Monsters/Stalfos.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Monster/Stalfos/Stalfos.gd" type="Script" id=2]
+
+[node name="MonsterTileset" type="Node2D"]
+
+[node name="Stalfos" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 3
+script = ExtResource( 2 )

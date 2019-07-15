@@ -1,7 +1,7 @@
 class_name InteractionResolver
 
-var _interaction_map := { }
-var _default_interaction := Interactions.Ignore
+var _interaction_map : Dictionary = { }
+var _default_interaction : Interaction = Interactions.Ignore
 
 func set_interaction(type, interaction : Interaction) -> void:
 	_interaction_map[type] = interaction
@@ -9,7 +9,7 @@ func set_interaction(type, interaction : Interaction) -> void:
 func get_interaction(type) -> Interaction:
 	return _interaction_map[type] as Interaction
 
-func remove_interaction(type : Interaction) -> void:
+func remove_interaction(type) -> void:
 	_interaction_map.erase(type)
 
 func has_interaction(type) -> bool:

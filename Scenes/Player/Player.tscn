@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/Player/States/PlayerHitstun.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Player/States/PlayerKnockback.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Player/PlayerCamera.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -549,7 +550,6 @@ position = Vector2( 0, 2 )
 shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 5 )
@@ -564,7 +564,6 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 _default_state = "PlayerIdle"
 
@@ -584,3 +583,13 @@ script = ExtResource( 10 )
 script = ExtResource( 11 )
 
 [node name="Item" parent="." instance=ExtResource( 12 )]
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+editor/display_folded = true
+current = true
+smoothing_enabled = true
+script = ExtResource( 13 )
+
+[node name="Tween" type="Tween" parent="PlayerCamera"]
+
+[node name="Tween" type="Tween" parent="."]

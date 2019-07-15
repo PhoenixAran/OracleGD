@@ -4,6 +4,7 @@ class_name PlayerSword
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var sprite := $Sprite as Sprite
 onready var hitbox := $Hitbox as Hitbox
+onready var interactions := InteractionResolver.new()
 
 var _attack_key_released := false
 var _cached_direction := "down"
@@ -39,5 +40,11 @@ func enable(enabled : bool) -> void:
 	else:
 		animation_player.stop(false)
 
+func overrides_interaction(sender : Hitbox) -> bool:
+	if hitbox.overlaps_area(sender):		
+		return interactions.has_interaction(sender.TYPE)
+	return false
+
+#Signal callbacks
 func _on_owner_hit() -> void:
 	stop_use()

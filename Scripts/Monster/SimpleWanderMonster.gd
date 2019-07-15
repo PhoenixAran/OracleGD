@@ -13,18 +13,13 @@ export(String) var default_animation
 var move_time := 0
 var state = Enums.EnemyState.MOVING
 
-func _physics_process(delta : float) -> void:
-	poll_death()
-	combat.update_combat_variables()
-	update_ai()
-	update_animation()
-	update_movement()
-
 #override
 func update_animation(force_update := false) -> void:
 	if not animation_player.is_playing():
 		var key := anim_direction + anim_state if has_animation_direction else "move"
 		if state == EnemyState.MOVING:
+			
+			
 			animation_player.play(key)
 
 func update_ai() -> void:

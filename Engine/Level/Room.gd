@@ -1,4 +1,4 @@
-extends TileMap
+extends Node
 class_name Room
 
 signal request_load(room, load_event)
@@ -22,14 +22,26 @@ func get_bottom_left_tile() -> Vector2:
 
 func get_bottom_right_tile() -> Vector2:
 	return bottom_right_tile
-	
+
 func get_upper_right_tile() -> Vector2:
 	return Vector2(bottom_right_tile.x, upper_left_tile.y)
 
 func get_position_from_tile(vector : Vector2) -> Vector2:
 	return Vector2(vector.x * tile_width, vector.y * tile_height)
 
-func load_room(was_last_room : bool, entity_placer : EntityPlacer) -> void:
+func get_limit_top() -> int:
+	return int(get_position_from_tile(upper_left_tile).y)
+
+func get_limit_left() -> int:
+	return int(get_position_from_tile(upper_left_tile).x)
+
+func get_limit_bottom() -> int:
+	return int(get_position_from_tile(bottom_right_tile).y) + tile_height
+
+func get_limit_right() -> int:
+	return int(get_position_from_tile(bottom_right_tile).x) + tile_width
+
+func load_room(entity_placer : EntityPlacer, was_last_room := false) -> void:
 	if was_last_room and all_enemies_destroyed:
 		if refuse_load_count < max_refuse_load:
 			refuse_load_count += 1
@@ -71,7 +83,7 @@ func enable(enabled : bool) -> void:
 	for projectile in projectiles:
 		projectile.enable(enabled)
 
-#Signal callbacks
+#Signal callbacks	
 func _on_entity_destroyed(entity : Entity) -> void:
 	entities.remove(entities.find(entity))
 	all_enemies_destroyed = entities.size() == 0

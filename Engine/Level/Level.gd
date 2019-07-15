@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Level
 
 enum RoomProcessState {
@@ -21,6 +21,7 @@ var player
 var current_room : Room = null
 var previous_room : Room = null
 var event_stack := []
+var current_event 
 
 func _ready() -> void:
 	entity_placer.connect("entity_created", self, "_on_entity_created")
@@ -28,8 +29,10 @@ func _ready() -> void:
 func _physics_process(delta : float) -> void:
 	match room_state:
 		RoomProcessState.NOT_ACTIVE:
+			#Nothing to process
 			pass
 		RoomProcessState.PROCESSING_INITIAL:
+			current_event = event_stack.pop_front()
 			pass
 		RoomProcessState.PROCESSING:
 			pass
@@ -45,9 +48,24 @@ func initialize_level(player_entity, room = null, spawn_coordinate = null) -> vo
 
 func get_position_from_coordinate(spawn_coordinate : Vector2) -> Vector2:
 	return Vector2(spawn_coordinate.x * tile_width, spawn_coordinate.y * tile_height)
-	
+
+func set_up_new_room(target_room : Room) -> void:
+	target_room.load_room(entity_placer, previous_room == target_room)
+	previous_room = current_room
+	current_room = target_room
+
+func unload_last_room() -> void:
+	previous_room.unload_room()
+	transition_queued = false
+
 #signal callbacks
 func _on_entity_created(entity) -> void:
 	if transition_queued:
 		entity.call_deferred("enable", false)
 	ysort.call_deferred("add_child", entity)
+	
+func _on_room_request_load(room : Room, event) -> void:
+	if not transition_queued:
+		room_state = RoomProcessState.PROCESSING_INITIAL
+		transition_queued = true
+		event_stack.push_front(event)

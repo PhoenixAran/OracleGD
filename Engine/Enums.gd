@@ -44,3 +44,18 @@ enum EnemyState {
 	IN_HITSTUN,
 	IN_KNOCKBACK
 }
+
+
+enum RoomEventType {
+	PUSH,
+	FADE, 
+	LEVEL_CHANGE
+}
+
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}
+
