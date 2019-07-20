@@ -37,7 +37,6 @@ func force_set_limits(room) -> void:
 func _on_tween_completed(other, key) -> void:
 	tween_count += 1
 	if tween_count == tween_target_count:
-		print("tween_completed!")
 		in_transition = false
 		tween_count = 0
 		emit_signal("tween_completed")

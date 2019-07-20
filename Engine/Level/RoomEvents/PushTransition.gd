@@ -44,10 +44,7 @@ func begin() -> void:
 	level.set_up_new_room(target_room)
 
 func update(delta : float) -> void:
-	print(player.in_transition)
-	print(camera.in_transition)
 	if not player.in_transition and not camera.in_transition:
-		print("is_active set to false nibba")
 		is_active = false
 
 func end() -> void:
