@@ -80,9 +80,12 @@ func enable(enabled : bool) -> void:
 
 #signal callbacks
 func _on_entity_created(entity) -> void:
+	print("_on_entity_created")
+	print(transition_queued)
+	ysort.call_deferred("add_child", entity)
 	if transition_queued:
 		entity.call_deferred("enable", false)
-	ysort.call_deferred("add_child", entity)
+	
 	
 func _on_room_request_load(room : Room, event : RoomEvent) -> void:
 	if not transition_queued and room != current_room:

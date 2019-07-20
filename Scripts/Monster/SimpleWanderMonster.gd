@@ -52,6 +52,7 @@ func prep_for_move_state() -> void:
 	change_direction()
 
 func enabled(enabled : bool) -> void:
+	print("Stalfos::enabled( " + str(enabled) + " )")
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
