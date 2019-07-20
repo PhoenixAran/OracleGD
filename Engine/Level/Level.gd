@@ -18,13 +18,17 @@ var room_state = RoomProcessState.NOT_ACTIVE
 var transition_queued := false
 
 var player
+var target_room : Room = null
 var current_room : Room = null
 var previous_room : Room = null
 var event_stack := []
-var current_event 
+var current_event : RoomEvent
 
 func _ready() -> void:
 	entity_placer.connect("entity_created", self, "_on_entity_created")
+	for node in get_children():
+		if node is Room:
+			node.connect("request_load", self, "_on_room_request_load")
 
 func _physics_process(delta : float) -> void:
 	match room_state:
@@ -33,18 +37,31 @@ func _physics_process(delta : float) -> void:
 			pass
 		RoomProcessState.PROCESSING_INITIAL:
 			current_event = event_stack.pop_front()
-			pass
+			current_event.initialize(self)
+			current_event.begin()
+			room_state = RoomProcessState.PROCESSING
 		RoomProcessState.PROCESSING:
-			pass
+			current_event.update(delta)
+			if not current_event.is_active:
+				current_event.end()
+				if event_stack.size() > 0:
+					current_event = event_stack.pop_front()
+					current_event.initialize(self)
+					current_event.begin()
+				else:
+					current_event = null
+					room_state = RoomProcessState.NOT_ACTIVE
 	
 func initialize_level(player_entity, room = null, spawn_coordinate = null) -> void:
 	player = player_entity
 	if room == null:
 		room = initial_room
-	current_room = get_node(room)
+	current_room = get_node(room) as Room
 	if spawn_coordinate == null:
 		spawn_coordinate = current_room.default_spawn_coordinate
 	player.position = get_position_from_coordinate(spawn_coordinate)
+	current_room.load_room(entity_placer)
+	player.get_node("PlayerCamera").force_set_limits(current_room)
 
 func get_position_from_coordinate(spawn_coordinate : Vector2) -> Vector2:
 	return Vector2(spawn_coordinate.x * tile_width, spawn_coordinate.y * tile_height)
@@ -58,14 +75,18 @@ func unload_last_room() -> void:
 	previous_room.unload_room()
 	transition_queued = false
 
+func enable(enabled : bool) -> void:
+	current_room.enable(enabled)
+
 #signal callbacks
 func _on_entity_created(entity) -> void:
 	if transition_queued:
 		entity.call_deferred("enable", false)
 	ysort.call_deferred("add_child", entity)
 	
-func _on_room_request_load(room : Room, event) -> void:
-	if not transition_queued:
+func _on_room_request_load(room : Room, event : RoomEvent) -> void:
+	if not transition_queued and room != current_room:
+		target_room = room
 		room_state = RoomProcessState.PROCESSING_INITIAL
 		transition_queued = true
 		event_stack.push_front(event)

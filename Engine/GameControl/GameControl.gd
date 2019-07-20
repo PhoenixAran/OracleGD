@@ -1,7 +1,7 @@
 extends Node
 class_name GameControl
 
-export(String) var initial_room : String
+export(String) var initial_room := "Room1"
 export(String) var player_path := "Player"
 
 onready var level := $Level as Level

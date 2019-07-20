@@ -18,8 +18,6 @@ func update_animation(force_update := false) -> void:
 	if not animation_player.is_playing():
 		var key := anim_direction + anim_state if has_animation_direction else "move"
 		if state == EnemyState.MOVING:
-			
-			
 			animation_player.play(key)
 
 func update_ai() -> void:
@@ -57,7 +55,7 @@ func enabled(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
-		animation_player.play()
+		animation_player.play(animation_player.current_animation)
 	else:
 		animation_player.stop()
 

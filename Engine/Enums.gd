@@ -46,7 +46,7 @@ enum EnemyState {
 }
 
 
-enum RoomEventType {
+enum RoomTransitionType {
 	PUSH,
 	FADE, 
 	LEVEL_CHANGE

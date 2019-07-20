@@ -18,7 +18,7 @@ func _ready() -> void:
 	health.connect("health_depleted", self, "_on_health_depleted")
 	item.connect("item_used", self, "_on_item_used")
 	hitbox.connect("hitbox_entered", self, "_on_hitbox_entered")
-	tween.connect("tween_completed", self, "on_tween_completed")
+	tween.connect("tween_completed", self, "_on_tween_completed")
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
@@ -37,15 +37,15 @@ func enable(enabled : bool) -> void:
 	hitbox.set_physics_process(enabled)
 	item.enable(enabled)
 	if enabled:
-		animation_player.play()
+		animation_player.play(get_animation_key())
 	else:
 		animation_player.stop(false)
 
 func tween_to_position(target_position : Vector2) -> void:
 	in_transition = true
 	reset_combat_variables()
-	vector = Vector2()
-	tween.interpolate_property(self, "position", position, target_position, 3.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	vector = Vector2.ZERO
+	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
 #Player methods

@@ -6,13 +6,19 @@ signal request_load(room, load_event)
 export(int) var tile_width := 16
 export(int) var tile_height := 16
 export(int) var max_refuse_load = 2
-export(Vector2) var upper_left_tile
-export(Vector2) var bottom_right_tile
+export(Vector2) var upper_left_tile : Vector2
+export(Vector2) var bottom_right_tile : Vector2
+export(Vector2) var default_spawn_coordinate : Vector2
 
 var all_enemies_destroyed := false
 var entities := []
 var projectiles := []
 var refuse_load_count := 0
+
+func _ready() -> void:
+	for node in get_children():
+		if node is RoomLoadingZone:
+			node.connect("loading_zone_activated", self, "_on_loading_zone_activated")
 
 func get_upper_left_tile() -> Vector2:
 	return upper_left_tile
@@ -62,10 +68,10 @@ func unload_room() -> void:
 		projectile.queue_free()
 
 func spawn_entities(entity_placer : EntityPlacer) -> void:
-	var start_x = upper_left_tile.x
-	var start_y = upper_left_tile.y
-	var end_x = bottom_right_tile.x
-	var end_y = bottom_right_tile.y
+	var start_x := upper_left_tile.x
+	var start_y := upper_left_tile.y
+	var end_x := bottom_right_tile.x
+	var end_y := bottom_right_tile.y
 	
 	for i in range(start_x, end_x + 1):
 		for j in range(start_y, end_y + 1):
@@ -87,3 +93,6 @@ func enable(enabled : bool) -> void:
 func _on_entity_destroyed(entity : Entity) -> void:
 	entities.remove(entities.find(entity))
 	all_enemies_destroyed = entities.size() == 0
+
+func _on_loading_zone_activated(event):
+	emit_signal("request_load", self, event)
