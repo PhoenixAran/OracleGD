@@ -4,8 +4,6 @@ class_name SimpleWanderMonster
 const directions := [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
 const animation_directions := ["up", "down", "left", "right"]
 
-onready var hitbox := $Hitbox as Hitbox
-
 export(bool) var has_animation_direction := false
 export(int) var move_length := 30
 export(String) var default_animation

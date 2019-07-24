@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Combat.gd"
 }, {
+"base": "Entity",
+"class": "CombatEntity",
+"language": "GDScript",
+"path": "res://Engine/Entities/CombatEntity.gd"
+}, {
 "base": "Interaction",
 "class": "CustomInteraction",
 "language": "GDScript",
@@ -89,12 +94,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Level/Level.gd"
 }, {
-"base": "Entity",
+"base": "CombatEntity",
 "class": "Monster",
 "language": "GDScript",
 "path": "res://Scripts/Monster/Monster.gd"
 }, {
-"base": "Entity",
+"base": "Node2D",
+"class": "MovingPlatform",
+"language": "GDScript",
+"path": "res://Engine/Level/Dynamic/MovingPlatform.gd"
+}, {
+"base": "CombatEntity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
@@ -181,6 +191,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Combat": "",
+"CombatEntity": "",
 "CustomInteraction": "",
 "DamageInteraction": "",
 "DefaultDeath": "",
@@ -197,6 +208,7 @@ _global_script_class_icons={
 "Item": "",
 "Level": "",
 "Monster": "",
+"MovingPlatform": "",
 "Player": "",
 "PlayerAttack": "",
 "PlayerCamera": "",

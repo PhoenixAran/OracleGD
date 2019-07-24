@@ -1,0 +1,81 @@
+extends Entity
+class_name CombatEntity
+
+#Signals
+signal entity_hit
+signal entity_bumped
+signal entity_immobilized
+signal entity_marked_dead(entity)
+
+
+#Nodes / Resources
+onready var hitbox := $Hitbox as Hitbox
+onready var combat := Combat.new() as Combat
+onready var health := $Health as Health
+onready var interactions := InteractionResolver.new()
+
+#Declarations
+var _death_marked := false
+
+#Godot API 
+func _ready() -> void:
+	health.connect("health_depleted", self, "_on_health_depleted")
+	hitbox.connect("hitbox_entered", self, "_on_hitbox_entered")
+
+#Methods
+func poll_death() -> void:
+	if _death_marked and not in_hitstun() and not in_knockback():
+		destroy()
+
+func update_combat_variables() -> void:
+	combat.update_combat_variables()
+
+func is_dead() -> bool:
+	return _death_marked
+
+func is_intangible() -> bool:
+	return combat.is_intangible()
+
+func in_hitstun() -> bool:
+	return combat.in_hitstun()
+
+func in_knockback() -> bool:
+	return combat.in_hitstun()
+
+func reset_combat_variables() -> void:
+	combat.reset_combat_variables()
+
+func set_vector_away(other_vector : Vector2) -> void:
+	vector = global_position - other_vector
+
+func set_intangibility(frames : int) -> void:
+	combat.set_intangibility(frames)
+	entity_sprite.set_modulate_time(frames)
+
+func take_damage(damage_info : Dictionary) -> void:
+	set_intangibility(15)
+	combat.set_combat_variables(damage_info)
+	health.take_damage(damage_info.damage)
+	set_vector_away(damage_info.source_position)
+	current_speed = damage_info.knockback_speed
+	emit_signal("entity_hit")
+
+func bump(speed : float, direction : Vector2, time : int) -> void:
+	combat.knockback_time = time
+	combat.current_knockback_speed = speed
+	vector = direction
+	emit_signal("entity_bumped")
+
+func immobilize(time : int) -> void:
+	combat.current_hitstun_time = time
+	emit_signal("entity_immobilized")
+	
+#signal callback responses
+func _on_health_depleted(damage : int) -> void:
+	collision_layer = 0
+	emit_signal("entity_marked_dead", self)
+	_death_marked = true
+
+#Signal callbacks
+func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
+	interactions.resolve_interaction(hitbox, other_hitbox)

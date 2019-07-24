@@ -1,8 +1,7 @@
-extends Entity
+extends CombatEntity
 class_name Player
 
 onready var player_controller := $PlayerController as StateMachine
-onready var hitbox := $Hitbox as Hitbox
 onready var sprite := $EntitySprite as EntitySprite
 onready var item := $Item as Item
 onready var tween := $Tween as Tween
@@ -15,9 +14,7 @@ func _ready() -> void:
 	_set_up_interactions()
 	reset_movement_variables()
 	
-	health.connect("health_depleted", self, "_on_health_depleted")
 	item.connect("item_used", self, "_on_item_used")
-	hitbox.connect("hitbox_entered", self, "_on_hitbox_entered")
 	tween.connect("tween_completed", self, "_on_tween_completed")
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
@@ -52,13 +49,15 @@ func tween_to_position(target_position : Vector2) -> void:
 func _set_up_interactions() -> void:
 	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 
-#Signal callbacks
-func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
-	if not item.overrides_interaction(other_hitbox):
-		interactions.resolve_interaction(hitbox, other_hitbox)
-
 func _on_item_used() -> void:
 	animation_player.stop()
 
 func _on_tween_completed(other, key) -> void:
 	in_transition = false
+
+
+#Signal callbacks
+#Override
+func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
+	if not item.overrides_interaction(other_hitbox):
+		interactions.resolve_interaction(hitbox, other_hitbox)

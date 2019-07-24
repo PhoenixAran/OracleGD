@@ -1,4 +1,4 @@
-extends Entity
+extends CombatEntity
 class_name Monster
 
 const EnemyState = Enums.EnemyState
