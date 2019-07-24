@@ -80,8 +80,8 @@ func enable(enabled : bool) -> void:
 
 #signal callbacks
 func _on_entity_created(entity) -> void:
-	print("_on_entity_created")
-	print(transition_queued)
+	#order matters here. need to add child before
+	#disabling the entity
 	ysort.call_deferred("add_child", entity)
 	if transition_queued:
 		entity.call_deferred("enable", false)
