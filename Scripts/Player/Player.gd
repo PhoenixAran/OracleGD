@@ -1,11 +1,13 @@
 extends CombatEntity
 class_name Player
 
+#Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
 onready var item := $Item as Item
 onready var tween := $Tween as Tween
 
+#Declarations
 var in_transition := false
 
 #Godot API 
@@ -54,7 +56,6 @@ func _on_item_used() -> void:
 
 func _on_tween_completed(other, key) -> void:
 	in_transition = false
-
 
 #Signal callbacks
 #Override

@@ -7,15 +7,17 @@ signal entity_bumped
 signal entity_immobilized
 signal entity_marked_dead(entity)
 
-
 #Nodes / Resources
 onready var hitbox := $Hitbox as Hitbox
 onready var combat := Combat.new() as Combat
 onready var health := $Health as Health
 onready var interactions := InteractionResolver.new()
+#TODO onready this when it actually works
+var ecb
 
 #Declarations
 var _death_marked := false
+var current_platform
 
 #Godot API 
 func _ready() -> void:
@@ -23,6 +25,17 @@ func _ready() -> void:
 	hitbox.connect("hitbox_entered", self, "_on_hitbox_entered")
 
 #Methods
+func die() -> void:
+	collision_layer = 0
+	emit_signal("entity_marked_dead", self)
+	_death_marked = true
+
+func destroy() -> void:
+	if current_platform != null:
+		current_platform.unregister(self)
+	emit_signal("entity_destroyed", self)
+	queue_free()
+
 func poll_death() -> void:
 	if _death_marked and not in_hitstun() and not in_knockback():
 		destroy()
@@ -72,10 +85,18 @@ func immobilize(time : int) -> void:
 	
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
-	collision_layer = 0
-	emit_signal("entity_marked_dead", self)
-	_death_marked = true
+	die()
 
-#Signal callbacks
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	interactions.resolve_interaction(hitbox, other_hitbox)
+
+func _on_dynamic_tile_entered(tile) -> void:
+	interactions.resolve_tile_interaction(ecb, tile)
+
+func _on_platform_entered(platform : Area2D) -> void:
+	current_platform = platform
+	current_platform.register(self)
+
+func _on_platform_exited(platform) -> void:
+	if platform == current_platform:
+		platform.unregister(self)

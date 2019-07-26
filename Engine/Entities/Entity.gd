@@ -18,7 +18,6 @@ var current_speed := 0
 var current_friction := 0
 var vector := Vector2()
 var external_force := Vector2.ZERO
-var current_moving_platform
 
 #Nodes / Resources
 onready var animation_player = $AnimationPlayer as AnimationPlayer
@@ -45,9 +44,6 @@ func get_animation_key() -> String:
 func reset_movement_variables() -> void:
 	current_speed = static_speed
 	vector = Vector2.ZERO
-
-func on_platform() -> bool:
-	return current_moving_platform != null
 
 func add_external_force(external_vector : Vector2, magnitude : float) -> void:
 	external_force += external_vector * magnitude
@@ -81,5 +77,3 @@ func match_animation_direction(input_vector : Vector2) -> void:
 	elif input_vector == Vector2(1, 0) and direction != "right":
 		direction = "right"
 	anim_direction = direction
-
-

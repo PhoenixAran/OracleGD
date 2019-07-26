@@ -54,7 +54,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Enums.gd"
 }, {
-"base": "Area2D",
+"base": "Node2D",
 "class": "EnvironmentalCollisionBox",
 "language": "GDScript",
 "path": "res://Engine/Entities/Collisions/EnvironmentalCollisionBox.gd"
@@ -99,10 +99,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Monster/Monster.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "MovingPlatform",
 "language": "GDScript",
-"path": "res://Engine/Level/Dynamic/MovingPlatform.gd"
+"path": "res://Scripts/Objects/MovingPlatform.gd"
 }, {
 "base": "CombatEntity",
 "class": "Player",
@@ -208,7 +208,7 @@ _global_script_class_icons={
 "Item": "",
 "Level": "",
 "Monster": "",
-"MovingPlatform": "",
+"MovingPlatform": "res://Assets/Objects/moving_platform.png",
 "Player": "",
 "PlayerAttack": "",
 "PlayerCamera": "",
@@ -305,6 +305,8 @@ attack={
 2d_physics/layer_5="NPC"
 2d_physics/layer_6="LoadingZoneActivator"
 2d_physics/layer_7="LoadingZone"
+2d_physics/layer_8="MovingPlatform"
+2d_physics/layer_9="MovingPlatformEntity"
 
 [rendering]
 
