@@ -22,6 +22,8 @@ func _ready() -> void:
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
 	connect("entity_hit", item, "_on_owner_hit")
+	ecb.connect("platform_entered", self, "_on_platform_entered")
+	ecb.connect("platform_exited", self, "_on_platform_exited")
 
 func _physics_process(delta : float) -> void:
 	poll_death()

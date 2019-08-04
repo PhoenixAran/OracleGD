@@ -6,20 +6,26 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 16 )
 
-[node name="MediumMovingPlatform" type="Area2D"]
-collision_layer = 256
-collision_mask = 2
+[node name="MediumMovingPlatform" type="Node2D"]
 script = ExtResource( 1 )
+move_to = Vector2( 112, 0 )
 
-[node name="Top" type="Sprite" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 256
+
+[node name="Top" type="Sprite" parent="Area2D"]
 position = Vector2( 0.0626717, -7.93733 )
 texture = ExtResource( 2 )
 
-[node name="Bottom" type="Sprite" parent="."]
+[node name="Bottom" type="Sprite" parent="Area2D"]
 position = Vector2( 0, 8 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+repeat = true
+playback_process_mode = 0
+playback/repeat = true

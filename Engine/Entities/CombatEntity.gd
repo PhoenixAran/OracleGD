@@ -12,12 +12,10 @@ onready var hitbox := $Hitbox as Hitbox
 onready var combat := Combat.new() as Combat
 onready var health := $Health as Health
 onready var interactions := InteractionResolver.new()
-#TODO onready this when it actually works
-var ecb
+onready var ecb := $ECB as EnvironmentalCollisionBox
 
 #Declarations
 var _death_marked := false
-var current_platform
 
 #Godot API 
 func _ready() -> void:
@@ -31,8 +29,6 @@ func die() -> void:
 	_death_marked = true
 
 func destroy() -> void:
-	if current_platform != null:
-		current_platform.unregister(self)
 	emit_signal("entity_destroyed", self)
 	queue_free()
 
@@ -93,10 +89,8 @@ func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 func _on_dynamic_tile_entered(tile) -> void:
 	interactions.resolve_tile_interaction(ecb, tile)
 
-func _on_platform_entered(platform : Area2D) -> void:
-	current_platform = platform
-	current_platform.register(self)
+func _on_platform_entered(platform) -> void:
+	platform.register_rider(self)
 
-func _on_platform_exited(platform) -> void:
-	if platform == current_platform:
-		platform.unregister(self)
+func _on_platform_exited(platform : MovingPlatform) -> void:
+	platform.unregister_rider(self)

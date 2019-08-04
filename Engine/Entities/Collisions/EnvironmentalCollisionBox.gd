@@ -36,6 +36,7 @@ func _physics_process(delta : float) -> void:
 		intersecting_platforms= platform_collision_box.get_overlapping_areas()
 		if intersecting_platforms.size() > 0:
 			current_platform = intersecting_platforms[0]
+			print(current_platform)
 			notify_platform_entered(current_platform)
 	
 	#if current platform is null at this point, we are not on a platform
@@ -59,7 +60,7 @@ func notify_tile_exited(tile) -> void:
 	emit_signal("tile_entered", tile)
 
 func notify_platform_entered(platform) -> void:
-	emit_signal("platform_entered", platform)
+	emit_signal("platform_entered", platform.get_parent())
 	
 func notify_platform_exited(platform) -> void:
-	emit_signal("platform_exited", platform)
+	emit_signal("platform_exited", platform.get_parent())
