@@ -17,10 +17,10 @@ onready var ysort := $YSort as YSort
 var room_state = RoomProcessState.NOT_ACTIVE
 var transition_queued := false
 
-var player
-var target_room : Room = null
-var current_room : Room = null
-var previous_room : Room = null
+var player : Player
+var target_room : Room
+var current_room : Room
+var previous_room : Room
 var event_stack := []
 var current_event : RoomEvent
 

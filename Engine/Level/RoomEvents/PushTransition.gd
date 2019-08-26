@@ -1,15 +1,15 @@
 extends RoomEvent
 class_name PushTransition
 
-var player : Player
-var camera : PlayerCamera
+var player
+var camera
 var target_room
 var level
 var target_player_position : Vector2
 var direction
 
 func get_push_transition_entrance_point(direction) -> Vector2:
-	var target_coordinate_value : float = 0.0
+	var target_coordinate_value := 0.0
 	var return_vector := Vector2()
 
 	match direction:
