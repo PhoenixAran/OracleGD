@@ -89,7 +89,7 @@ func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 func _on_dynamic_tile_entered(tile) -> void:
 	interactions.resolve_tile_interaction(ecb, tile)
 
-func _on_platform_entered(platform) -> void:
+func _on_platform_entered(platform : MovingPlatform) -> void:
 	platform.register_rider(self)
 
 func _on_platform_exited(platform : MovingPlatform) -> void:

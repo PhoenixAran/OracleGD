@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Level/EntityPlacer.gd"
 }, {
+"base": "Node2D",
+"class": "EntitySpawn",
+"language": "GDScript",
+"path": "res://Engine/Level/EntitySpawn.gd"
+}, {
 "base": "Sprite",
 "class": "EntitySprite",
 "language": "GDScript",
@@ -197,6 +202,7 @@ _global_script_class_icons={
 "DefaultDeath": "",
 "Entity": "",
 "EntityPlacer": "",
+"EntitySpawn": "",
 "EntitySprite": "",
 "Enums": "",
 "EnvironmentalCollisionBox": "",
@@ -232,7 +238,7 @@ _global_script_class_icons={
 
 config/name="OracleGD"
 run/main_scene="res://Scenes/TestScenes/TestLevel.tscn"
-config/icon="res://icon.png"
+config/icon="res://custom_icon.png"
 
 [autoload]
 

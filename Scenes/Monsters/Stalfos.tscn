@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Monster/Stalfos/Stalfos.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Monsters/Stalfos.png" type="Texture" id=3]
 [ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]
 [ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=5]
+[ext_resource path="res://Engine/Entities/Collisions/EnvironmentalCollisionBox.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "move"
@@ -28,6 +29,11 @@ extents = Vector2( 7, 5 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7, 8 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 1, 1 )
 
 [node name="Stalfos" type="KinematicBody2D"]
 collision_layer = 2
@@ -68,3 +74,19 @@ hitstun_time = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 3 )
+
+[node name="ECB" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="PlatformCollisionBox" type="Area2D" parent="ECB"]
+collision_layer = 256
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
+shape = SubResource( 4 )
+
+[node name="TileCollisionBox" type="Area2D" parent="ECB"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/TileCollisionBox"]
+position = Vector2( 0, 5 )
+shape = SubResource( 5 )

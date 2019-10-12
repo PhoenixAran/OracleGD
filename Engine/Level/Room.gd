@@ -51,7 +51,7 @@ func load_room(entity_placer : EntityPlacer, was_last_room := false) -> void:
 	if was_last_room and all_enemies_destroyed:
 		if refuse_load_count < max_refuse_load:
 			refuse_load_count += 1
-			#exit our early
+			#exit out early
 			return
 	
 	refuse_load_count = 0

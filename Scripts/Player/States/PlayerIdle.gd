@@ -3,7 +3,6 @@ class_name PlayerIdle
 
 var player : Entity
 
-
 func initialize(context) -> void:
 	player = context as Entity
 	player.current_speed = player.static_speed

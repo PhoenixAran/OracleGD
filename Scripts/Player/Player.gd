@@ -12,16 +12,18 @@ var in_transition := false
 
 #Godot API 
 func _ready() -> void:
-	player_controller.initialize(self)
-	_set_up_interactions()
 	reset_movement_variables()
+	player_controller.initialize(self)
 	
-	item.connect("item_used", self, "_on_item_used")
-	tween.connect("tween_completed", self, "_on_tween_completed")
+	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
 	connect("entity_hit", item, "_on_owner_hit")
+	
+	item.connect("item_used", self, "_on_item_used")
+	tween.connect("tween_completed", self, "_on_tween_completed")
+	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
 	ecb.connect("platform_exited", self, "_on_platform_exited")
 
@@ -45,21 +47,17 @@ func enable(enabled : bool) -> void:
 func tween_to_position(target_position : Vector2) -> void:
 	in_transition = true
 	reset_combat_variables()
-	vector = Vector2.ZERO
+	vector = Vector2()
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
-#Player methods
-func _set_up_interactions() -> void:
-	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
-
+#Signal callbacks
 func _on_item_used() -> void:
 	animation_player.stop()
 
 func _on_tween_completed(other, key) -> void:
 	in_transition = false
 
-#Signal callbacks
 #Override
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	if not item.overrides_interaction(other_hitbox):
