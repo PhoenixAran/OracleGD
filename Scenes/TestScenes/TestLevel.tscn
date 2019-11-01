@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Engine/GameControl/GameControl.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Level/Level.gd" type="Script" id=2]
@@ -7,9 +7,7 @@
 [ext_resource path="res://Engine/Level/EntityPlacer.gd" type="Script" id=5]
 [ext_resource path="res://Engine/Level/Room.gd" type="Script" id=6]
 [ext_resource path="res://Engine/Level/RoomLoadingZone.gd" type="Script" id=7]
-[ext_resource path="res://Engine/Level/EntitySpawn.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Monsters/Stalfos.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 16 )
@@ -67,7 +65,7 @@ position = Vector2( 238.186, 69.9805 )
 
 [node name="RoomLoadingZone" type="Area2D" parent="Level/Room2"]
 editor/display_folded = true
-position = Vector2( 3, 0 )
+position = Vector2( 3.11018, 0 )
 collision_layer = 64
 collision_mask = 32
 script = ExtResource( 7 )
@@ -77,11 +75,5 @@ direction = 3
 position = Vector2( 162.094, 64 )
 shape = SubResource( 2 )
 
-[node name="EntitySpawn" type="Node2D" parent="Level/Room2"]
-position = Vector2( 55.0562, 81.5953 )
-z_as_relative = false
-script = ExtResource( 8 )
-packed_entity = ExtResource( 9 )
-
-[node name="Player" parent="." instance=ExtResource( 10 )]
+[node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 79, 72 )

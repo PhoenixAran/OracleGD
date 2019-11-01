@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Engine/Level/EntitySpawn.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 5.85704, 3.58981 )
+script = ExtResource( 1 )
