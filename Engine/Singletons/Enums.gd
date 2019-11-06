@@ -1,5 +1,5 @@
 extends Node
-class_name Enums
+#Autoload
 
 enum ItemMoveType {
 	#entity cannot input movement when item is being used

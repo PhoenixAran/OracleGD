@@ -42,7 +42,7 @@ func enable(enabled : bool) -> void:
 		animation_player.stop(false)
 
 func overrides_interaction(sender : Hitbox) -> bool:
-	if hitbox.overlaps_area(sender):		
+	if hitbox.overlaps_area(sender):
 		return interactions.has_interaction(sender.TYPE)
 	return false
 

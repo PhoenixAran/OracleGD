@@ -54,11 +54,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Animation/EntitySprite.gd"
 }, {
-"base": "Node",
-"class": "Enums",
-"language": "GDScript",
-"path": "res://Engine/Enums.gd"
-}, {
 "base": "Node2D",
 "class": "EnvironmentalCollisionBox",
 "language": "GDScript",
@@ -204,7 +199,6 @@ _global_script_class_icons={
 "EntityPlacer": "",
 "EntitySpawn": "",
 "EntitySprite": "",
-"Enums": "",
 "EnvironmentalCollisionBox": "",
 "GameControl": "",
 "Health": "",
@@ -242,7 +236,10 @@ config/icon="res://custom_icon.png"
 
 [autoload]
 
-Interactions="*res://Engine/Interactions.gd"
+Globals="*res://Engine/Singletons/Globals.gd"
+Enums="*res://Engine/Singletons/Enums.gd"
+Interactions="*res://Engine/Singletons/Interactions.gd"
+GameRefs="*res://Engine/Singletons/GameRefs.gd"
 
 [debug]
 

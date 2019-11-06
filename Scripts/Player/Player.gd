@@ -14,7 +14,7 @@ var in_transition := false
 func _ready() -> void:
 	reset_movement_variables()
 	player_controller.initialize(self)
-	
+
 	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")

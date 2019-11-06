@@ -17,7 +17,7 @@ export(String) var anim_direction := "down"
 var current_speed := 0
 var current_friction := 0
 var vector := Vector2()
-var external_force := Vector2.ZERO
+var external_force := Vector2()
 
 #Nodes / Resources
 onready var animation_player = $AnimationPlayer as AnimationPlayer
@@ -43,7 +43,10 @@ func get_animation_key() -> String:
 
 func reset_movement_variables() -> void:
 	current_speed = static_speed
-	vector = Vector2.ZERO
+	vector = Vector2()
+
+func reset_external_force() -> void:
+	external_force = Vector2()
 
 func add_external_force(external_vector : Vector2, magnitude : float) -> void:
 	external_force += external_vector * magnitude
