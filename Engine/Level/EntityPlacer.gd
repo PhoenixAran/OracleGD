@@ -1,3 +1,5 @@
+#Obsolete
+#Use EntityPlacer instead
 extends TileMap
 class_name EntityPlacer
 

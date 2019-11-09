@@ -1,5 +1,6 @@
-extends Node
 #Autoload
+extends Node
+
 
 enum ItemMoveType {
 	#entity cannot input movement when item is being used
@@ -13,10 +14,12 @@ enum ItemMoveType {
 }
 
 enum TileType {
-	WATER,
-	OCEAN,
+	GROUND,
+	SHALLOW_WATER,
+	DEEP_WATER,
 	HOLE,
-	LAVA
+	LAVA,
+	LADDER
 }
 
 enum CollisionType {
@@ -30,7 +33,11 @@ enum CollisionType {
 	ARROW,
 	HAMMER,
 	EXPLOSION,
-	THROWN_PROJECTILE
+	THROWN_PROJECTILE,
+	
+	#Other
+	TILE_ATTRACTER,
+	WIND
 }
 
 #Generic AI states that monster scripts can switch case on. 

@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Animation/EntitySprite.gd"
 }, {
+"base": "TileMap",
+"class": "EnvironmentTileMap",
+"language": "GDScript",
+"path": "res://Engine/Level/EnvironmentTileMap.gd"
+}, {
 "base": "Node2D",
 "class": "EnvironmentalCollisionBox",
 "language": "GDScript",
@@ -188,6 +193,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Engine/FSM/StateMachine.gd"
+}, {
+"base": "Area2D",
+"class": "TileAttracter",
+"language": "GDScript",
+"path": "res://Scripts/Objects/WaterTileAttracter.gd"
 } ]
 _global_script_class_icons={
 "Combat": "",
@@ -199,6 +209,7 @@ _global_script_class_icons={
 "EntityPlacer": "",
 "EntitySpawn": "",
 "EntitySprite": "",
+"EnvironmentTileMap": "",
 "EnvironmentalCollisionBox": "",
 "GameControl": "",
 "Health": "",
@@ -225,7 +236,8 @@ _global_script_class_icons={
 "SimpleWanderMonster": "",
 "Stalfos": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TileAttracter": ""
 }
 
 [application]
@@ -240,6 +252,7 @@ Globals="*res://Engine/Singletons/Globals.gd"
 Enums="*res://Engine/Singletons/Enums.gd"
 Interactions="*res://Engine/Singletons/Interactions.gd"
 GameRefs="*res://Engine/Singletons/GameRefs.gd"
+TileHelper="*res://Engine/Singletons/TileHelper.gd"
 
 [debug]
 

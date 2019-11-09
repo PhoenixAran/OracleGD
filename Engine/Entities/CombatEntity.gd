@@ -78,7 +78,10 @@ func bump(speed : float, direction : Vector2, time : int) -> void:
 func immobilize(time : int) -> void:
 	combat.current_hitstun_time = time
 	emit_signal("entity_immobilized")
-	
+
+func on_platform() -> bool:
+	return ecb.current_platform != null
+
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
 	die()

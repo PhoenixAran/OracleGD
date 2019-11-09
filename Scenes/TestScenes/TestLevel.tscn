@@ -3,10 +3,10 @@
 [ext_resource path="res://Engine/GameControl/GameControl.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Level/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Tilesets/ProtoDungeon.tres" type="TileSet" id=3]
-[ext_resource path="res://Scenes/Tilesets/MonsterTileset.tres" type="TileSet" id=4]
-[ext_resource path="res://Engine/Level/EntityPlacer.gd" type="Script" id=5]
-[ext_resource path="res://Engine/Level/Room.gd" type="Script" id=6]
-[ext_resource path="res://Engine/Level/RoomLoadingZone.gd" type="Script" id=7]
+[ext_resource path="res://Engine/Level/Room.gd" type="Script" id=4]
+[ext_resource path="res://Engine/Level/RoomLoadingZone.gd" type="Script" id=5]
+[ext_resource path="res://Engine/Level/EntitySpawn.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Monsters/Stalfos.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -27,18 +27,10 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 0, 9, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 10, 0, 9, 11, 0, 10, 9, 0, 11, 10, 0, 12, 10, 0, 13, 10, 0, 14, 10, 0, 15, 10, 0, 16, 10, 0, 17, 10, 0, 18, 10, 0, 19, 11, 0, 65536, 12, 0, 65537, 0, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 2, 0, 65545, 14, 0, 65546, 12, 0, 65547, 0, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 2, 0, 65555, 14, 0, 131072, 12, 0, 131073, 3, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 5, 0, 131081, 14, 0, 131082, 12, 0, 131083, 3, 0, 131084, 4, 0, 131085, 4, 0, 131086, 4, 0, 131087, 4, 0, 131088, 4, 0, 131089, 4, 0, 131090, 5, 0, 131091, 14, 0, 196608, 12, 0, 196609, 3, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 4, 0, 196616, 4, 0, 196617, 1, 0, 196618, 1, 0, 196619, 4, 0, 196620, 4, 0, 196621, 4, 0, 196622, 4, 0, 196623, 4, 0, 196624, 4, 0, 196625, 4, 0, 196626, 5, 0, 196627, 14, 0, 262144, 12, 0, 262145, 3, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 7, 0, 262154, 7, 0, 262155, 4, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 4, 0, 262160, 4, 0, 262161, 4, 0, 262162, 5, 0, 262163, 14, 0, 327680, 12, 0, 327681, 3, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 4, 0, 327688, 5, 0, 327689, 14, 0, 327690, 12, 0, 327691, 3, 0, 327692, 4, 0, 327693, 4, 0, 327694, 4, 0, 327695, 4, 0, 327696, 4, 0, 327697, 4, 0, 327698, 5, 0, 327699, 14, 0, 393216, 12, 0, 393217, 3, 0, 393218, 4, 0, 393219, 4, 0, 393220, 4, 0, 393221, 4, 0, 393222, 4, 0, 393223, 4, 0, 393224, 5, 0, 393225, 14, 0, 393226, 12, 0, 393227, 3, 0, 393228, 4, 0, 393229, 4, 0, 393230, 4, 0, 393231, 4, 0, 393232, 4, 0, 393233, 4, 0, 393234, 5, 0, 393235, 14, 0, 458752, 12, 0, 458753, 6, 0, 458754, 7, 0, 458755, 7, 0, 458756, 7, 0, 458757, 7, 0, 458758, 7, 0, 458759, 7, 0, 458760, 8, 0, 458761, 14, 0, 458762, 12, 0, 458763, 6, 0, 458764, 7, 0, 458765, 7, 0, 458766, 7, 0, 458767, 7, 0, 458768, 7, 0, 458769, 7, 0, 458770, 8, 0, 458771, 14, 0, 524288, 15, 0, 524289, 16, 0, 524290, 16, 0, 524291, 16, 0, 524292, 16, 0, 524293, 16, 0, 524294, 16, 0, 524295, 16, 0, 524296, 16, 0, 524297, 17, 0, 524298, 15, 0, 524299, 16, 0, 524300, 16, 0, 524301, 16, 0, 524302, 16, 0, 524303, 16, 0, 524304, 16, 0, 524305, 16, 0, 524306, 16, 0, 524307, 17, 0 )
 
-[node name="EntityPlacer" type="TileMap" parent="Level"]
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( 131075, 0, 0, 131079, 0, 0, 196622, 0, 0, 196624, 0, 0, 393231, 0, 0, 458760, 0, 0 )
-script = ExtResource( 5 )
-
 [node name="YSort" type="YSort" parent="Level"]
 
 [node name="Room1" type="Node" parent="Level"]
-editor/display_folded = true
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 bottom_right_tile = Vector2( 9, 8 )
 default_spawn_coordinate = Vector2( 3, 5 )
 
@@ -46,18 +38,46 @@ default_spawn_coordinate = Vector2( 3, 5 )
 position = Vector2( 81, 69 )
 
 [node name="RoomLoadingZone" type="Area2D" parent="Level/Room1"]
+editor/display_folded = true
 position = Vector2( 154, 64 )
 collision_layer = 64
 collision_mask = 32
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 direction = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Room1/RoomLoadingZone"]
 shape = SubResource( 1 )
 
-[node name="Room2" type="Node" parent="Level"]
-editor/display_folded = true
+[node name="EntitySpawn" type="Node2D" parent="Level/Room1"]
+position = Vector2( 34.8165, 35.0391 )
 script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room1/EntitySpawn" instance=ExtResource( 7 )]
+position = Vector2( 0.180355, -0.150303 )
+
+[node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
+position = Vector2( 96.8165, 91.0391 )
+script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room1/EntitySpawn2" instance=ExtResource( 7 )]
+position = Vector2( 12, 5 )
+
+[node name="EntitySpawn3" type="Node2D" parent="Level/Room1"]
+editor/display_folded = true
+position = Vector2( 114.816, 37.0391 )
+script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room1/EntitySpawn3" instance=ExtResource( 7 )]
+
+[node name="EntitySpawn4" type="Node2D" parent="Level/Room1"]
+editor/display_folded = true
+position = Vector2( 28.576, 114.845 )
+script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room1/EntitySpawn4" instance=ExtResource( 7 )]
+
+[node name="Room2" type="Node" parent="Level"]
+script = ExtResource( 4 )
 upper_left_tile = Vector2( 10, 0 )
 bottom_right_tile = Vector2( 19, 8 )
 
@@ -69,12 +89,24 @@ editor/display_folded = true
 position = Vector2( 3.11018, 0 )
 collision_layer = 64
 collision_mask = 32
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 direction = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Room2/RoomLoadingZone"]
 position = Vector2( 162.094, 64 )
 shape = SubResource( 2 )
+
+[node name="EntitySpawn" type="Node2D" parent="Level/Room2"]
+position = Vector2( 256.272, 41.6938 )
+script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room2/EntitySpawn" instance=ExtResource( 7 )]
+
+[node name="EntitySpawn2" type="Node2D" parent="Level/Room2"]
+position = Vector2( 201.871, 109.401 )
+script = ExtResource( 6 )
+
+[node name="Stalfos" parent="Level/Room2/EntitySpawn2" instance=ExtResource( 7 )]
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 79, 72 )

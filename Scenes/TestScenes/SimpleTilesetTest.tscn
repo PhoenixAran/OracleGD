@@ -4,6 +4,8 @@
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Monsters/Stalfos.tscn" type="PackedScene" id=3]
 
+
+
 [node name="SimpleTilesetTest" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )

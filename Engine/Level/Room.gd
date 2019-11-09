@@ -2,6 +2,7 @@ extends Node
 class_name Room
 
 signal request_load(room, load_event)
+signal entity_created(entity)
 
 export(int) var tile_width := 16
 export(int) var tile_height := 16
@@ -14,11 +15,15 @@ var all_enemies_destroyed := false
 var entities := []
 var projectiles := []
 var refuse_load_count := 0
+var entity_spawners := []
+
 
 func _ready() -> void:
 	for node in get_children():
 		if node is RoomLoadingZone:
 			node.connect("loading_zone_activated", self, "_on_loading_zone_activated")
+		elif node is EntitySpawn:
+			entity_spawners.append(node)
 
 func get_upper_left_tile() -> Vector2:
 	return upper_left_tile
@@ -47,7 +52,7 @@ func get_limit_bottom() -> int:
 func get_limit_right() -> int:
 	return int(get_position_from_tile(bottom_right_tile).x) + tile_width
 
-func load_room(entity_placer : EntityPlacer, was_last_room := false) -> void:
+func load_room(was_last_room := false) -> void:
 	if was_last_room and all_enemies_destroyed:
 		if refuse_load_count < max_refuse_load:
 			refuse_load_count += 1
@@ -56,7 +61,10 @@ func load_room(entity_placer : EntityPlacer, was_last_room := false) -> void:
 	
 	refuse_load_count = 0
 	all_enemies_destroyed = false
-	spawn_entities(entity_placer)
+	for spawner in entity_spawners:
+		var new_entity = spawner.spawn()
+		add_entity(new_entity)
+		emit_signal("entity_created", new_entity)
 
 func unload_room() -> void:
 	while not entities.empty():
@@ -67,16 +75,16 @@ func unload_room() -> void:
 		var projectile = projectiles.pop_front()
 		projectile.queue_free()
 
-func spawn_entities(entity_placer : EntityPlacer) -> void:
-	var start_x := upper_left_tile.x
-	var start_y := upper_left_tile.y
-	var end_x := bottom_right_tile.x
-	var end_y := bottom_right_tile.y
-	
-	for i in range(start_x, end_x + 1):
-		for j in range(start_y, end_y + 1):
-			if entity_placer.has_entity(i, j):
-				add_entity(entity_placer.spawn_entity(i, j))
+#func spawn_entities(entity_placer : EntityPlacer) -> void:
+#	var start_x := upper_left_tile.x
+#	var start_y := upper_left_tile.y
+#	var end_x := bottom_right_tile.x
+#	var end_y := bottom_right_tile.y
+#
+#	for i in range(start_x, end_x + 1):
+#		for j in range(start_y, end_y + 1):
+#			if entity_placer.has_entity(i, j):
+#				add_entity(entity_placer.spawn_entity(i, j))
 
 func add_entity(entity : Entity) -> void:
 	entities.append(entity)

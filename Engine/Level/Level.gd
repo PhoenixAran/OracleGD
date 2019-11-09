@@ -11,7 +11,6 @@ export(int) var tile_width := 16
 export(int) var tile_height := 16
 export(String) var initial_room : String
 
-onready var entity_placer = $EntityPlacer as EntityPlacer
 onready var ysort := $YSort as YSort
 
 var room_state = RoomProcessState.NOT_ACTIVE
@@ -25,9 +24,9 @@ var event_stack := []
 var current_event : RoomEvent
 
 func _ready() -> void:
-	entity_placer.connect("entity_created", self, "_on_entity_created")
 	for node in get_children():
 		if node is Room:
+			node.connect("entity_created", self, "_on_entity_created")
 			node.connect("request_load", self, "_on_room_request_load")
 
 func _physics_process(delta : float) -> void:
@@ -60,14 +59,14 @@ func initialize_level(player_entity, room = null, spawn_coordinate = null) -> vo
 	if spawn_coordinate == null:
 		spawn_coordinate = current_room.default_spawn_coordinate
 	player.position = get_position_from_coordinate(spawn_coordinate)
-	current_room.load_room(entity_placer)
+	current_room.load_room()
 	player.get_node("PlayerCamera").force_set_limits(current_room)
 
 func get_position_from_coordinate(spawn_coordinate : Vector2) -> Vector2:
 	return Vector2(spawn_coordinate.x * tile_width, spawn_coordinate.y * tile_height)
 
 func set_up_new_room(target_room : Room) -> void:
-	target_room.load_room(entity_placer, previous_room == target_room)
+	target_room.load_room(previous_room == target_room)
 	previous_room = current_room
 	current_room = target_room
 
