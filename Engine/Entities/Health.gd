@@ -16,8 +16,8 @@ func set_max_health(value : int) -> void:
 	_max_health = value
 	emit_signal("max_health_changed", _max_health)
 	if value < _health:
-    	emit_signal("damage_taken", _health - value)
-    	_health = value
+		emit_signal("damage_taken", _health - value)
+		_health = value
 
 func get_health() -> int:
 	return _health

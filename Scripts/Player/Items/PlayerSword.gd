@@ -29,7 +29,7 @@ func stop_use() -> void:
 	animation_player.stop()
 	_in_use = false
 	if sprite.is_visible():
-    	sprite.set_visible(false)
+		sprite.set_visible(false)
 	hitbox.enable_area(false)
 
 func enable(enabled : bool) -> void:
