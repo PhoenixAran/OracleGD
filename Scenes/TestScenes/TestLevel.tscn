@@ -38,7 +38,6 @@ default_spawn_coordinate = Vector2( 3, 5 )
 position = Vector2( 81, 69 )
 
 [node name="RoomLoadingZone" type="Area2D" parent="Level/Room1"]
-editor/display_folded = true
 position = Vector2( 154, 64 )
 collision_layer = 64
 collision_mask = 32
@@ -53,24 +52,20 @@ position = Vector2( 34.8165, 35.0391 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room1/EntitySpawn" instance=ExtResource( 7 )]
-position = Vector2( 0.180355, -0.150303 )
 
 [node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
 position = Vector2( 96.8165, 91.0391 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room1/EntitySpawn2" instance=ExtResource( 7 )]
-position = Vector2( 12, 5 )
 
 [node name="EntitySpawn3" type="Node2D" parent="Level/Room1"]
-editor/display_folded = true
 position = Vector2( 114.816, 37.0391 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room1/EntitySpawn3" instance=ExtResource( 7 )]
 
 [node name="EntitySpawn4" type="Node2D" parent="Level/Room1"]
-editor/display_folded = true
 position = Vector2( 28.576, 114.845 )
 script = ExtResource( 6 )
 
