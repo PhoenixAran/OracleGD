@@ -557,7 +557,6 @@ position = Vector2( 0, 2 )
 shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 5 )
@@ -572,7 +571,6 @@ hitstun_time = 0
 shape = SubResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
-editor/display_folded = true
 script = ExtResource( 6 )
 _default_state = "PlayerIdle"
 
@@ -594,7 +592,6 @@ script = ExtResource( 11 )
 [node name="Item" parent="." instance=ExtResource( 12 )]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-editor/display_folded = true
 current = true
 script = ExtResource( 13 )
 
@@ -603,7 +600,6 @@ script = ExtResource( 13 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="ECB" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 14 )
 
 [node name="TileCollisionBox" type="Area2D" parent="ECB"]

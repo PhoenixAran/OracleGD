@@ -54,7 +54,7 @@ script = ExtResource( 6 )
 [node name="Stalfos" parent="Level/Room1/EntitySpawn" instance=ExtResource( 7 )]
 
 [node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
-position = Vector2( 96.8165, 91.0391 )
+position = Vector2( 116.993, 113.147 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room1/EntitySpawn2" instance=ExtResource( 7 )]
@@ -91,13 +91,13 @@ position = Vector2( 162.094, 64 )
 shape = SubResource( 2 )
 
 [node name="EntitySpawn" type="Node2D" parent="Level/Room2"]
-position = Vector2( 256.272, 41.6938 )
+position = Vector2( 280.097, 41.9084 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room2/EntitySpawn" instance=ExtResource( 7 )]
 
 [node name="EntitySpawn2" type="Node2D" parent="Level/Room2"]
-position = Vector2( 201.871, 109.401 )
+position = Vector2( 193.929, 114.338 )
 script = ExtResource( 6 )
 
 [node name="Stalfos" parent="Level/Room2/EntitySpawn2" instance=ExtResource( 7 )]

@@ -96,6 +96,7 @@ func enable(enabled : bool) -> void:
 		
 	for projectile in projectiles:
 		projectile.enable(enabled)
+	
 
 #Signal callbacks	
 func _on_entity_destroyed(entity : Entity) -> void:

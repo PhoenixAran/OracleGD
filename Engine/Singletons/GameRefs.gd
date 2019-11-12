@@ -23,3 +23,4 @@ func set_player(value : Player) -> void:
 func get_player() -> Player:
 	return player
 
+
