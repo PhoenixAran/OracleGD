@@ -12,10 +12,13 @@ export(Vector2) var bottom_right_tile : Vector2
 export(Vector2) var default_spawn_coordinate : Vector2
 
 var all_enemies_destroyed := false
-var entities := []
-var projectiles := []
 var refuse_load_count := 0
 var entity_spawners := []
+
+#Dynamic objects
+var entities := []
+var projectiles := []
+var dynamic_tiles := []
 
 
 func _ready() -> void:
@@ -74,6 +77,12 @@ func unload_room() -> void:
 	while not projectiles.empty():
 		var projectile = projectiles.pop_front()
 		projectile.queue_free()
+	
+	while not dynamic_tiles.empty():
+		var dynamic_tile = dynamic_tiles.pop_front()
+		dynamic_tile.queue_free()
+		
+
 
 #func spawn_entities(entity_placer : EntityPlacer) -> void:
 #	var start_x := upper_left_tile.x
@@ -96,12 +105,18 @@ func enable(enabled : bool) -> void:
 		
 	for projectile in projectiles:
 		projectile.enable(enabled)
-	
 
-#Signal callbacks	
+
+#Signal callbacks
 func _on_entity_destroyed(entity : Entity) -> void:
 	entities.remove(entities.find(entity))
 	all_enemies_destroyed = entities.size() == 0
+
+func _on_projectile_destroyed(projectile) -> void:
+	projectiles.remove(projectiles.find(projectile))
+
+func _on_dynamic_tile_destroyed(tile : DynamicTile) -> void:
+	dynamic_tiles.remove(dynamic_tiles.find(tile))
 
 func _on_loading_zone_activated(event):
 	emit_signal("request_load", self, event)

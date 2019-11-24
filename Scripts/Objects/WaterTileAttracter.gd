@@ -7,5 +7,4 @@ class_name TileAttracter
 export(Enums.Direction) var direction = Enums.Direction.DOWN
 
 func _ready() -> void:
-	
 	pass

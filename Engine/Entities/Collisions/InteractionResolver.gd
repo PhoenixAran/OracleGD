@@ -39,7 +39,7 @@ func has_tile_interaction(type) -> bool:
 	return _tile_interaction_map.has(type)
 
 func resolve_tile_interaction(receiver, dynamic_tile) -> void:
-	var type = dynamic_tile
+	var type = dynamic_tile.tile_type
 	if has_tile_interaction(type):
 		get_tile_interaction(type).resolve(receiver, dynamic_tile)
 	else:

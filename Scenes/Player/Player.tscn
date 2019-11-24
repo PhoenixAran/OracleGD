@@ -551,6 +551,7 @@ vframes = 5
 hframes = 6
 frame = 8
 script = ExtResource( 4 )
+hit_color = Color( 0.486275, 0.219608, 0.219608, 0.34902 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )

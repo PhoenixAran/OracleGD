@@ -2,4 +2,7 @@
 extends Node
 
 
-var UNIT_SIZE := 16
+var unit_size := 16
+
+func _ready():
+	randomize()

@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Effects/DefaultDeath.gd"
 }, {
+"base": "Area2D",
+"class": "DynamicTile",
+"language": "GDScript",
+"path": "res://Engine/Entities/DynamicTile.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -107,7 +112,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "MovingPlatform",
 "language": "GDScript",
-"path": "res://Scripts/Objects/MovingPlatform.gd"
+"path": "res://Engine/Entities/MovingPlatform.gd"
 }, {
 "base": "CombatEntity",
 "class": "Player",
@@ -198,6 +203,11 @@ _global_script_classes=[ {
 "class": "TileAttracter",
 "language": "GDScript",
 "path": "res://Scripts/Objects/WaterTileAttracter.gd"
+}, {
+"base": "Reference",
+"class": "TileInteraction",
+"language": "GDScript",
+"path": "res://Engine/Entities/Collisions/TileInteraction.gd"
 } ]
 _global_script_class_icons={
 "Combat": "",
@@ -205,6 +215,7 @@ _global_script_class_icons={
 "CustomInteraction": "",
 "DamageInteraction": "",
 "DefaultDeath": "",
+"DynamicTile": "",
 "Entity": "",
 "EntityPlacer": "",
 "EntitySpawn": "",
@@ -237,7 +248,8 @@ _global_script_class_icons={
 "Stalfos": "",
 "State": "",
 "StateMachine": "",
-"TileAttracter": ""
+"TileAttracter": "",
+"TileInteraction": ""
 }
 
 [application]
@@ -252,7 +264,6 @@ Globals="*res://Engine/Singletons/Globals.gd"
 Enums="*res://Engine/Singletons/Enums.gd"
 Interactions="*res://Engine/Singletons/Interactions.gd"
 GameRefs="*res://Engine/Singletons/GameRefs.gd"
-TileHelper="*res://Engine/Singletons/TileHelper.gd"
 
 [debug]
 

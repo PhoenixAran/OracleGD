@@ -10,7 +10,6 @@ export(Direction) var direction
 signal loading_zone_activated(room_event)
 
 func _ready() -> void:
-	#connect("area_entered" , self, "_on_area_entered")
 	connect("body_entered", self, "_on_body_entered")
 
 func _on_body_entered(other) -> void:
