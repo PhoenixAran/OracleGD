@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AbilityMap",
+"language": "GDScript",
+"path": "res://Scripts/Singletons/AbilityMap.gd"
+}, {
 "base": "Reference",
 "class": "Combat",
 "language": "GDScript",
@@ -59,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Animation/EntitySprite.gd"
 }, {
+"base": "State",
+"class": "EnvironmentState",
+"language": "GDScript",
+"path": "res://Scripts/Player/EnvironmentStates/EnvironmentState.gd"
+}, {
 "base": "TileMap",
 "class": "EnvironmentTileMap",
 "language": "GDScript",
@@ -70,9 +80,19 @@ _global_script_classes=[ {
 "path": "res://Engine/Entities/Collisions/EnvironmentalCollisionBox.gd"
 }, {
 "base": "Node",
+"class": "Equipment",
+"language": "GDScript",
+"path": "res://Scripts/Player/Equipment.gd"
+}, {
+"base": "Node",
 "class": "GameControl",
 "language": "GDScript",
 "path": "res://Engine/GameControl/GameControl.gd"
+}, {
+"base": "State",
+"class": "GroundState",
+"language": "GDScript",
+"path": "res://Scripts/Player/EnvironmentStates/GroundState.gd"
 }, {
 "base": "Node",
 "class": "Health",
@@ -93,6 +113,11 @@ _global_script_classes=[ {
 "class": "InteractionResolver",
 "language": "GDScript",
 "path": "res://Engine/Entities/Collisions/InteractionResolver.gd"
+}, {
+"base": "Sprite",
+"class": "InventoryEquipmentItem",
+"language": "GDScript",
+"path": "res://Scripts/Inventory/InventoryEquipmentItem.gd"
 }, {
 "base": "Node2D",
 "class": "Item",
@@ -192,12 +217,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://Engine/FSM/State.gd"
+"path": "res://FSM/State.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://Engine/FSM/StateMachine.gd"
+"path": "res://FSM/StateMachine.gd"
 }, {
 "base": "Area2D",
 "class": "TileAttracter",
@@ -210,6 +235,7 @@ _global_script_classes=[ {
 "path": "res://Engine/Entities/Collisions/TileInteraction.gd"
 } ]
 _global_script_class_icons={
+"AbilityMap": "",
 "Combat": "",
 "CombatEntity": "",
 "CustomInteraction": "",
@@ -220,13 +246,17 @@ _global_script_class_icons={
 "EntityPlacer": "",
 "EntitySpawn": "",
 "EntitySprite": "",
+"EnvironmentState": "",
 "EnvironmentTileMap": "",
 "EnvironmentalCollisionBox": "",
+"Equipment": "",
 "GameControl": "",
+"GroundState": "",
 "Health": "",
 "Hitbox": "",
 "Interaction": "",
 "InteractionResolver": "",
+"InventoryEquipmentItem": "",
 "Item": "",
 "Level": "",
 "Monster": "",

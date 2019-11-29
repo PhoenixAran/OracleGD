@@ -1,11 +1,14 @@
 extends CombatEntity
 class_name Player
 
+const animation_states_with_shield := ["idle", "move"]
+
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
 onready var item := $Item as Item
 onready var tween := $Tween as Tween
+onready var equipment := $Equipment as Equipment
 
 #Declarations
 var in_transition := false
@@ -50,6 +53,15 @@ func tween_to_position(target_position : Vector2) -> void:
 	vector = Vector2()
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
+
+func get_equipment() -> Equipment:
+	return equipment
+
+func get_animation_key() -> String:
+	var key = str(anim_state , anim_direction)
+	if anim_direction in animation_states_with_shield:
+		key = str("shield", equipment.get_ability("shield"), key)
+	return key
 
 #Signal callbacks
 func _on_item_used() -> void:
