@@ -67,6 +67,7 @@ func get_animation_key() -> String:
 
 #Signal callbacks
 func _on_item_used() -> void:
+	print("Player::_on_item_used")
 	animation_player.stop()
 
 func _on_tween_completed(other, key) -> void:

@@ -6,21 +6,8 @@ onready var sprite := $Sprite as Sprite
 onready var hitbox := $Hitbox as Hitbox
 onready var interactions := InteractionResolver.new()
 
-var _attack_key_released := false
-var _cached_direction := "down"
-
-func _physics_process(delta : float) -> void:
-	if not in_use():
-		return
-	if not _attack_key_released:
-		_attack_key_released = not Input.is_action_pressed("attack")
-	elif Input.is_action_just_pressed("attack"):
-		use_item(_cached_direction)
-
 func use_item(direction : String) -> void:
-	_cached_direction = direction
-	_attack_key_released = not Input.is_action_pressed("attack")
-	var key := "attack" + _cached_direction
+	var key := "attack" + direction
 	animation_player.stop()
 	animation_player.play(key)
 	emit_signal("item_used")
@@ -36,7 +23,7 @@ func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
-		if _in_use:
+		if in_use():
 			animation_player.play(animation_player.current_animation)
 	else:
 		animation_player.stop(false)

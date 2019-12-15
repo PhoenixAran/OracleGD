@@ -533,6 +533,11 @@ abilities = {
 "sword": 1,
 "tunic": 0
 }
+items = {
+"arrows": 0,
+"bombs": 0,
+"rupees": 0
+}
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -601,7 +606,6 @@ script = ExtResource( 10 )
 script = ExtResource( 11 )
 
 [node name="Sword" parent="." instance=ExtResource( 12 )]
-use_state = "SwordSwing"
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true

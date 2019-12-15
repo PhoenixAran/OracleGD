@@ -16,9 +16,7 @@ export(Dictionary) var abilities := {
 }
 
 export(Dictionary) var items := {
-	"rupees" : 0,
-	"bombs" : -1,
-	"arrows" : -1
+	"rupees" : 0
 }
 
 export(Dictionary) var equipment_items
@@ -46,3 +44,9 @@ func get_equipment_item(key : String) -> PackedScene:
 func set_equipment_item(key : String, inv_equipment_item_path : String) -> void:
 	emit_signal("equipment_item_change", key, inv_equipment_item_path)
 	equipment_items[key]  = inv_equipment_item_path
+
+func has_item_key(key) -> bool:
+	return items.has(key)
+
+func has_equipment_item_key(key) -> bool:
+	return equipment_items.has(key)

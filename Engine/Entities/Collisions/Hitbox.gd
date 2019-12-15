@@ -36,11 +36,11 @@ func set_detect_only(value : bool) -> void:
 
 func get_damage_info() -> Dictionary:
 	return {
-		damage = damage,
-		source_position = get_parent().global_position if use_parent_as_source else global_position,
-		knockback_time = knockback_time,
-		knockback_speed = knockback_speed,
-		hitstun_time = hitstun_time, 
+		"damage" : damage,
+		"source_position" : get_parent().global_position if use_parent_as_source else global_position,
+		"knockback_time" : knockback_time,
+		"knockback_speed" : knockback_speed,
+		"hitstun_time" : hitstun_time, 
 	}
 
 func check_collisions() -> void:
