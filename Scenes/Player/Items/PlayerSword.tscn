@@ -364,25 +364,28 @@ extents = Vector2( 2, 7 )
 
 [node name="PlayerSword" type="Node2D"]
 script = ExtResource( 1 )
+_in_use = true
 use_state = "SwordSwing"
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
-offset = Vector2( -2, -15 )
+offset = Vector2( -16, 2 )
 vframes = 2
 hframes = 4
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
-playback_speed = 10.0
+playback_speed = 12.0
 anims/attackdown = SubResource( 1 )
 anims/attackleft = SubResource( 2 )
 anims/attackright = SubResource( 3 )
 anims/attackup = SubResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-position = Vector2( -2, -15 )
+position = Vector2( -16, 2 )
+rotation = -1.5708
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 3 )
@@ -393,4 +396,3 @@ hitstun_time = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 5 )
-disabled = true
