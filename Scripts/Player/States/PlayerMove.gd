@@ -1,13 +1,13 @@
 extends State
 class_name PlayerMove
 
-var player : Player
-var item : Item
+var player : Entity
+var sword : PlayerSword
 
 func initialize(context) -> void:
-	player = context as Player
+	player = context as Entity
 	player.current_speed = player.static_speed
-	item = player.get_node("Item") as Item
+	sword = player.get("sword")
 	
 func begin() -> void:
 	player.anim_state = "move"
@@ -28,4 +28,4 @@ func update(delta : float):
 		_change_state("PlayerIdle")
 	elif Input.is_action_just_pressed("attack"):
 		player.vector = Vector2.ZERO
-		_change_state("PlayerAttack")
+		_change_state(sword.get_use_state())

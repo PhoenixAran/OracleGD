@@ -16,10 +16,12 @@ export(Dictionary) var abilities := {
 }
 
 export(Dictionary) var items := {
-	"rupees" : 0
+	"rupees" : 0,
+	"bombs" : -1,
+	"arrows" : -1
 }
 
-export(Dictionary) var equipment_items : Dictionary
+export(Dictionary) var equipment_items
 
 func get_ability(ability : String) -> int:
 	assert(abilities.has(ability))

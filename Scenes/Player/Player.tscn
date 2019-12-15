@@ -8,7 +8,7 @@
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Player/States/PlayerIdle.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player/States/PlayerMove.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Player/States/PlayerAttack.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/States/SwordSwing.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player/States/PlayerHitstun.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Player/States/PlayerKnockback.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=12]
@@ -531,7 +531,7 @@ abilities = {
 "shield": 0,
 "swim": 0,
 "sword": 1,
-"tunic": 1
+"tunic": 0
 }
 
 [node name="Health" type="Node" parent="."]
@@ -562,7 +562,6 @@ vframes = 5
 hframes = 6
 frame = 8
 script = ExtResource( 4 )
-hit_color = Color( 0.486275, 0.219608, 0.219608, 0.34902 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
@@ -592,7 +591,7 @@ script = ExtResource( 7 )
 [node name="PlayerMove" type="Node" parent="PlayerController"]
 script = ExtResource( 8 )
 
-[node name="PlayerAttack" type="Node" parent="PlayerController"]
+[node name="SwordSwing" type="Node" parent="PlayerController"]
 script = ExtResource( 9 )
 
 [node name="PlayerHitstun" type="Node" parent="PlayerController"]
@@ -601,7 +600,8 @@ script = ExtResource( 10 )
 [node name="PlayerKnockback" type="Node" parent="PlayerController"]
 script = ExtResource( 11 )
 
-[node name="Item" parent="." instance=ExtResource( 12 )]
+[node name="Sword" parent="." instance=ExtResource( 12 )]
+use_state = "SwordSwing"
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true

@@ -3,10 +3,13 @@ class_name Player
 
 const animation_states_with_shield := ["idle", "move"]
 
+signal item_changed(item)
+signal sword_changed(sword)
+
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
-onready var item := $Item as Item
+onready var sword := get_node_or_null("Sword") as PlayerItem
 onready var tween := $Tween as Tween
 onready var equipment := $Equipment as Equipment
 
@@ -22,9 +25,9 @@ func _ready() -> void:
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
-	connect("entity_hit", item, "_on_owner_hit")
+	connect("entity_hit", sword, "_on_owner_hit")
 	
-	item.connect("item_used", self, "_on_item_used")
+	sword.connect("item_used", self, "_on_item_used")
 	tween.connect("tween_completed", self, "_on_tween_completed")
 	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
@@ -37,11 +40,10 @@ func _physics_process(delta : float) -> void:
 	update_animation()
 	update_movement()
 
-#Override
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
-	item.enable(enabled)
+	sword.enable(enabled)
 	if enabled:
 		animation_player.play(get_animation_key())
 	else:
@@ -72,5 +74,5 @@ func _on_tween_completed(other, key) -> void:
 
 #Override
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
-	if not item.overrides_interaction(other_hitbox):
+	if not sword.overrides_interaction(other_hitbox):
 		interactions.resolve_interaction(hitbox, other_hitbox)

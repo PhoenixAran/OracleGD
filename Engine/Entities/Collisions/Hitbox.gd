@@ -48,9 +48,9 @@ func check_collisions() -> void:
 	if areas.size() > 0:
 		if can_hit_multiple:
 			for area in areas:
-				(area as Hitbox).report_collision(self)
+				area.report_collision(self)
 		else:
-			(areas[0] as Hitbox).report_collision(self)
+			areas[0].report_collision(self)
 
 #raises the hitbox hitbox_entered signal
 func report_collision(hitbox : Hitbox):

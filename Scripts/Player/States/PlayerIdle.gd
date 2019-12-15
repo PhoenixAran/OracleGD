@@ -2,10 +2,12 @@ extends State
 class_name PlayerIdle
 
 var player : Entity
+var sword : PlayerSword
 
 func initialize(context) -> void:
 	player = context as Entity
 	player.current_speed = player.static_speed
+	sword = player.get("sword")
 
 func begin() -> void:
 	player.reset_combat_variables()
@@ -24,8 +26,8 @@ func update(delta : float) -> void:
 
 	player.match_animation_direction(input_vector)
 
-	if Input.is_action_just_pressed("attack"):
-		_change_state("PlayerAttack")
+	if Input.is_action_just_pressed("attack") and sword != null:
+		_change_state(sword.get_use_state())
 	elif input_vector != Vector2.ZERO:
 		player.vector = input_vector
 		_change_state("PlayerMove")

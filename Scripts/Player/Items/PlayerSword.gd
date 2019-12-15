@@ -1,4 +1,4 @@
-extends Item
+extends PlayerItem
 class_name PlayerSword
 
 onready var animation_player := $AnimationPlayer as AnimationPlayer

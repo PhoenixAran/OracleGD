@@ -62,7 +62,7 @@ func set_intangibility(frames : int) -> void:
 	entity_sprite.set_modulate_time(frames)
 
 func take_damage(damage_info : Dictionary) -> void:
-	set_intangibility(15)
+	set_intangibility(18)
 	combat.set_combat_variables(damage_info)
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)

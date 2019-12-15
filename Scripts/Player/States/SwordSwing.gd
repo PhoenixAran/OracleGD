@@ -1,21 +1,21 @@
 extends State
-class_name PlayerAttack
+class_name SwordSwing
 
 var player : Entity
-var item : Item
+var sword : PlayerItem
 
 func initialize(context) -> void:
 	player = context as Entity
+	sword = player.get("sword")
 
 func begin() -> void:
 	player.anim_state = "attack"
 	player.update_animation()
-	item = player.get_node("Item") as Item
-	item.use_item(player.anim_direction)
+	sword.use_item(player.anim_direction)
 
 
 func update(delta : float) -> void:
-	if not item.in_use():
+	if not sword.in_use():
 		if player.in_knockback():
 			_change_state("PlayerKnockback")
 		else:
