@@ -5,29 +5,14 @@
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="HUD" type="MarginContainer" parent="."]
-margin_right = 160.0
-margin_bottom = 16.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
-show_behind_parent = true
-margin_right = 160.0
-margin_bottom = 16.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="NinePatchRect" parent="HUD/HBoxContainer"]
+[node name="HUD" type="NinePatchRect" parent="."]
 show_behind_parent = true
 margin_right = 160.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 texture = ExtResource( 1 )
 region_rect = Rect2( 40, 0, 8, 8 )
-
-[node name="InitialHeartPosition" type="Position2D" parent="HUD/HBoxContainer"]
-position = Vector2( 96, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

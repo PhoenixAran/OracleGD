@@ -26,7 +26,7 @@ var current_event : RoomEvent
 func _ready() -> void:
 	for node in get_children():
 		if node is Room:
-			node.connect("entity_created", self, "_on_entity_created")
+			node.connect("entity_created", self, "_on_room_entity_created")
 			node.connect("request_load", self, "_on_room_request_load")
 
 func _physics_process(delta : float) -> void:
@@ -61,6 +61,8 @@ func initialize_level(player_entity, room = null, spawn_coordinate = null) -> vo
 	player.position = get_position_from_coordinate(spawn_coordinate)
 	current_room.load_room()
 	player.get_node("PlayerCamera").force_set_limits(current_room)
+	player.get_parent().remove_child(player)
+	ysort.add_child(player)
 
 func get_position_from_coordinate(spawn_coordinate : Vector2) -> Vector2:
 	return Vector2(spawn_coordinate.x * tile_width, spawn_coordinate.y * tile_height)
@@ -78,7 +80,7 @@ func enable(enabled : bool) -> void:
 	current_room.enable(enabled)
 
 #signal callbacks
-func _on_entity_created(entity) -> void:
+func _on_room_entity_created(entity) -> void:
 	#order matters here. need to add child before
 	#disabling the entity
 	ysort.call_deferred("add_child", entity)

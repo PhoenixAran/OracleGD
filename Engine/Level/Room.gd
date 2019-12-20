@@ -84,17 +84,6 @@ func unload_room() -> void:
 		
 
 
-#func spawn_entities(entity_placer : EntityPlacer) -> void:
-#	var start_x := upper_left_tile.x
-#	var start_y := upper_left_tile.y
-#	var end_x := bottom_right_tile.x
-#	var end_y := bottom_right_tile.y
-#
-#	for i in range(start_x, end_x + 1):
-#		for j in range(start_y, end_y + 1):
-#			if entity_placer.has_entity(i, j):
-#				add_entity(entity_placer.spawn_entity(i, j))
-
 func add_entity(entity : Entity) -> void:
 	entities.append(entity)
 	entity.connect("entity_destroyed", self, "_on_entity_destroyed")

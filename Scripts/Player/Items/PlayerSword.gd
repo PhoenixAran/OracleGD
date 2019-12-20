@@ -1,6 +1,11 @@
 extends PlayerItem
 class_name PlayerSword
 
+signal sword_swung
+signal sword_loading
+signal sword_stabbed
+signal sword_spin(level)
+
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var sprite := $Sprite as Sprite
 onready var hitbox := $Hitbox as Hitbox
@@ -11,6 +16,10 @@ func use_item(direction : String) -> void:
 	animation_player.stop()
 	animation_player.play(key)
 	emit_signal("item_used")
+
+func swing_sword(direction : String) -> void:
+	use_item(direction)
+	emit_signal("sword_swung")
 
 func stop_use() -> void:
 	animation_player.stop()
@@ -23,7 +32,7 @@ func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
-		if in_use():
+		if in_use() and animation_player.has_animation(animation_player.current_animation):
 			animation_player.play(animation_player.current_animation)
 	else:
 		animation_player.stop(false)

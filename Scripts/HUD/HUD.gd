@@ -1,13 +1,14 @@
-extends MarginContainer
+extends NinePatchRect
 class_name HUD
 
 const HEART_ROW_SIZE := 8
 const HEART_OFFSET := 8
 const HEART_HEALTH_VALUE := 4
-const HEART_DEST_RECT_SIZE := Vector2(8, 8)
+
+export(Vector2) var initial_heart_position := Vector2(96, 0)
+export(Vector2) var key_position := Vector2(72, 0)
 
 onready var hud_texture : Texture = preload("res://Assets/HUD/UI.png")
-onready var initial_heart_position := $HBoxContainer/InitialHeartPosition as Position2D
 onready var heart_src_rects := {
 	0 : Rect2(0, 0, 8, 8),
 	1 : Rect2(8, 0, 8, 8),
@@ -24,6 +25,19 @@ func init_hud() -> void:
 	update()
 
 func _draw() -> void:
+	draw_hearts()
+	draw_key_count()
+
+func update_heart_counts() -> void:
+	heart_positions.clear()
+	heart_positions.append(initial_heart_position)
+	heart_count = GameRefs.get_player().get_max_health() / HEART_HEALTH_VALUE
+	for i in range(1, heart_count):
+		var x := (i % HEART_ROW_SIZE) * HEART_OFFSET
+		var y := (i / HEART_ROW_SIZE) * HEART_OFFSET
+		heart_positions.append(Vector2(x, y) + heart_positions[0])
+
+func draw_hearts() -> void:
 	if GameRefs.get_player() == null:
 		return
 	var remaining_health := GameRefs.get_player().get_health()
@@ -35,16 +49,12 @@ func _draw() -> void:
 		elif 0 < remaining_health and remaining_health < HEART_HEALTH_VALUE:
 			fill_level = remaining_health
 			remaining_health = 0
-		draw_texture_rect_region(hud_texture, Rect2(position, HEART_DEST_RECT_SIZE), heart_src_rects[fill_level])
+		draw_texture_rect_region(hud_texture, Rect2(position, Vector2(8, 8)), heart_src_rects[fill_level])
 
-func update_heart_counts() -> void:
-	heart_positions.clear()
-	heart_positions.append(initial_heart_position.global_position)
-	heart_count = GameRefs.get_player().get_max_health() / HEART_HEALTH_VALUE
-	for i in range(1, heart_count):
-		var x := (i % HEART_ROW_SIZE) * HEART_OFFSET
-		var y := (i / HEART_ROW_SIZE) * HEART_OFFSET
-		heart_positions.append(Vector2(x, y) + heart_positions[0])
+func draw_key_count() -> void:
+	draw_texture_rect_region(hud_texture, Rect2(key_position, Vector2(8, 8)), Rect2(0, 8, 8, 8))
+	draw_texture_rect_region(hud_texture, Rect2(key_position + Vector2(8, 0), Vector2(8, 8)), Rect2(8, 8, 8, 8))
+
 
 func _on_take_damage(damage : int) -> void:
 	update()

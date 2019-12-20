@@ -94,7 +94,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/EnvironmentStates/GroundState.gd"
 }, {
-"base": "MarginContainer",
+"base": "NinePatchRect",
 "class": "HUD",
 "language": "GDScript",
 "path": "res://Scripts/HUD/HUD.gd"
