@@ -60,14 +60,13 @@ func get_equipment() -> Equipment:
 	return equipment
 
 func get_animation_key() -> String:
-	var key = str(anim_state , anim_direction)
+	var key := str(anim_state , anim_direction)
 	if anim_direction in animation_states_with_shield:
 		key = str("shield", equipment.get_ability("shield"), key)
 	return key
 
 #Signal callbacks
 func _on_item_used() -> void:
-	print("Player::_on_item_used")
 	animation_player.stop()
 
 func _on_tween_completed(other, key) -> void:

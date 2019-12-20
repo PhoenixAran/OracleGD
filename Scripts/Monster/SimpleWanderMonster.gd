@@ -69,7 +69,7 @@ func change_direction() -> void:
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	interactions.resolve_interaction(hitbox, other_hitbox)
 	
-func _on_entity_hit() -> void:
+func _on_entity_hit(damage_value : int) -> void:
 	animation_player.stop()
 	if in_hitstun() and in_knockback():
 		state = EnemyState.HURT

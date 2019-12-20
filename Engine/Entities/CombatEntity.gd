@@ -2,7 +2,7 @@ extends Entity
 class_name CombatEntity
 
 #Signals
-signal entity_hit
+signal entity_hit(damage)
 signal entity_bumped
 signal entity_immobilized
 signal entity_marked_dead(entity)
@@ -39,6 +39,12 @@ func poll_death() -> void:
 func update_combat_variables() -> void:
 	combat.update_combat_variables()
 
+func get_health() -> int:
+	return health.get_health()
+
+func get_max_health() -> int:
+	return health.get_max_health()
+
 func is_dead() -> bool:
 	return _death_marked
 
@@ -67,7 +73,7 @@ func take_damage(damage_info : Dictionary) -> void:
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
 	current_speed = damage_info.knockback_speed
-	emit_signal("entity_hit")
+	emit_signal("entity_hit", damage_info.damage)
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
 	combat.knockback_time = time

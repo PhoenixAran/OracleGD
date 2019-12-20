@@ -21,6 +21,9 @@ export(Dictionary) var items := {
 
 export(Dictionary) var equipment_items
 
+func get_abilities() -> Array:
+	return abilities.keys
+
 func get_ability(ability : String) -> int:
 	assert(abilities.has(ability))
 	return abilities[ability] as int
@@ -29,6 +32,9 @@ func set_ability(ability : String, level : int) -> void:
 	if ability in ability_causes_rebuild:
 		emit_signal("rebuild_player", ability, level)
 	abilities[ability] = level
+
+func get_items() -> Array:
+	return items.keys
 
 func get_item(item : String) -> int:
 	assert(items.has(item))

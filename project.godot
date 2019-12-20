@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/EnvironmentStates/GroundState.gd"
 }, {
+"base": "MarginContainer",
+"class": "HUD",
+"language": "GDScript",
+"path": "res://Scripts/HUD/HUD.gd"
+}, {
 "base": "Node",
 "class": "Health",
 "language": "GDScript",
@@ -209,6 +214,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Monster/SimpleWanderMonster.gd"
 }, {
+"base": "Node",
+"class": "SoundBank",
+"language": "GDScript",
+"path": "res://Engine/Audio/SoundBank.gd"
+}, {
 "base": "SimpleWanderMonster",
 "class": "Stalfos",
 "language": "GDScript",
@@ -257,6 +267,7 @@ _global_script_class_icons={
 "Equipment": "",
 "GameControl": "",
 "GroundState": "",
+"HUD": "",
 "Health": "",
 "Hitbox": "",
 "Interaction": "",
@@ -280,6 +291,7 @@ _global_script_class_icons={
 "RoomEvent": "",
 "RoomLoadingZone": "",
 "SimpleWanderMonster": "",
+"SoundBank": "",
 "Stalfos": "",
 "State": "",
 "StateMachine": "",

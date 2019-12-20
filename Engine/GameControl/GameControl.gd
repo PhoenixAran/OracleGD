@@ -10,7 +10,8 @@ var player : Player
 
 func _ready() -> void:
 	player = get_node(player_path) as Player
-	level.call_deferred("initialize_level", player, initial_room, null)
 	GameRefs.set_player(player)
-
-
+	level.call_deferred("initialize_level", player, initial_room, null)
+	$CanvasLayer/HUD.call_deferred("init_hud")
+	
+	

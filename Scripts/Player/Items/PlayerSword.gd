@@ -34,5 +34,5 @@ func overrides_interaction(sender : Hitbox) -> bool:
 	return false
 
 #Signal callbacks
-func _on_owner_hit() -> void:
+func _on_owner_hit(damage_value : int) -> void:
 	stop_use()
