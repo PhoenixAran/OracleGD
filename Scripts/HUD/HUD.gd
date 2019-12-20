@@ -15,9 +15,8 @@ onready var heart_src_rects := {
 	3 : Rect2(24, 0, 8, 8),
 	4 : Rect2(32, 0, 8, 8)
 }
-
-var heart_positions : Array 
-var heart_count : int = 0
+onready var heart_positions := []
+onready var heart_count := 0
 
 func init_hud() -> void:
 	GameRefs.get_player().connect("entity_hit", self, "_on_take_damage")
@@ -27,7 +26,6 @@ func init_hud() -> void:
 func _draw() -> void:
 	if GameRefs.get_player() == null:
 		return
-	print("Redrawing Hearts")
 	var remaining_health := GameRefs.get_player().get_health()
 	for position in heart_positions:
 		var fill_level := 0
@@ -37,15 +35,15 @@ func _draw() -> void:
 		elif 0 < remaining_health and remaining_health < HEART_HEALTH_VALUE:
 			fill_level = remaining_health
 			remaining_health = 0
-		print({'fill_level' : str(fill_level)})
 		draw_texture_rect_region(hud_texture, Rect2(position, HEART_DEST_RECT_SIZE), heart_src_rects[fill_level])
 
 func update_heart_counts() -> void:
-	heart_positions = [initial_heart_position.global_position]
-	heart_count = int(GameRefs.get_player().get_max_health() / HEART_HEALTH_VALUE)
+	heart_positions.clear()
+	heart_positions.append(initial_heart_position.global_position)
+	heart_count = GameRefs.get_player().get_max_health() / HEART_HEALTH_VALUE
 	for i in range(1, heart_count):
-		var x := int(i % HEART_ROW_SIZE) * HEART_OFFSET
-		var y := int(i / HEART_ROW_SIZE) * HEART_OFFSET
+		var x := (i % HEART_ROW_SIZE) * HEART_OFFSET
+		var y := (i / HEART_ROW_SIZE) * HEART_OFFSET
 		heart_positions.append(Vector2(x, y) + heart_positions[0])
 
 func _on_take_damage(damage : int) -> void:

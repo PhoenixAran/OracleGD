@@ -541,8 +541,8 @@ items = {
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
-_max_health = 48
-_health = 48
+_max_health = 16
+_health = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0

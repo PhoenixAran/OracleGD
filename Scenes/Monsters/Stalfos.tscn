@@ -45,8 +45,8 @@ default_animation = "move"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
-_max_health = 6
-_health = 6
+_max_health = 2
+_health = 2
 
 [node name="EntitySprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

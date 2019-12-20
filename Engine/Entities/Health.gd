@@ -6,8 +6,9 @@ export(int) var _health := 4 setget set_health, get_health
 export(int) var armor := 0
 
 signal max_health_changed(new_max_health)
+signal damage_taken(damage)
 signal health_changed(health)
-signal health_depleted
+signal health_depleted()
 
 func get_max_health() -> int:
 	return _max_health
@@ -16,8 +17,8 @@ func set_max_health(value : int) -> void:
 	_max_health = value
 	emit_signal("max_health_changed", _max_health)
 	if value < _health:
-		emit_signal("damage_taken", _health - value)
 		_health = value
+		emit_signal("health_changed", _health)
 
 func get_health() -> int:
 	return _health
