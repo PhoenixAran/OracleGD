@@ -7,7 +7,7 @@
 
 [node name="HUD" type="MarginContainer" parent="."]
 margin_right = 160.0
-margin_bottom = 20.0
+margin_bottom = 16.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -16,7 +16,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 show_behind_parent = true
 margin_right = 160.0
-margin_bottom = 20.0
+margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,7 +24,7 @@ __meta__ = {
 [node name="Background" type="NinePatchRect" parent="HUD/HBoxContainer"]
 show_behind_parent = true
 margin_right = 160.0
-margin_bottom = 20.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 texture = ExtResource( 1 )
 region_rect = Rect2( 40, 0, 8, 8 )
