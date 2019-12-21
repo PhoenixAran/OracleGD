@@ -533,11 +533,6 @@ abilities = {
 "sword": 1,
 "tunic": 0
 }
-items = {
-"arrows": 0,
-"bombs": 0,
-"rupees": 0
-}
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )

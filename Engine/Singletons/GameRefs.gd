@@ -23,4 +23,7 @@ func set_player(value : Player) -> void:
 func get_player() -> Player:
 	return player
 
+func get_player_equipment() -> Equipment:
+	return player.get_equipment()
+
 

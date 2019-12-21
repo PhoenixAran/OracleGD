@@ -16,7 +16,8 @@ export(Dictionary) var abilities := {
 }
 
 export(Dictionary) var items := {
-	"rupees" : 0
+	"rupees" : 0,
+	"keys" : 0
 }
 
 export(Dictionary) var equipment_items
