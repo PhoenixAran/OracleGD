@@ -7,7 +7,7 @@ var movement_variables_reset := false
 func initialize(context) -> void:
 	player = context as Entity
 	
-func begin() -> void:
+func begin(args = null) -> void:
 	player.anim_state = "idle"
 	movement_variables_reset = false
 

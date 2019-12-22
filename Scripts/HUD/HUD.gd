@@ -54,7 +54,7 @@ func update_heart_counts() -> void:
 func draw_hearts() -> void:
 	if GameRefs.get_player() == null:
 		return
-	var remaining_health := GameRefs.get_player().get_health()
+	var remaining_health := GameRefs.get_player().get_health() 
 	for position in heart_positions:
 		var fill_level := 0
 		if remaining_health >= HEART_HEALTH_VALUE:

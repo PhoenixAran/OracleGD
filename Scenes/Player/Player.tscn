@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scripts/Player/PlayerCamera.gd" type="Script" id=13]
 [ext_resource path="res://Engine/Entities/Collisions/EnvironmentalCollisionBox.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Player/Equipment.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Player/Items/ItemSlot.gd" type="Script" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -539,6 +540,34 @@ script = ExtResource( 2 )
 _max_health = 16
 _health = 16
 
+[node name="ItemSlotA" type="Node2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="ItemSlotB" type="Node2D" parent="."]
+script = ExtResource( 16 )
+action_listen = "B"
+
+[node name="Sword" parent="ItemSlotB" instance=ExtResource( 12 )]
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource( 6 )
+_default_state = "PlayerIdle"
+
+[node name="PlayerHitstun" type="Node" parent="PlayerController"]
+script = ExtResource( 10 )
+
+[node name="PlayerIdle" type="Node" parent="PlayerController"]
+script = ExtResource( 7 )
+
+[node name="PlayerKnockback" type="Node" parent="PlayerController"]
+script = ExtResource( 11 )
+
+[node name="PlayerMove" type="Node" parent="PlayerController"]
+script = ExtResource( 8 )
+
+[node name="SwordSwing" type="Node" parent="PlayerController"]
+script = ExtResource( 9 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
 playback_speed = 12.0
@@ -580,27 +609,6 @@ hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 14 )
-
-[node name="PlayerController" type="Node" parent="."]
-script = ExtResource( 6 )
-_default_state = "PlayerIdle"
-
-[node name="PlayerIdle" type="Node" parent="PlayerController"]
-script = ExtResource( 7 )
-
-[node name="PlayerMove" type="Node" parent="PlayerController"]
-script = ExtResource( 8 )
-
-[node name="SwordSwing" type="Node" parent="PlayerController"]
-script = ExtResource( 9 )
-
-[node name="PlayerHitstun" type="Node" parent="PlayerController"]
-script = ExtResource( 10 )
-
-[node name="PlayerKnockback" type="Node" parent="PlayerController"]
-script = ExtResource( 11 )
-
-[node name="Sword" parent="." instance=ExtResource( 12 )]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true

@@ -9,9 +9,10 @@ signal sword_changed(sword)
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
-onready var sword := get_node_or_null("Sword") as PlayerItem
 onready var tween := $Tween as Tween
 onready var equipment := $Equipment as Equipment
+onready var item_slot_a := $ItemSlotA as ItemSlot
+onready var item_slot_b := $ItemSlotB as ItemSlot
 
 #Declarations
 var in_transition := false
@@ -25,9 +26,12 @@ func _ready() -> void:
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
-	connect("entity_hit", sword, "_on_owner_hit")
+	connect("entity_hit", item_slot_a, "_on_owner_hit")
+	connect("entity_hit", item_slot_b, "_on_owner_hit")
 	
-	sword.connect("item_used", self, "_on_item_used")
+	item_slot_a.connect("item_used", self, "_on_item_used")
+	item_slot_b.connect("item_used", self, "_on_item_used")
+	
 	tween.connect("tween_completed", self, "_on_tween_completed")
 	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
@@ -43,7 +47,8 @@ func _physics_process(delta : float) -> void:
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
-	sword.enable(enabled)
+	item_slot_a.enable(enabled)
+	item_slot_b.enable(enabled)
 	if enabled:
 		animation_player.play(get_animation_key())
 	else:
@@ -74,5 +79,14 @@ func _on_tween_completed(other, key) -> void:
 
 #Override
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
-	if not sword.overrides_interaction(other_hitbox):
+	if not (item_slot_a.overrides_interaction(other_hitbox) or item_slot_b.overrides_interaction(other_hitbox)):
 		interactions.resolve_interaction(hitbox, other_hitbox)
+
+func get_active_item_slot() -> ItemSlot:
+	if item_slot_a.is_active():
+		return item_slot_a
+	
+	if item_slot_b.is_active():
+		return item_slot_b
+	
+	return null

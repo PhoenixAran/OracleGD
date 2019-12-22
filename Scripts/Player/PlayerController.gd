@@ -7,5 +7,3 @@ func _on_entity_hit(damage : int) -> void:
 
 func _on_entity_bump() -> void:
 	change_state("PlayerKnockback")
-
-	

@@ -6,6 +6,7 @@ signal item_used
 export(bool) var _can_use := true setget, can_use
 export(bool) var _in_use := false setget, in_use
 export(Enums.ItemMoveType) var move_type = Enums.ItemMoveType.NO_MOVE
+export(bool) var _stop_when_owner_hit := true
 
 func use_item(direction : String) -> void:
 	_in_use = true
@@ -24,3 +25,7 @@ func enable(enabled : bool) -> void:
 
 func overrides_interaction(sender : Hitbox) -> bool:
 	return false
+
+func _on_owner_hit(damage_value : int) -> void:
+	if _stop_when_owner_hit:
+		stop_use()
