@@ -50,28 +50,9 @@ direction = 2
 shape = SubResource( 1 )
 
 [node name="EntitySpawn" type="Node2D" parent="Level/Room1"]
-position = Vector2( 32.0503, 43.9525 )
+position = Vector2( 25.9826, 49.4799 )
 script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room1/EntitySpawn" instance=ExtResource( 7 )]
-
-[node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
-position = Vector2( 116.993, 113.147 )
-script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room1/EntitySpawn2" instance=ExtResource( 7 )]
-
-[node name="EntitySpawn3" type="Node2D" parent="Level/Room1"]
-position = Vector2( 115.738, 47.4893 )
-script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room1/EntitySpawn3" instance=ExtResource( 7 )]
-
-[node name="EntitySpawn4" type="Node2D" parent="Level/Room1"]
-position = Vector2( 28.576, 114.845 )
-script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room1/EntitySpawn4" instance=ExtResource( 7 )]
+packed_entity = ExtResource( 7 )
 
 [node name="Room2" type="Node" parent="Level"]
 script = ExtResource( 4 )
@@ -91,18 +72,6 @@ direction = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Room2/RoomLoadingZone"]
 position = Vector2( 164, 80 )
 shape = SubResource( 2 )
-
-[node name="EntitySpawn" type="Node2D" parent="Level/Room2"]
-position = Vector2( 280.097, 41.9084 )
-script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room2/EntitySpawn" instance=ExtResource( 7 )]
-
-[node name="EntitySpawn2" type="Node2D" parent="Level/Room2"]
-position = Vector2( 193.929, 114.338 )
-script = ExtResource( 6 )
-
-[node name="Stalfos" parent="Level/Room2/EntitySpawn2" instance=ExtResource( 7 )]
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 79, 72 )
