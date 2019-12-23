@@ -32,4 +32,4 @@ func update(delta : float):
 		player.vector = Vector2.ZERO
 		_change_state(item_slot_a.get_use_state(), item_slot_a)
 	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
-		_change_state(item_slot_a.get_use_state, item_slot_b)
+		_change_state(item_slot_a.get_use_state(), item_slot_b)
