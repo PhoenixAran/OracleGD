@@ -50,7 +50,17 @@ direction = 2
 shape = SubResource( 1 )
 
 [node name="EntitySpawn" type="Node2D" parent="Level/Room1"]
-position = Vector2( 78.5548, 51.4827 )
+position = Vector2( 32.4011, 43.9652 )
+script = ExtResource( 6 )
+packed_entity = ExtResource( 7 )
+
+[node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
+position = Vector2( 117.061, 43.9256 )
+script = ExtResource( 6 )
+packed_entity = ExtResource( 7 )
+
+[node name="EntitySpawn3" type="Node2D" parent="Level/Room1"]
+position = Vector2( 31.1875, 102.473 )
 script = ExtResource( 6 )
 packed_entity = ExtResource( 7 )
 
@@ -72,6 +82,16 @@ direction = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Room2/RoomLoadingZone"]
 position = Vector2( 164, 80 )
 shape = SubResource( 2 )
+
+[node name="EntitySpawn" type="Node2D" parent="Level/Room2"]
+position = Vector2( 279.135, 46.907 )
+script = ExtResource( 6 )
+packed_entity = ExtResource( 7 )
+
+[node name="EntitySpawn2" type="Node2D" parent="Level/Room2"]
+position = Vector2( 279.829, 112.102 )
+script = ExtResource( 6 )
+packed_entity = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 79, 72 )

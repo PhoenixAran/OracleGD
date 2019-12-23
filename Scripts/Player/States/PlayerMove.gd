@@ -30,6 +30,7 @@ func update(delta : float):
 		_change_state("PlayerIdle")
 	elif item_slot_a.is_action_just_pressed() and item_slot_a.has_item():
 		player.vector = Vector2.ZERO
-		_change_state(item_slot_a.get_use_state(), item_slot_a)
+		_change_state(item_slot_a.get_item_use_state(), item_slot_a)
 	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
-		_change_state(item_slot_a.get_use_state(), item_slot_b)
+		player.vector = Vector2.ZERO
+		_change_state(item_slot_b.get_item_use_state(), item_slot_b)
