@@ -11,7 +11,6 @@ var active_item := false
 func _ready() -> void:
 	var children := get_children()
 	assert(children.size() == 1 or children.size() == 0)
-	print(children)
 	if children.size() == 1:
 		set_item(children[0])
 		get_item().connect("item_used", self, "_on_item_used")
@@ -25,7 +24,7 @@ func is_action_just_pressed() -> bool:
 	return Input.is_action_just_pressed(action_listen)
 
 func set_item(item : PlayerItem, free_previous := true) -> void:
-	if assigned_item != null:
+	if assigned_item != null and free_previous:
 		assigned_item.queue_free()
 	assigned_item = item
 

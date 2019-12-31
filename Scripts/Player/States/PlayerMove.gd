@@ -25,12 +25,13 @@ func update(delta : float):
 	if Input.is_action_pressed("ui_right"):
 		input_vector.x = 1
 	player.match_animation_direction(input_vector)
-	player.vector = input_vector
 	if input_vector == Vector2.ZERO:
 		_change_state("PlayerIdle")
 	elif item_slot_a.is_action_just_pressed() and item_slot_a.has_item():
-		player.vector = Vector2.ZERO
+		player.set_vector(Vector2.ZERO)
 		_change_state(item_slot_a.get_item_use_state(), item_slot_a)
 	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
-		player.vector = Vector2.ZERO
+		player.set_vector(Vector2.ZERO)
 		_change_state(item_slot_b.get_item_use_state(), item_slot_b)
+	else:
+		player.set_vector(input_vector)

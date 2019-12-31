@@ -34,7 +34,7 @@ onready var heart_positions := []
 onready var heart_count := 0
 
 func init_hud() -> void:
-	GameRefs.get_player().connect("entity_hit", self, "_on_take_damage")
+	GameRefs.get_player().connect("entity_hit", self, "_on_player_take_damage")
 	update_heart_counts()
 	update()
 
@@ -77,6 +77,6 @@ func draw_key_count() -> void:
 	draw_texture_rect_region(hud_texture, Rect2(key_position, Vector2(8, 8)), Rect2(0, 8, 8, 8))
 	draw_texture_rect_region(hud_texture, Rect2(key_position + Vector2(8, 0), Vector2(8, 8)), Rect2(8, 8, 8, 8))
 	draw_texture_rect_region(number_texture, Rect2(key_position + Vector2(16, 0), Vector2(6, 6)), number_src_rects[key_count])
-	
-func _on_take_damage(damage : int) -> void:
+
+func _on_player_take_damage(damage : int) -> void:
 	update()

@@ -61,7 +61,7 @@ func reset_combat_variables() -> void:
 	combat.reset_combat_variables()
 
 func set_vector_away(other_vector : Vector2) -> void:
-	vector = global_position - other_vector
+	set_vector(global_position - other_vector)
 
 func set_intangibility(frames : int) -> void:
 	combat.set_intangibility(frames)
@@ -72,13 +72,17 @@ func take_damage(damage_info : Dictionary) -> void:
 	combat.set_combat_variables(damage_info)
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
-	current_speed = damage_info.knockback_speed
+	speed = damage_info.knockback_speed
+	acceleration = 1.0
+	deceleration = 1.0
 	emit_signal("entity_hit", damage_info.damage)
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
 	combat.knockback_time = time
 	combat.current_knockback_speed = speed
 	vector = direction
+	acceleration = 1.0
+	deceleration = 1.0
 	emit_signal("entity_bumped")
 
 func immobilize(time : int) -> void:

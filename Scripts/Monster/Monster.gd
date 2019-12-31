@@ -9,7 +9,7 @@ func _physics_process(delta : float) -> void:
 	update_combat_variables()
 	update_ai()
 	update_animation()
-	update_movement()
+	update_movement(delta)
 
 func update_ai() -> void:
 	pass

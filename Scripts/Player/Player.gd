@@ -8,7 +8,7 @@ signal sword_changed(sword)
 
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
-onready var environment_state_machine := $EnvironmentStateMachine as StateMachine
+#onready var environment_state_machine := $EnvironmentStateMachine as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
 onready var tween := $Tween as Tween
 onready var equipment := $Equipment as Equipment
@@ -22,7 +22,7 @@ var in_transition := false
 func _ready() -> void:
 	reset_movement_variables()
 	player_controller.initialize(self)
-	environment_state_machine.initialize(self)
+	#environment_state_machine.initialize(self)
 
 	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 	
@@ -44,7 +44,7 @@ func _physics_process(delta : float) -> void:
 	update_combat_variables()
 	player_controller.update(delta)
 	update_animation()
-	environment_state_machine.update(delta)
+	update_movement(delta)
 
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)

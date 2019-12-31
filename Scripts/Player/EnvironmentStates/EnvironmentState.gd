@@ -36,4 +36,4 @@ func initialize(context) -> void:
 	entity = context
 
 func update(delta : float) -> void:
-	entity.update_movement()
+	entity.update_movement(delta)

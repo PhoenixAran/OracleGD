@@ -14,6 +14,7 @@ func initialize(context) -> void:
 func begin(args = null) -> void:
 	player.reset_combat_variables()
 	player.anim_state = "idle"
+	player.set_vector(Vector2.ZERO)
 
 func update(delta : float) -> void:
 	var input_vector = Vector2.ZERO
@@ -33,5 +34,5 @@ func update(delta : float) -> void:
 	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
 		_change_state(item_slot_b.get_item_use_state(), item_slot_b)
 	elif input_vector != Vector2.ZERO:
-		player.vector = input_vector
+		player.set_vector(input_vector)
 		_change_state("PlayerMove")
