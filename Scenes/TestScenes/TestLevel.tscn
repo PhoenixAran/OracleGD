@@ -50,12 +50,12 @@ direction = 2
 shape = SubResource( 1 )
 
 [node name="EntitySpawn" type="Node2D" parent="Level/Room1"]
-position = Vector2( 32.4011, 43.9652 )
+position = Vector2( 29.6036, 45.5052 )
 script = ExtResource( 6 )
 packed_entity = ExtResource( 7 )
 
 [node name="EntitySpawn2" type="Node2D" parent="Level/Room1"]
-position = Vector2( 117.061, 43.9256 )
+position = Vector2( 121.944, 42.7047 )
 script = ExtResource( 6 )
 packed_entity = ExtResource( 7 )
 

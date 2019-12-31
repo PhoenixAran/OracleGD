@@ -189,6 +189,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/States/PlayerMove.gd"
 }, {
+"base": "Node",
+"class": "PlayerMovement",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerMovement.gd"
+}, {
 "base": "PlayerItem",
 "class": "PlayerSword",
 "language": "GDScript",
@@ -291,6 +296,7 @@ _global_script_class_icons={
 "PlayerItem": "",
 "PlayerKnockback": "",
 "PlayerMove": "",
+"PlayerMovement": "",
 "PlayerSword": "",
 "PushTransition": "",
 "Room": "",

@@ -1,7 +1,5 @@
-extends State
-class_name EnvironmentState
-
-var entity : Entity
+extends Node
+class_name PlayerMovement
 
 export(float) var speed := 70.0 setget set_speed, get_speed
 export(bool) var slippery := false setget set_slippery, is_slippery
@@ -31,9 +29,3 @@ func get_deceleration() -> float:
 
 func set_deceleration(value : float) -> void:
 	deceleration = value
-
-func initialize(context) -> void:
-	entity = context
-
-func update(delta : float) -> void:
-	entity.update_movement()

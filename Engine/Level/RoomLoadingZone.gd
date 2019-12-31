@@ -15,7 +15,6 @@ func _ready() -> void:
 func _on_body_entered(other) -> void:
 	emit_signal("loading_zone_activated", get_transition_event())
 
-
 func get_transition_event() -> RoomEvent:
 	var room_event : PushTransition = null
 	match transition_type:

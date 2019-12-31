@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Engine/Entities/Collisions/EnvironmentalCollisionBox.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/Player/Equipment.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/Player/Items/ItemSlot.gd" type="Script" id=16]
+[ext_resource path="res://FSM/StateMachine.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Player/EnvironmentStates/EnvironmentState.gd" type="Script" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackdown"
@@ -540,14 +542,12 @@ script = ExtResource( 2 )
 _max_health = 16
 _health = 16
 
-[node name="ItemSlotA" type="Node2D" parent="."]
-script = ExtResource( 16 )
+[node name="EnvironmentStateMachine" type="Node" parent="."]
+script = ExtResource( 17 )
+_default_state = "GroundState"
 
-[node name="ItemSlotB" type="Node2D" parent="."]
-script = ExtResource( 16 )
-action_listen = "B"
-
-[node name="Sword" parent="ItemSlotB" instance=ExtResource( 12 )]
+[node name="GroundState" type="Node" parent="EnvironmentStateMachine"]
+script = ExtResource( 18 )
 
 [node name="PlayerController" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -567,6 +567,15 @@ script = ExtResource( 8 )
 
 [node name="SwordSwing" type="Node" parent="PlayerController"]
 script = ExtResource( 9 )
+
+[node name="ItemSlotA" type="Node2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="ItemSlotB" type="Node2D" parent="."]
+script = ExtResource( 16 )
+action_listen = "B"
+
+[node name="Sword" parent="ItemSlotB" instance=ExtResource( 12 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
