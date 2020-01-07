@@ -3,8 +3,6 @@ class_name EnvironmentalCollisionBox
 
 #Signals
 signal tile_entered(tile)
-signal external_force_entered(vector, magnitude)
-signal external_force_exited(vector, magnitude)
 signal platform_entered(platform)
 signal platform_exited(platform)
 

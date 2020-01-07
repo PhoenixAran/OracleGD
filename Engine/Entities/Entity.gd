@@ -15,16 +15,16 @@ export(float) var static_deceleration = 1.0
 export(String) var anim_state := "idle"
 export(String) var anim_direction := "down"
 
-var speed := 0.0
+var target_speed := 0.0
 var current_speed := 0.0
 var current_friction := 0.0
-var acceleration : float
-var deceleration : float
+var current_acceleration : float
+var current_deceleration : float
 var vector := Vector2() setget set_vector, get_vector
 var external_force := Vector2()
 
-var _cached_vector : Vector2
-var _cached_speed : float
+var cached_counter_vector : Vector2
+var cached_counter_speed : float
 
 #Nodes / Resources
 onready var animation_player = $AnimationPlayer as AnimationPlayer
@@ -32,15 +32,15 @@ onready var entity_sprite = $EntitySprite as EntitySprite
 
 #Godot API
 func _ready() -> void:
-	speed = static_speed
-	acceleration = static_acceleration
-	deceleration = static_deceleration
+	target_speed = static_speed
+	current_acceleration = static_acceleration
+	current_deceleration = static_deceleration
 
 #Entity methods
 func set_vector(value : Vector2) -> void:
 	if value != Vector2.ZERO:
-		_cached_vector = vector
-		_cached_speed = current_speed
+		cached_counter_vector = vector
+		cached_counter_speed = current_speed
 	vector = value
 
 func get_vector() -> Vector2:
@@ -54,21 +54,21 @@ func update_animation(force_update := false) -> void:
 func update_movement(delta : float) -> void:
 	var linear_velocity : Vector2
 	if get_vector() == Vector2.ZERO:
-		current_speed -= speed * deceleration
+		current_speed -= target_speed * current_deceleration
 		if current_speed < 0:
 			current_speed = 0
-		linear_velocity = _cached_vector.normalized() * current_speed
+		linear_velocity = cached_counter_vector.normalized() * current_speed
 	else:
-		current_speed += speed * acceleration
-		if current_speed > speed:
-			current_speed = speed
+		current_speed += target_speed * current_acceleration
+		if current_speed > target_speed:
+			current_speed = target_speed
 		linear_velocity = get_vector().normalized() * current_speed
 		
-		if _cached_vector != get_vector():
-			_cached_speed -= static_speed * deceleration
-			if _cached_speed < 0:
-				_cached_speed = 0
-			linear_velocity += _cached_vector.normalized() * _cached_speed
+		if cached_counter_vector != get_vector():
+			cached_counter_speed -= static_speed * current_deceleration
+			if cached_counter_speed < 0:
+				cached_counter_speed = 0
+			linear_velocity += cached_counter_vector.normalized() * cached_counter_speed
 		
 	linear_velocity += external_force
 	move_and_slide(linear_velocity, Vector2())
@@ -77,13 +77,15 @@ func get_animation_key() -> String:
 	return anim_state + anim_direction
 
 func reset_movement_variables() -> void:
-	speed = static_speed
+	target_speed = static_speed
 	current_speed = 0.0
 	vector = Vector2.ZERO
-	acceleration = static_acceleration
-	deceleration = static_deceleration
-	_cached_speed = 0.0
-	_cached_vector = Vector2.ZERO
+	current_acceleration = static_acceleration
+	current_deceleration = static_deceleration
+
+func clear_counter_vector_and_speed() -> void:
+	cached_counter_speed = 0.0
+	cached_counter_vector = Vector2.ZERO
 
 func reset_external_force() -> void:
 	external_force = Vector2.ZERO

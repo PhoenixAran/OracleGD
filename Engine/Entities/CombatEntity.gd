@@ -68,21 +68,23 @@ func set_intangibility(frames : int) -> void:
 	entity_sprite.set_modulate_time(frames)
 
 func take_damage(damage_info : Dictionary) -> void:
+	clear_counter_vector_and_speed()
 	set_intangibility(18)
 	combat.set_combat_variables(damage_info)
 	health.take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
-	speed = damage_info.knockback_speed
-	acceleration = 1.0
-	deceleration = 1.0
+	target_speed = damage_info.knockback_speed
+	current_acceleration = 1.0
+	current_deceleration = 1.0
 	emit_signal("entity_hit", damage_info.damage)
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
+	clear_counter_vector_and_speed()
 	combat.knockback_time = time
 	combat.current_knockback_speed = speed
 	vector = direction
-	acceleration = 1.0
-	deceleration = 1.0
+	current_acceleration = 1.0
+	current_deceleration = 1.0
 	emit_signal("entity_bumped")
 
 func immobilize(time : int) -> void:
