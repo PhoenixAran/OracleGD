@@ -7,9 +7,9 @@ signal entity_created(entity)
 export(int) var tile_width := 16
 export(int) var tile_height := 16
 export(int) var max_refuse_load = 2
-export(Vector2) var upper_left_tile : Vector2
-export(Vector2) var bottom_right_tile : Vector2
-export(Vector2) var default_spawn_coordinate : Vector2
+export(Vector2) var upper_left_tile : Vector2 setget, get_upper_left_tile
+export(Vector2) var bottom_right_tile : Vector2 setget, get_bottom_right_tile
+export(Vector2) var default_spawn_coordinate : Vector2 setget, get_default_spawn_coordinate
 
 var all_enemies_destroyed := false
 var refuse_load_count := 0
@@ -55,6 +55,9 @@ func get_limit_bottom() -> int:
 func get_limit_right() -> int:
 	return int(get_position_from_tile(bottom_right_tile).x) + tile_width
 
+func get_default_spawn_coordinate() -> Vector2:
+	return default_spawn_coordinate
+
 func load_room(was_last_room := false) -> void:
 	if was_last_room and all_enemies_destroyed:
 		if refuse_load_count < max_refuse_load:
@@ -81,8 +84,6 @@ func unload_room() -> void:
 	while not dynamic_tiles.empty():
 		var dynamic_tile = dynamic_tiles.pop_front()
 		dynamic_tile.queue_free()
-		
-
 
 func add_entity(entity : Entity) -> void:
 	entities.append(entity)
@@ -94,7 +95,6 @@ func enable(enabled : bool) -> void:
 		
 	for projectile in projectiles:
 		projectile.enable(enabled)
-
 
 #Signal callbacks
 func _on_entity_destroyed(entity : Entity) -> void:

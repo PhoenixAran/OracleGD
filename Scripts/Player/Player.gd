@@ -3,8 +3,7 @@ class_name Player
 
 const animation_states_with_shield := ["idle", "move"]
 
-signal item_changed(item)
-signal sword_changed(sword)
+signal position_tween_completed
 
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
@@ -14,9 +13,6 @@ onready var tween := $Tween as Tween
 onready var equipment := $Equipment as Equipment
 onready var item_slot_a := $ItemSlotA as ItemSlot
 onready var item_slot_b := $ItemSlotB as ItemSlot
-
-#Declarations
-var in_transition := false
 
 #Godot API 
 func _ready() -> void:
@@ -34,7 +30,7 @@ func _ready() -> void:
 	item_slot_a.connect("item_used", self, "_on_item_used")
 	item_slot_b.connect("item_used", self, "_on_item_used")
 	
-	tween.connect("tween_completed", self, "_on_tween_completed")
+	tween.connect("tween_all_completed", self, "_on_tween_completed")
 	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
 	ecb.connect("platform_exited", self, "_on_platform_exited")
@@ -57,7 +53,6 @@ func enable(enabled : bool) -> void:
 		animation_player.stop(false)
 
 func tween_to_position(target_position : Vector2) -> void:
-	in_transition = true
 	reset_combat_variables()
 	vector = Vector2()
 	tween.interpolate_property(self, "position", position, target_position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -76,8 +71,8 @@ func get_animation_key() -> String:
 func _on_item_used() -> void:
 	animation_player.stop()
 
-func _on_tween_completed(other, key) -> void:
-	in_transition = false
+func _on_tween_completed() -> void:
+	emit_signal("position_tween_completed")
 
 #Override
 func _on_hitbox_entered(other_hitbox : Hitbox) -> void:

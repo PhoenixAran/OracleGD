@@ -12,7 +12,7 @@ export(Rect2) var editor_src_rect := Rect2(0, 0, 16, 16) setget set_editor_src_r
 func _draw() -> void:
 	if Engine.is_editor_hint() and packed_entity:
 		var temp_entity : Node = packed_entity.instance()
-		var entity_sprite = temp_entity.get_node_or_null(sprite_path)
+		var entity_sprite : Sprite = temp_entity.get_node_or_null(sprite_path)
 		if entity_sprite:
 			var temp_texture = entity_sprite.texture
 			var destination_rect := Rect2(0 - (editor_src_rect.size.x / 2), 0 - (editor_src_rect.size.y / 2), editor_src_rect.size.x, editor_src_rect.size.y)
@@ -24,7 +24,6 @@ func _draw() -> void:
 func set_packed_entity(value) -> void:
 	packed_entity = value
 	if Engine.is_editor_hint():
-		#request redraw
 		update()
 
 func set_editor_src_rect(new_rect) -> void:

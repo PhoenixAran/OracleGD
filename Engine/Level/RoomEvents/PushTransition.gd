@@ -8,6 +8,9 @@ var level
 var target_player_position : Vector2
 var direction
 
+var player_transition_completed := false
+var camera_transition_completed := false
+
 func get_push_transition_entrance_point(direction) -> Vector2:
 	var target_coordinate_value := 0.0
 	var return_vector := Vector2()
@@ -29,12 +32,20 @@ func get_push_transition_entrance_point(direction) -> Vector2:
 	return return_vector
 
 func initialize(level_context) -> void:
+	player_transition_completed = false
+	camera_transition_completed = false
 	is_active = true
 	level = level_context
 	player = level.player
+	player.connect("position_tween_completed", self, "_on_player_tween_completed")
 	camera = player.get_node("PlayerCamera")
+	camera.connect("position_tween_completed", self, "_on_camera_tween_completed")
 	target_room = level.target_room
 	target_player_position = get_push_transition_entrance_point(direction)
+
+func update(delta : float) -> void:
+	if player_transition_completed and camera_transition_completed:
+		is_active = false
 
 func begin() -> void:
 	level.enable(false)
@@ -43,13 +54,15 @@ func begin() -> void:
 	camera.set_limits(target_room)
 	level.set_up_new_room(target_room)
 
-func update(delta : float) -> void:
-	if not player.in_transition and not camera.in_transition:
-		is_active = false
-
 func end() -> void:
 	level.unload_last_room()
 	level.target_room = null
 	level.enable(true)
 	player.enable(true)
 	level.transition_queued = false
+
+func _on_player_tween_completed() -> void:
+	player_transition_completed = true
+
+func _on_camera_tween_completed() -> void:
+	camera_transition_completed = true

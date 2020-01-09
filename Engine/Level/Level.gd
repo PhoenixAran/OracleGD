@@ -86,8 +86,7 @@ func _on_room_entity_created(entity) -> void:
 	ysort.call_deferred("add_child", entity)
 	if transition_queued:
 		entity.call_deferred("enable", false)
-	
-	
+
 func _on_room_request_load(room : Room, event : RoomEvent) -> void:
 	if not transition_queued and room != current_room:
 		target_room = room
