@@ -14,6 +14,9 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 
 [node name="MediumMovingPlatform" parent="." instance=ExtResource( 2 )]
 position = Vector2( 32, 80 )
-move_to = Vector2( 128, 0 )
+speed = 2.0
+idle_duration = 5.0
+loop_type = 0
+positions = [ Vector2( 0, 3 ) ]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]

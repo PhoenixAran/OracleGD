@@ -27,5 +27,4 @@ func force_set_limits(room) -> void:
 	limit_right = room.get_limit_right()
 
 func _on_tween_completed() -> void:
-	print("hello")
 	emit_signal("position_tween_completed")
