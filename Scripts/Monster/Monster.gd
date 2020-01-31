@@ -7,11 +7,11 @@ onready var death_effect := preload("res://Scenes/Effects/DefaultDeath.tscn") as
 func _physics_process(delta : float) -> void:
 	poll_death()
 	update_combat_variables()
-	update_ai()
+	update_ai(delta)
 	update_animation()
 	update_movement(delta)
 
-func update_ai() -> void:
+func update_ai(delta : float) -> void:
 	pass
 
 func destroy() -> void:

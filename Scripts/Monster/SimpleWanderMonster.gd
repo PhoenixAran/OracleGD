@@ -18,7 +18,7 @@ func update_animation(force_update := false) -> void:
 		if state == EnemyState.MOVING:
 			animation_player.play(key)
 
-func update_ai() -> void:
+func update_ai(delta : float) -> void:
 	match state:
 		EnemyState.MOVING:
 			move_time += 1

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Singletons/AbilityMap.gd"
 }, {
+"base": "CombatEntity",
+"class": "AntiFairy",
+"language": "GDScript",
+"path": "res://Scripts/Monster/AntiFairy.gd"
+}, {
 "base": "Reference",
 "class": "Combat",
 "language": "GDScript",
@@ -256,6 +261,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AbilityMap": "",
+"AntiFairy": "",
 "Combat": "",
 "CombatEntity": "",
 "CustomInteraction": "",
