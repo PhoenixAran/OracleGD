@@ -34,7 +34,7 @@ func get_push_transition_entrance_point(direction) -> Vector2:
 func initialize(level_context) -> void:
 	player_transition_completed = false
 	camera_transition_completed = false
-	is_active = true
+	set_active(true)
 	level = level_context
 	player = level.player
 	player.connect("position_tween_completed", self, "_on_player_tween_completed")
@@ -45,7 +45,7 @@ func initialize(level_context) -> void:
 
 func update(delta : float) -> void:
 	if player_transition_completed and camera_transition_completed:
-		is_active = false
+		set_active(false)
 
 func begin() -> void:
 	level.enable(false)

@@ -15,4 +15,5 @@ func _ready() -> void:
 	GameRefs.set_player(player)
 	level.call_deferred("initialize_level", player, initial_room, null)
 	hud.call_deferred("init_hud")
+	
 

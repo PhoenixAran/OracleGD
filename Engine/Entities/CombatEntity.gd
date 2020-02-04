@@ -67,11 +67,23 @@ func set_intangibility(frames : int) -> void:
 	combat.set_intangibility(frames)
 	entity_sprite.set_modulate_time(frames)
 
-func take_damage(damage_info : Dictionary) -> void:
+func set_knockback(frames : int) -> void:
+	combat.set_knockback(frames)
+
+func set_hitstun(frames : int) -> void:
+	combat.set_hitstun(frames) 
+
+func set_combat_variables(damage_info : Dictionary) -> void:
+	combat.set_combat_variables(damage_info)
+
+func take_damage(value : int) -> void:
+	health.take_damage(value)
+
+func take_hit(damage_info : Dictionary) -> void:
 	clear_counter_vector_and_speed()
 	set_intangibility(18)
-	combat.set_combat_variables(damage_info)
-	health.take_damage(damage_info.damage)
+	set_combat_variables(damage_info)
+	take_damage(damage_info.damage)
 	set_vector_away(damage_info.source_position)
 	target_speed = damage_info.knockback_speed
 	current_acceleration = 1.0

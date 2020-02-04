@@ -33,9 +33,7 @@ onready var number_src_rects := [
 
 onready var heart_positions := []
 onready var heart_count := 0
-
-onready var font := preload("res://Engine/Resources/DialogFont.tres") as DynamicFont
-
+onready var font : DynamicFont = preload("res://Engine/Resources/DialogFont.tres")
 
 func init_hud() -> void:
 	GameRefs.get_player().connect("entity_hit", self, "_on_player_take_damage")
@@ -45,7 +43,7 @@ func init_hud() -> void:
 func _draw() -> void:
 	draw_hearts()
 	draw_key_count()
-	draw_string(font, Vector2(5, 5), "0", Color.black)
+	#draw_string(font, Vector2(5, 5), "0", Color.black)
 
 func update_heart_counts() -> void:
 	heart_positions.clear()

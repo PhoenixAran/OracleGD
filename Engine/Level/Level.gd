@@ -41,7 +41,7 @@ func _physics_process(delta : float) -> void:
 			room_state = RoomProcessState.PROCESSING
 		RoomProcessState.PROCESSING:
 			current_event.update(delta)
-			if not current_event.is_active:
+			if not current_event.is_active():
 				current_event.end()
 				if event_stack.size() > 0:
 					current_event = event_stack.pop_front()

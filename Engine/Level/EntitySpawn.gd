@@ -5,6 +5,7 @@ class_name EntitySpawn
 signal collectable_dropped(collectable)
 
 export(PackedScene) var packed_entity setget set_packed_entity
+export(Dictionary) var entity_params : Dictionary
 #tool variables, won't be used in game
 export(String) var sprite_path := "EntitySprite" setget set_sprite_path
 export(Rect2) var editor_src_rect := Rect2(0, 0, 16, 16) setget set_editor_src_rect
@@ -39,4 +40,6 @@ func set_sprite_path(path) -> void:
 func spawn() -> Entity:
 	var entity : Entity = packed_entity.instance()
 	entity.transform = transform
+	for key in entity_params.keys():
+		entity.set(key, entity_params[key])
 	return entity

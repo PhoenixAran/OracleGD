@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Singletons/AbilityMap.gd"
 }, {
-"base": "CombatEntity",
-"class": "AntiFairy",
-"language": "GDScript",
-"path": "res://Scripts/Monster/AntiFairy.gd"
-}, {
 "base": "Reference",
 "class": "Combat",
 "language": "GDScript",
@@ -258,10 +253,14 @@ _global_script_classes=[ {
 "class": "TileInteraction",
 "language": "GDScript",
 "path": "res://Engine/Entities/Collisions/TileInteraction.gd"
+}, {
+"base": "Monster",
+"class": "WallCrawler",
+"language": "GDScript",
+"path": "res://Scripts/Monster/WallCrawler.gd"
 } ]
 _global_script_class_icons={
 "AbilityMap": "",
-"AntiFairy": "",
 "Combat": "",
 "CombatEntity": "",
 "CustomInteraction": "",
@@ -309,7 +308,8 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "SwordSwing": "",
-"TileInteraction": ""
+"TileInteraction": "",
+"WallCrawler": ""
 }
 
 [application]
@@ -402,6 +402,7 @@ B={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=1
 quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true

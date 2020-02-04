@@ -5,7 +5,13 @@ class_name RoomEvent
 
 const Direction = Enums.Direction
 
-var is_active := false
+var active := false setget set_active, is_active
+
+func set_active(value : bool) -> void:
+	active = value
+
+func is_active() -> bool:
+	return active
 
 func initialize(level) -> void:
 	pass

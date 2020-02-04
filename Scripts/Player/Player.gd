@@ -10,7 +10,7 @@ onready var player_controller := $PlayerController as StateMachine
 #onready var environment_state_machine := $EnvironmentStateMachine as StateMachine
 onready var sprite := $EntitySprite as EntitySprite
 onready var tween := $Tween as Tween
-onready var equipment := $Equipment as Equipment
+onready var equipment := $Equipment as Equipment setget, get_equipment
 onready var item_slot_a := $ItemSlotA as ItemSlot
 onready var item_slot_b := $ItemSlotB as ItemSlot
 
@@ -63,7 +63,7 @@ func get_equipment() -> Equipment:
 
 func get_animation_key() -> String:
 	var key := str(anim_state , anim_direction)
-	if anim_direction in animation_states_with_shield:
+	if equipment.get_ability("shield") > 0 and  anim_state in animation_states_with_shield:
 		key = str("shield", equipment.get_ability("shield"), key)
 	return key
 

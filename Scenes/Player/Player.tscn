@@ -596,9 +596,10 @@ anims/moveup = SubResource( 12 )
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, 2 )
 vframes = 5
 hframes = 6
-frame = 8
+frame = 9
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
