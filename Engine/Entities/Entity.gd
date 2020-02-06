@@ -51,7 +51,7 @@ func update_animation(force_update := false) -> void:
 	if force_update or animation_player.current_animation != key:
 		animation_player.play(key)
 
-func update_movement(delta : float) -> void:
+func get_linear_velocity(delta : float) -> Vector2:
 	var linear_velocity : Vector2
 	if get_vector() == Vector2.ZERO:
 		current_speed -= target_speed * current_deceleration
@@ -71,7 +71,28 @@ func update_movement(delta : float) -> void:
 			linear_velocity += cached_counter_vector.normalized() * cached_counter_speed
 		
 	linear_velocity += external_force
-	move_and_slide(linear_velocity, Vector2())
+	return linear_velocity
+
+func recalculate_linear_velocity(delta : float, new_vector : Vector2) -> Vector2:
+	var linear_velocity : Vector2
+	var old_vector := get_vector()
+	if new_vector == old_vector:
+		push_warning("Warning: Trying to recalculate linear velocity with the same vector!")
+
+	if old_vector == Vector2.ZERO:
+		linear_velocity = cached_counter_vector.normalized() * current_speed
+	else:
+		linear_velocity = new_vector.normalized() * current_speed
+		
+		if cached_counter_vector != new_vector:
+			linear_velocity += cached_counter_vector.normalized() * cached_counter_speed
+	linear_velocity += external_force
+	set_vector(new_vector)
+	return linear_velocity
+
+func update_movement(delta : float) -> Vector2:
+	var linear_velocity := get_linear_velocity(delta)
+	return move_and_slide(linear_velocity, Vector2())
 
 func get_animation_key() -> String:
 	return anim_state + anim_direction

@@ -510,7 +510,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 4, 5 )
 
 [sub_resource type="RectangleShape2D" id=14]
@@ -526,6 +526,7 @@ extents = Vector2( 1, 1 )
 collision_layer = 34
 collision_mask = 67
 script = ExtResource( 1 )
+static_speed = 60
 
 [node name="Equipment" type="Node" parent="."]
 script = ExtResource( 15 )
@@ -596,15 +597,14 @@ anims/moveup = SubResource( 12 )
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, 2 )
 vframes = 5
 hframes = 6
-frame = 9
+frame = 8
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-shape = SubResource( 13 )
+shape = SubResource( 17 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -645,3 +645,12 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
 position = Vector2( 0, 6 )
 shape = SubResource( 16 )
+
+[node name="RayCast1" type="RayCast2D" parent="."]
+modulate = Color( 0.0235294, 0.0196078, 0.317647, 1 )
+enabled = true
+cast_to = Vector2( 0, 5 )
+
+[node name="RayCast2" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 5 )

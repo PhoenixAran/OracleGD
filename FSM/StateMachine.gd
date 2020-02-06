@@ -33,8 +33,8 @@ func change_state(state : String, args = null) -> void:
 	_current_state = get_node(state)
 	_current_state.begin(args)
 
-func current_state() -> String:
+func get_current_state() -> String:
 	return _current_state.name
 
-func last_state() -> String:
+func get_last_state() -> String:
 	return _last_state.name

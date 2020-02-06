@@ -14,11 +14,11 @@ func _ready() -> void:
 func get_animation_key() -> String:
 	return default_animation
 
-func update_movement(delta : float) -> void:
+func update_movement(delta : float) -> Vector2:
 	var col := move_and_collide(vector * 50 * delta)
 	if col and col.normal.rotated(PI / 2).dot(vector) < 0.5:
 		vector = col.normal.rotated(PI / 2)
-		return
+		return col.travel
 	
 	var pos := position
 	col = move_and_collide(vector.rotated(PI / 2) * 3.5)
@@ -33,3 +33,4 @@ func update_movement(delta : float) -> void:
 				break
 	else:
 		vector = col.normal.rotated(PI / 2)
+	return col.travel
