@@ -93,83 +93,112 @@ func update_raycast_positions(force_match := false) -> void:
 		match anim_direction:
 			"left":
 				ray_cast_1.cast_to = Vector2(-7, 0)
-				ray_cast_1.position = Vector2(0, -3)
+				ray_cast_1.position = Vector2(0, -2)
 				ray_cast_2.cast_to = Vector2(-7, 0)
-				ray_cast_2.position = Vector2(0, 3)
+				ray_cast_2.position = Vector2(0, 2)
 			"right":
 				ray_cast_1.cast_to = Vector2(5, 0)
-				ray_cast_1.position = Vector2(0, -3)
+				ray_cast_1.position = Vector2(0, -2)
 				ray_cast_2.cast_to = Vector2(5, 0)
-				ray_cast_2.position = Vector2(0, 3)
+				ray_cast_2.position = Vector2(0, 2)
 			"up":
 				ray_cast_1.cast_to = Vector2(0, -5)
-				ray_cast_1.position = Vector2(-3, 0)
+				ray_cast_1.position = Vector2(-2, 0)
 				ray_cast_2.cast_to = Vector2(0, -5)
-				ray_cast_2.position = Vector2(3, 0)
+				ray_cast_2.position = Vector2(2, 0)
 			"down":
 				ray_cast_1.cast_to = Vector2(0, 10)
-				ray_cast_1.position = Vector2(-3, 0)
+				ray_cast_1.position = Vector2(-2, 0)
 				ray_cast_2.cast_to = Vector2(0, 10)
-				ray_cast_2.position = Vector2(3, 0)
+				ray_cast_2.position = Vector2(2, 0)
 			_:
 				return
 		ray_cast_direction = anim_direction
+		#force update the raycasts so collisions will report the same frame
+		ray_cast_1.force_raycast_update()
+		ray_cast_2.force_raycast_update()
 
 func update_movement_correction(delta : float, slide_value : Vector2) -> void:
-	if not is_on_wall():
+	#if the player is moving diagonally or switched directions,
+	#force update the raycast positions to their default state based on 
+	#which way the player is facing
+	if not anim_direction_matches_vector() and get_vector() != Vector2.ZERO:
+		update_raycast_positions(true)
 		return
 	
+	update_raycast_positions()
+
+	#the player can stop moving mid movement correction, movement correction 
+	#should resume when they start moving in the same direction so just exit out
 	if player_controller.get_current_state() != "PlayerMove":
 		return
 	
-	if not anim_direction_matches_vector():
+	#this check means that the movement correction has completed so reset the
+	#raycast positions and exit out
+	if not is_on_wall():
 		update_raycast_positions(true)
 		return
-	else:
-		update_raycast_positions()
 	
+	#if the player moved due to colliding with a slope, just exit out since
+	#the engine will automatically slide the player
 	if slide_value != Vector2.ZERO:
 		return
 	
 	#manhandle slippery corner sliding so players don't get snagged on corners
 	var new_vector := get_vector()
+	
+	#in each case we slide the opposite raycast to the end of the player's
+	#collider so we know when to stop correcting the movement
 	match get_vector():
 		Vector2.UP:
-			print("match UP")
 			if not ray_cast_1.is_colliding():
+				ray_cast_1.position = Vector2(-2, 0)
 				ray_cast_2.position = Vector2(5, 0)
 				new_vector.x = -1
 			elif not ray_cast_2.is_colliding():
+				ray_cast_2.position = Vector2(2, 0)
 				ray_cast_1.position = Vector2(-5, 0)
 				new_vector.x = 1
 		Vector2.DOWN:
-			print("match DOWN")
 			if not ray_cast_1.is_colliding():
+				ray_cast_1.position = Vector2(-2, 0)
 				ray_cast_2.position = Vector2(5, 0)
 				new_vector.x = -1
+				print("adjusting ray_cast_2 position")
 			elif not ray_cast_2.is_colliding():
 				ray_cast_1.position = Vector2(-5, 0)
+				ray_cast_2.position = Vector2(2, 0)
 				new_vector.x = 1
+				print("adjusting ray_cast_1 position")
 		Vector2.RIGHT:
-			print("match RIGHT")
 			if not ray_cast_1.is_colliding():
+				ray_cast_1.position = Vector2(0, -2)
 				ray_cast_2.position = Vector2(0, 4)
 				new_vector.y = -1
 			elif not ray_cast_2.is_colliding():
+				ray_cast_2.position = Vector2(0, 2)
 				ray_cast_1.position = Vector2(0, -4)
 				new_vector.y = 1
+			else:
+				update_raycast_positions(true)
 		Vector2.LEFT:
-			print("match LEFT")
 			if not ray_cast_1.is_colliding():
+				ray_cast_1.position = Vector2(0, -2)
 				ray_cast_2.position = Vector2(0, 4)
 				new_vector.y = -1
 			elif not ray_cast_2.is_colliding():
+				ray_cast_2.position = Vector2(0, 2)
 				ray_cast_1.position = Vector2(0, -4)
 				new_vector.y = 1
+				
+	#if the player is not close enough to the edge to get corrected, just return
+	#early to avoid unnecessary computations and an extra move_and_slide call
 	if new_vector == get_vector():
+		update_raycast_positions(true)
 		return
 	var new_linear_velocity = recalculate_linear_velocity(delta, new_vector)
-	move_and_slide(new_linear_velocity, Vector2())
+	move_and_slide(new_linear_velocity, Vector2.ZERO)
+	
 
 #Signal callbacks
 func _on_item_used() -> void:

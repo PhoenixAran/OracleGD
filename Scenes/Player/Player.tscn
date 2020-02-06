@@ -647,10 +647,12 @@ position = Vector2( 0, 6 )
 shape = SubResource( 16 )
 
 [node name="RayCast1" type="RayCast2D" parent="."]
+process_priority = 1
 modulate = Color( 0.0235294, 0.0196078, 0.317647, 1 )
 enabled = true
 cast_to = Vector2( 0, 5 )
 
 [node name="RayCast2" type="RayCast2D" parent="."]
+process_priority = 1
 enabled = true
 cast_to = Vector2( 0, 5 )
