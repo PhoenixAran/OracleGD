@@ -66,6 +66,14 @@ entity_params = {
 
 }
 
+[node name="EntitySpawn3" type="Node2D" parent="Level/Room1"]
+position = Vector2( 103.531, 101.252 )
+script = ExtResource( 6 )
+packed_entity = ExtResource( 9 )
+entity_params = {
+"vector": Vector2( -1, 0 )
+}
+
 [node name="Room2" type="Node" parent="Level"]
 script = ExtResource( 4 )
 upper_left_tile = Vector2( 10, 0 )
@@ -99,14 +107,6 @@ script = ExtResource( 6 )
 packed_entity = ExtResource( 7 )
 entity_params = {
 
-}
-
-[node name="EntitySpawn3" type="Node2D" parent="Level/Room2"]
-position = Vector2( 103.689, 101.41 )
-script = ExtResource( 6 )
-packed_entity = ExtResource( 9 )
-entity_params = {
-"vector": Vector2( -1, 0 )
 }
 
 [node name="Player" parent="." instance=ExtResource( 8 )]

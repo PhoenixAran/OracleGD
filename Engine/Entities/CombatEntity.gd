@@ -106,6 +106,35 @@ func immobilize(time : int) -> void:
 func on_platform() -> bool:
 	return ecb.current_platform != null
 
+#entity / hitbox interactions
+func set_interaction(type, interaction : Interaction) -> void:
+	interactions.set_interaction(type, interaction)
+
+func get_interaction(type) -> Interaction:
+	return interactions.get_interaction(type)
+
+func remove_interaction(type) -> void:
+	interactions.remove_interaction(type)
+
+func has_interaction(type) -> bool:
+	return interactions.has_interaction(type)
+
+func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
+	interactions.resolve_interaction(receiver, sender)
+
+#tile interactions
+func set_tile_interaction(type, interaction) -> void:
+	interactions.set_tile_interaction(type, interaction)
+
+func get_tile_interaction(type):
+	return interactions.get_tile_interaction(type)
+
+func remove_tile_interaction(type):
+	interactions.remove_interaction(type)
+	
+func has_tile_interaction(type) -> bool:
+	return interactions.has_interaction(type)
+
 #signal callback responses
 func _on_health_depleted(damage : int) -> void:
 	die()

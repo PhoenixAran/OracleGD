@@ -15,17 +15,59 @@ onready var item_slot_a := $ItemSlotA as ItemSlot
 onready var item_slot_b := $ItemSlotB as ItemSlot
 onready var ray_cast_1 := $RayCast1 as RayCast2D
 onready var ray_cast_2 := $RayCast2 as RayCast2D
+onready var ray_cast_target_values := {
+	"left" : Vector2(-5, 0),
+	"right" : Vector2(5, 0),
+	"up" : Vector2(0, -5),
+	"down" : Vector2(0, 10) 
+}
+onready var ray_cast_positions := {
+	1 : {
+		"left" : {
+			"normal" : Vector2(0, 0),
+			"offset" : Vector2(0, -4)
+		},
+		"right" : {
+			"normal" : Vector2(0, 0),
+			"offset" : Vector2(0, -4)
+		},
+		"up" : {
+			"normal" : Vector2(-2, 0),
+			"offset" : Vector2(-5, 0)
+		},
+		"down": {
+			"normal" : Vector2(-2, 0),
+			"offset" : Vector2(-5, 0)
+		}
+	},
+	2 : {
+		"left" : {
+			"normal" : Vector2(0, 3),
+			"offset" : Vector2(0, 7)
+		},
+		"right" : {
+			"normal" : Vector2(0, 3),
+			"offset" : Vector2(0, 7)
+		},
+		"up" : {
+			"normal" : Vector2(2, 0),
+			"offset" : Vector2(5, 0)
+		},
+		"down" : {
+			"normal" : Vector2(2, 0),
+			"offset" : Vector2(5, 0)
+		}
+	}
+}
 
 #Declarations
-onready var ray_cast_direction := "down"
+var ray_cast_direction := "down"
 
 #Godot API 
 func _ready() -> void:
 	reset_movement_variables()
 	player_controller.initialize(self)
 	environment_state_machine.initialize(self)
-
-	interactions.set_interaction(CollisionType.MONSTER, Interactions.Damage)
 	
 	connect("entity_bumped", player_controller, "_on_entity_bumped")
 	connect("entity_hit", player_controller, "_on_entity_hit")
@@ -40,6 +82,8 @@ func _ready() -> void:
 	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
 	ecb.connect("platform_exited", self, "_on_platform_exited")
+	
+	set_interaction(CollisionType.MONSTER, Interactions.Damage)
 
 func _physics_process(delta : float) -> void:
 	poll_death()
@@ -48,7 +92,6 @@ func _physics_process(delta : float) -> void:
 	update_animation()
 	var slide_value := update_movement(delta)
 	update_movement_correction(delta, slide_value)
-
 #functions
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
@@ -88,31 +131,19 @@ func anim_direction_matches_vector() -> bool:
 		_:
 			return false
 
+func get_ray_cast_target_value(direction : String) -> Vector2:
+	return ray_cast_target_values[direction]
+
+func get_ray_cast_position(ray_cast_number : int, direction : String, key := "normal") -> Vector2:
+	return ray_cast_positions[ray_cast_number][direction][key]
+
 func update_raycast_positions(force_match := false) -> void:
 	if ray_cast_direction != anim_direction or force_match:
-		match anim_direction:
-			"left":
-				ray_cast_1.cast_to = Vector2(-7, 0)
-				ray_cast_1.position = Vector2(0, -2)
-				ray_cast_2.cast_to = Vector2(-7, 0)
-				ray_cast_2.position = Vector2(0, 2)
-			"right":
-				ray_cast_1.cast_to = Vector2(5, 0)
-				ray_cast_1.position = Vector2(0, -2)
-				ray_cast_2.cast_to = Vector2(5, 0)
-				ray_cast_2.position = Vector2(0, 2)
-			"up":
-				ray_cast_1.cast_to = Vector2(0, -5)
-				ray_cast_1.position = Vector2(-2, 0)
-				ray_cast_2.cast_to = Vector2(0, -5)
-				ray_cast_2.position = Vector2(2, 0)
-			"down":
-				ray_cast_1.cast_to = Vector2(0, 10)
-				ray_cast_1.position = Vector2(-2, 0)
-				ray_cast_2.cast_to = Vector2(0, 10)
-				ray_cast_2.position = Vector2(2, 0)
-			_:
-				return
+		ray_cast_1.position = get_ray_cast_position(1, anim_direction)
+		ray_cast_2.position = get_ray_cast_position(2, anim_direction)
+		ray_cast_1.cast_to = get_ray_cast_target_value(anim_direction)
+		ray_cast_2.cast_to = get_ray_cast_target_value(anim_direction)
+		
 		ray_cast_direction = anim_direction
 		#force update the raycasts so collisions will report the same frame
 		ray_cast_1.force_raycast_update()
@@ -149,54 +180,81 @@ func update_movement_correction(delta : float, slide_value : Vector2) -> void:
 	
 	#in each case we slide the opposite raycast to the end of the player's
 	#collider so we know when to stop correcting the movement
+	#for some reason we have to keep adjusting BOTH raycast positions
+	#since there is an edgecase that will push them to the edge of the player
+	#colliders
 	match get_vector():
 		Vector2.UP:
 			if not ray_cast_1.is_colliding():
-				ray_cast_1.position = Vector2(-2, 0)
-				ray_cast_2.position = Vector2(5, 0)
-				new_vector.x = -1
-			elif not ray_cast_2.is_colliding():
-				ray_cast_2.position = Vector2(2, 0)
-				ray_cast_1.position = Vector2(-5, 0)
-				new_vector.x = 1
+				ray_cast_1.position = get_ray_cast_position(1, "up")
+				ray_cast_2.position = get_ray_cast_position(2, "up", "offset")
+				ray_cast_2.force_raycast_update()
+				if ray_cast_2.is_colliding():
+					new_vector.x = -1
+					continue
+			if not ray_cast_2.is_colliding():
+				ray_cast_2.position = get_ray_cast_position(2, "up")
+				ray_cast_1.position = get_ray_cast_position(1, "up", "offset")
+				ray_cast_1.force_raycast_update()
+				if ray_cast_1.is_colliding():
+					new_vector.x = 1
+					continue
 		Vector2.DOWN:
 			if not ray_cast_1.is_colliding():
-				ray_cast_1.position = Vector2(-2, 0)
-				ray_cast_2.position = Vector2(5, 0)
-				new_vector.x = -1
-				print("adjusting ray_cast_2 position")
-			elif not ray_cast_2.is_colliding():
-				ray_cast_1.position = Vector2(-5, 0)
-				ray_cast_2.position = Vector2(2, 0)
-				new_vector.x = 1
-				print("adjusting ray_cast_1 position")
+				ray_cast_1.position = get_ray_cast_position(1, "down")
+				ray_cast_2.position = get_ray_cast_position(2, "down", "offset")
+				ray_cast_2.force_raycast_update()
+				if ray_cast_2.is_colliding():
+					new_vector.x = -1
+					continue
+			if not ray_cast_2.is_colliding():
+				ray_cast_2.position = get_ray_cast_position(2, "down")
+				ray_cast_1.position = get_ray_cast_position(1, "down", "offset")
+				ray_cast_1.force_raycast_update()
+				if ray_cast_1.is_colliding():
+					new_vector.x = 1
+					continue
 		Vector2.RIGHT:
 			if not ray_cast_1.is_colliding():
-				ray_cast_1.position = Vector2(0, -2)
-				ray_cast_2.position = Vector2(0, 4)
-				new_vector.y = -1
-			elif not ray_cast_2.is_colliding():
-				ray_cast_2.position = Vector2(0, 2)
-				ray_cast_1.position = Vector2(0, -4)
-				new_vector.y = 1
-			else:
-				update_raycast_positions(true)
+				ray_cast_1.position = get_ray_cast_position(1, "right")
+				ray_cast_2.position = get_ray_cast_position(2, "right", "offset")
+				ray_cast_2.force_raycast_update()
+				if ray_cast_2.is_colliding():
+					new_vector.y = -1
+					continue
+			if not ray_cast_2.is_colliding():
+				ray_cast_2.position = get_ray_cast_position(2, "right")
+				ray_cast_1.position = get_ray_cast_position(1, "right", "offset")
+				ray_cast_1.force_raycast_update()
+				if ray_cast_1.is_colliding():
+					new_vector.y = 1
+					continue
 		Vector2.LEFT:
 			if not ray_cast_1.is_colliding():
-				ray_cast_1.position = Vector2(0, -2)
-				ray_cast_2.position = Vector2(0, 4)
-				new_vector.y = -1
-			elif not ray_cast_2.is_colliding():
-				ray_cast_2.position = Vector2(0, 2)
-				ray_cast_1.position = Vector2(0, -4)
-				new_vector.y = 1
-				
+				ray_cast_1.position = get_ray_cast_position(1, "left")
+				ray_cast_2.position = get_ray_cast_position(2, "left", "offset")
+				ray_cast_2.force_raycast_update()
+				if ray_cast_2.is_colliding():
+					new_vector.y = -1
+					continue
+			if not ray_cast_2.is_colliding():
+				ray_cast_2.position = get_ray_cast_position(2, "left")
+				ray_cast_1.position = get_ray_cast_position(1, "left", "offset")
+				ray_cast_1.force_raycast_update()
+				if ray_cast_1.is_colliding():
+					new_vector.y = 1
+					continue
+
 	#if the player is not close enough to the edge to get corrected, just return
 	#early to avoid unnecessary computations and an extra move_and_slide call
 	if new_vector == get_vector():
 		update_raycast_positions(true)
 		return
+		
+	#recalculate the movement
 	var new_linear_velocity = recalculate_linear_velocity(delta, new_vector)
+	
+	#use the new movement to override the previous move_and_slide call
 	move_and_slide(new_linear_velocity, Vector2.ZERO)
 	
 

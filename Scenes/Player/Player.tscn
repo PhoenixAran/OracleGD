@@ -510,7 +510,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 4, 5 )
 
 [sub_resource type="RectangleShape2D" id=14]
@@ -526,7 +526,6 @@ extents = Vector2( 1, 1 )
 collision_layer = 34
 collision_mask = 67
 script = ExtResource( 1 )
-static_speed = 60
 
 [node name="Equipment" type="Node" parent="."]
 script = ExtResource( 15 )
@@ -604,7 +603,7 @@ script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-shape = SubResource( 17 )
+shape = SubResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
