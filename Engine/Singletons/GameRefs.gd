@@ -9,7 +9,6 @@ var ground_tile_map : TileMap setget set_ground_tile_map, get_ground_tile_map
 #player entity 
 var player : Player setget set_player, get_player
 
-
 ##Methods
 func set_ground_tile_map(value : TileMap) -> void:
 	ground_tile_map = value
@@ -25,5 +24,3 @@ func get_player() -> Player:
 
 func get_player_equipment() -> Equipment:
 	return player.get_equipment()
-
-

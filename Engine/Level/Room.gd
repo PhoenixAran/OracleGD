@@ -20,7 +20,6 @@ var entities := []
 var projectiles := []
 var dynamic_tiles := []
 
-
 func _ready() -> void:
 	for node in get_children():
 		if node is RoomLoadingZone:

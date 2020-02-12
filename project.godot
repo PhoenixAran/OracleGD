@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "AbilityMap",
-"language": "GDScript",
-"path": "res://Scripts/Singletons/AbilityMap.gd"
-}, {
 "base": "Reference",
 "class": "Combat",
 "language": "GDScript",
@@ -128,6 +123,11 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://Engine/Entities/Item.gd"
+}, {
+"base": "Sprite",
+"class": "ItemIcon",
+"language": "GDScript",
+"path": "res://Scripts/HUD/ItemIcon.gd"
 }, {
 "base": "Node2D",
 "class": "ItemSlot",
@@ -260,7 +260,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Monster/WallCrawler.gd"
 } ]
 _global_script_class_icons={
-"AbilityMap": "",
 "Combat": "",
 "CombatEntity": "",
 "CustomInteraction": "",
@@ -284,6 +283,7 @@ _global_script_class_icons={
 "InteractionResolver": "",
 "InventoryEquipmentItem": "",
 "Item": "",
+"ItemIcon": "",
 "ItemSlot": "",
 "Level": "",
 "Monster": "",
@@ -323,6 +323,7 @@ config/icon="res://custom_icon.png"
 Globals="*res://Engine/Singletons/Globals.gd"
 Enums="*res://Engine/Singletons/Enums.gd"
 Interactions="*res://Engine/Singletons/Interactions.gd"
+Numbers="*res://Scripts/Singletons/Numbers.gd"
 GameRefs="*res://Engine/Singletons/GameRefs.gd"
 
 [debug]

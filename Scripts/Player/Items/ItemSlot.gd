@@ -16,7 +16,6 @@ func _ready() -> void:
 		get_item().connect("item_used", self, "_on_item_used")
 		connect("owner_hit", get_item(), "_on_owner_hit")
 
-
 func is_action_pressed() -> bool:
 	return Input.is_action_pressed(action_listen)
 
@@ -27,6 +26,9 @@ func set_item(item : PlayerItem, free_previous := true) -> void:
 	if assigned_item != null and free_previous:
 		assigned_item.queue_free()
 	assigned_item = item
+
+func get_item_level() -> int:
+	return assigned_item.get_item_level()
 
 func get_item() -> PlayerItem:
 	return assigned_item

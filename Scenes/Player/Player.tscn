@@ -536,6 +536,10 @@ abilities = {
 "sword": 1,
 "tunic": 0
 }
+items = {
+"keys": 10,
+"rupees": 0
+}
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )

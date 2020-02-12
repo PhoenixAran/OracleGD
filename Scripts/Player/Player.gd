@@ -92,6 +92,7 @@ func _physics_process(delta : float) -> void:
 	update_animation()
 	var slide_value := update_movement(delta)
 	update_movement_correction(delta, slide_value)
+	
 #functions
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
@@ -117,6 +118,16 @@ func get_animation_key() -> String:
 	if equipment.get_ability("shield") > 0 and  anim_state in animation_states_with_shield:
 		key = str("shield", equipment.get_ability("shield"), key)
 	return key
+
+
+func get_active_item_slot() -> ItemSlot:
+	if item_slot_a.is_active():
+		return item_slot_a
+	
+	if item_slot_b.is_active():
+		return item_slot_b
+	
+	return null
 
 func anim_direction_matches_vector() -> bool:
 	match vector:
@@ -270,11 +281,3 @@ func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	if not (item_slot_a.overrides_interaction(other_hitbox) or item_slot_b.overrides_interaction(other_hitbox)):
 		interactions.resolve_interaction(hitbox, other_hitbox)
 
-func get_active_item_slot() -> ItemSlot:
-	if item_slot_a.is_active():
-		return item_slot_a
-	
-	if item_slot_b.is_active():
-		return item_slot_b
-	
-	return null

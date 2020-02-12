@@ -17,18 +17,7 @@ onready var heart_src_rects := {
 	4 : Rect2(32, 0, 8, 8)
 }
 onready var number_texture : Texture = preload("res://Assets/HUD/numbers.png")
-onready var number_src_rects := [
-	Rect2(0, 0, 6, 6),
-	Rect2(6, 0, 6, 6),
-	Rect2(12, 0, 6, 6),
-	Rect2(18, 0, 6, 6),
-	Rect2(24, 0, 6, 6),
-	Rect2(30, 0, 6, 6),
-	Rect2(36, 0, 6, 6),
-	Rect2(42, 0, 6, 6),
-	Rect2(48, 0, 6, 6),
-	Rect2(54, 0, 6, 6)
-]
+onready var number_src_rects := Numbers.get_number_src_rects()
 
 
 onready var heart_positions := []
@@ -75,12 +64,12 @@ func draw_key_count() -> void:
 	if not GameRefs.get_player_equipment().has_item_key("keys"):
 		return
 	
-	var key_count := min(9, GameRefs.get_player_equipment().get_item("keys"))
+	var key_count = GameRefs.get_player_equipment().get_item("keys")
 	
 	draw_texture_rect_region(hud_texture, Rect2(key_position, Vector2(8, 8)), Rect2(0, 8, 8, 8))
 	draw_texture_rect_region(hud_texture, Rect2(key_position + Vector2(8, 0), Vector2(8, 8)), Rect2(8, 8, 8, 8))
-	draw_texture_rect_region(number_texture, Rect2(key_position + Vector2(16, 0), Vector2(6, 6)), number_src_rects[key_count])
-
+	#draw_texture_rect_region(number_texture, Rect2(key_position + Vector2(16, 0), Vector2(6, 6)), number_src_rects[key_count])
+	Numbers.draw_number(self, key_position + Vector2(16, 0), key_count, 0, 9, 0)
 
 func _on_player_take_damage(damage : int) -> void:
 	call_deferred("update")
