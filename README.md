@@ -6,4 +6,4 @@ Uses version 3.2
 
 Youtube playlist containing gameplay videos can be found [here](https://www.youtube.com/playlist?list=PL1JvkIlvqXjZhm1Td3yHEKuCWe001inHu)
 
-![Gameplay](https://thumbs.gfycat.com/QuarterlyRemoteAltiplanochinchillamouse-size_restricted.gif)
+![game preview](./game_preview.png)
