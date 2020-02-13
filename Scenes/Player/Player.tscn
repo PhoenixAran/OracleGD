@@ -538,7 +538,7 @@ abilities = {
 }
 items = {
 "keys": 10,
-"rupees": 0
+"rupees": 166
 }
 
 [node name="Health" type="Node" parent="."]

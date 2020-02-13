@@ -7,6 +7,7 @@ const HEART_HEALTH_VALUE := 4
 
 export(Vector2) var initial_heart_position := Vector2(96, 0)
 export(Vector2) var key_position := Vector2(72, 0)
+export(Vector2) var rupee_count_position := Vector2(92, 0)
 
 onready var hud_texture : Texture = preload("res://Assets/HUD/UI.png")
 onready var heart_src_rects := {
@@ -19,6 +20,7 @@ onready var heart_src_rects := {
 onready var heart_positions := []
 onready var heart_count := 0
 onready var font : DynamicFont = preload("res://Engine/Resources/DialogFont.tres")
+onready var item_icon_texture: Texture = preload("res://Assets/HUD/placeholder_item_icons.png")
 
 func init_hud() -> void:
 	GameRefs.get_player().connect("entity_hit", self, "_defer_update")
@@ -29,6 +31,9 @@ func init_hud() -> void:
 func _draw() -> void:
 	draw_hearts()
 	draw_key_count()
+	draw_rupee_count()
+	draw_item_icon_borders()
+	draw_place_holder_item_icons()
 
 func update_heart_counts() -> void:
 	heart_positions.clear()
@@ -66,8 +71,32 @@ func draw_key_count() -> void:
 	draw_texture_rect_region(hud_texture, Rect2(key_position + Vector2(8, 0), Vector2(8, 8)), Rect2(8, 8, 8, 8))
 	Numbers.draw_number(self, key_position + Vector2(16, 0), key_count, 0, 9, 0)
 
-func _on_player_take_damage(damage : int) -> void:
-	call_deferred("update")
+func draw_rupee_count() -> void:
+	if GameRefs.get_player() == null:
+		return
+	
+	if not GameRefs.get_player_equipment().has_item_key("rupees"):
+		return
+	
+	var rupee_count = GameRefs.get_player_equipment().get_item("rupees")
+	Numbers.draw_number(self, rupee_count_position, rupee_count, 0, 999, 3, 2)
+
+func draw_item_icon_borders() -> void:
+	#draw the b item bracket
+	draw_texture_rect_region(hud_texture, Rect2(0, 0, 8, 8), Rect2(16, 24, 8, 8))
+	draw_texture_rect_region(hud_texture, Rect2(0, 8, 8, 8), Rect2(32, 16, 8, 8))
+	draw_texture_rect_region(hud_texture, Rect2(30, 0, 8, 16), Rect2(40, 8, 8, 16))
+	
+	#draw the a item bracket
+	draw_texture_rect_region(hud_texture, Rect2(34, 0, 8, 8), Rect2(0, 24, 8, 8))
+	draw_texture_rect_region(hud_texture, Rect2(34, 8, 8, 8), Rect2(32, 16, 8, 8))
+	draw_texture_rect_region(hud_texture, Rect2(64, 0, 8, 16), Rect2(40, 8, 8, 16))
+
+#Sword icon is hardcoded, change later when the time comes
+func draw_place_holder_item_icons() -> void:
+	draw_texture_rect_region(item_icon_texture, Rect2(8, 0, 16, 16), Rect2(0, 0, 16, 16))
+	draw_texture_rect_region(hud_texture, Rect2(16, 8, 8, 8), Rect2(0, 16, 8, 8))
+	Numbers.draw_number(self, Vector2(24, 9), 1, 0, 3)
 
 func _defer_update() -> void:
 	call_deferred("update")

@@ -23,19 +23,19 @@ func get_number_src_rects() -> Array:
 func get_number_src_rect(digit : int) -> Rect2:
 	return number_src_rects[digit]
 
-func draw_number(request_obj : CanvasItem, pos : Vector2, number : int, min_value := 0, max_value := 99, zero_pad := 0) -> void:
+func draw_number(request_obj : CanvasItem, pos : Vector2, number : int, min_value := 0, max_value := 99, zero_pad := 0, digit_margin := 0) -> void:
 	number = clamp(number, min_value, max_value) as int
 	var number_str := str(number)
 	var digits_drawn := 0
 	if zero_pad > 0 and number_str.length() < zero_pad:
 		for i in range(zero_pad - number_str.length()):
 			draw_digit(request_obj, pos, 0)
-			pos = pos + Vector2(6, 0)
+			pos = pos + Vector2(6 + digit_margin, 0)
 			digits_drawn += 1
 	
 	for i in range(digits_drawn, number_str.length()):
 		draw_digit(request_obj, pos, int(number_str[i]))
-		pos = pos + Vector2(6, 0)
+		pos = pos + Vector2(6 + digit_margin, 0)
 
 func draw_digit(request_obj : CanvasItem, pos : Vector2, digit : int) -> void:
 	var src_rect := get_number_src_rect(digit)
