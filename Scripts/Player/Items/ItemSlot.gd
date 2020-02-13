@@ -57,8 +57,8 @@ func overrides_interaction(sender : Hitbox) -> bool:
 		return false
 	return assigned_item.overrides_interaction(sender)
 
-func _on_owner_hit(damage : int) -> void:
-	emit_signal("owner_hit", damage)
+func _on_owner_hit() -> void:
+	emit_signal("owner_hit")
 
 func is_active() -> bool:
 	return active_item

@@ -2,7 +2,7 @@ extends Entity
 class_name CombatEntity
 
 #Signals
-signal entity_hit(damage)
+signal entity_hit
 signal entity_bumped
 signal entity_immobilized
 signal entity_marked_dead(entity)
@@ -88,7 +88,7 @@ func take_hit(damage_info : Dictionary) -> void:
 	target_speed = damage_info.knockback_speed
 	current_acceleration = 1.0
 	current_deceleration = 1.0
-	emit_signal("entity_hit", damage_info.damage)
+	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
 	clear_counter_vector_and_speed()

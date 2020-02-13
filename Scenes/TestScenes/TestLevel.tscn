@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Engine/GameControl/GameControl.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GameControl/GameControl.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Level/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Tilesets/ProtoDungeon.tres" type="TileSet" id=3]
 [ext_resource path="res://Engine/Level/Room.gd" type="Script" id=4]
@@ -19,6 +19,9 @@ extents = Vector2( 6, 16 )
 
 [node name="Control" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -14.7442 ]
+}
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource( 2 )

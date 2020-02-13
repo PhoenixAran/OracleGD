@@ -82,8 +82,6 @@ func _ready() -> void:
 	
 	ecb.connect("platform_entered", self, "_on_platform_entered")
 	ecb.connect("platform_exited", self, "_on_platform_exited")
-	
-	set_interaction(CollisionType.MONSTER, Interactions.Damage)
 
 func _physics_process(delta : float) -> void:
 	poll_death()
@@ -118,7 +116,6 @@ func get_animation_key() -> String:
 	if equipment.get_ability("shield") > 0 and  anim_state in animation_states_with_shield:
 		key = str("shield", equipment.get_ability("shield"), key)
 	return key
-
 
 func get_active_item_slot() -> ItemSlot:
 	if item_slot_a.is_active():

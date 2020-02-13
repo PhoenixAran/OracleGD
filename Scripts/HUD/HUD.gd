@@ -16,23 +16,19 @@ onready var heart_src_rects := {
 	3 : Rect2(24, 0, 8, 8),
 	4 : Rect2(32, 0, 8, 8)
 }
-onready var number_texture : Texture = preload("res://Assets/HUD/numbers.png")
-onready var number_src_rects := Numbers.get_number_src_rects()
-
-
 onready var heart_positions := []
 onready var heart_count := 0
 onready var font : DynamicFont = preload("res://Engine/Resources/DialogFont.tres")
 
 func init_hud() -> void:
-	GameRefs.get_player().connect("entity_hit", self, "_on_player_take_damage")
+	GameRefs.get_player().connect("entity_hit", self, "_defer_update")
+	GameRefs.get_player_equipment().connect("item_changed", self, "_defer_update")
 	update_heart_counts()
 	update()
 
 func _draw() -> void:
 	draw_hearts()
 	draw_key_count()
-	#draw_string(font, Vector2(5, 5), "0", Color.black)
 
 func update_heart_counts() -> void:
 	heart_positions.clear()
@@ -68,8 +64,10 @@ func draw_key_count() -> void:
 	
 	draw_texture_rect_region(hud_texture, Rect2(key_position, Vector2(8, 8)), Rect2(0, 8, 8, 8))
 	draw_texture_rect_region(hud_texture, Rect2(key_position + Vector2(8, 0), Vector2(8, 8)), Rect2(8, 8, 8, 8))
-	#draw_texture_rect_region(number_texture, Rect2(key_position + Vector2(16, 0), Vector2(6, 6)), number_src_rects[key_count])
 	Numbers.draw_number(self, key_position + Vector2(16, 0), key_count, 0, 9, 0)
 
 func _on_player_take_damage(damage : int) -> void:
+	call_deferred("update")
+
+func _defer_update() -> void:
 	call_deferred("update")

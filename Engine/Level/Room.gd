@@ -19,6 +19,7 @@ var entity_spawners := []
 var entities := []
 var projectiles := []
 var dynamic_tiles := []
+var npcs := []
 
 func _ready() -> void:
 	for node in get_children():

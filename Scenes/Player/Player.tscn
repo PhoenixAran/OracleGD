@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player/Hero.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]

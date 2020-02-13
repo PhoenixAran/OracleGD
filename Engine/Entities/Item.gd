@@ -26,6 +26,6 @@ func enable(enabled : bool) -> void:
 func overrides_interaction(sender : Hitbox) -> bool:
 	return false
 
-func _on_owner_hit(damage_value : int) -> void:
+func _on_owner_hit() -> void:
 	if _stop_when_owner_hit:
 		stop_use()

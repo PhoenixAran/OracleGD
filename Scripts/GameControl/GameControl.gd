@@ -11,7 +11,7 @@ onready var hud := $CanvasLayer/HUD as HUD
 var player : Player
 
 func _ready() -> void:
-	player = get_node(player_path) as Player
+	player = get_node(player_path)
 	GameRefs.set_player(player)
 	level.call_deferred("initialize_level", player, initial_room, null)
 	hud.call_deferred("init_hud")

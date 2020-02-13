@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "GameControl",
 "language": "GDScript",
-"path": "res://Engine/GameControl/GameControl.gd"
+"path": "res://Scripts/GameControl/GameControl.gd"
 }, {
 "base": "State",
 "class": "GroundState",
