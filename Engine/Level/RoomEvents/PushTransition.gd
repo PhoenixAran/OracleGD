@@ -43,16 +43,16 @@ func initialize(level_context) -> void:
 	target_room = level.target_room
 	target_player_position = get_push_transition_entrance_point(direction)
 
-func update(delta : float) -> void:
-	if player_transition_completed and camera_transition_completed:
-		set_active(false)
-
 func begin() -> void:
 	level.enable(false)
 	player.enable(false)
 	player.tween_to_position(target_player_position)
 	camera.set_limits(target_room)
 	level.set_up_new_room(target_room)
+
+func update(delta : float) -> void:
+	if player_transition_completed and camera_transition_completed:
+		set_active(false)
 
 func end() -> void:
 	level.unload_last_room()

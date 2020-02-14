@@ -49,13 +49,13 @@ func prep_for_move_state() -> void:
 	reset_movement_variables()
 	change_direction()
 
-func enabled(enabled : bool) -> void:
+func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
 		animation_player.play(animation_player.current_animation)
 	else:
-		animation_player.stop()
+		animation_player.stop(true)
 
 #randomly changes direction
 func change_direction() -> void:

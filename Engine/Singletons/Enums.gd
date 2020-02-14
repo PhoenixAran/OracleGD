@@ -1,7 +1,6 @@
 #Autoload
 extends Node
 
-
 enum ItemMoveType {
 	#entity cannot input movement when item is being used
 	NO_MOVE,
@@ -52,7 +51,6 @@ enum EnemyState {
 	IN_KNOCKBACK
 }
 
-
 enum RoomTransitionType {
 	PUSH,
 	FADE, 
@@ -65,4 +63,3 @@ enum Direction {
 	LEFT,
 	RIGHT
 }
-

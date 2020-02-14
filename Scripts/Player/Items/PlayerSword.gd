@@ -32,8 +32,8 @@ func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 	if enabled:
-		if in_use() and animation_player.has_animation(animation_player.current_animation):
-			animation_player.play(animation_player.current_animation)
+		if in_use():
+			animation_player.play()
 	else:
 		animation_player.stop(false)
 

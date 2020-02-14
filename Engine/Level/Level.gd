@@ -32,7 +32,6 @@ func _ready() -> void:
 func _physics_process(delta : float) -> void:
 	match room_state:
 		RoomProcessState.NOT_ACTIVE:
-			#Nothing to process
 			pass
 		RoomProcessState.PROCESSING_INITIAL:
 			current_event = event_stack.pop_front()
@@ -67,10 +66,10 @@ func initialize_level(player_entity, room = null, spawn_coordinate = null) -> vo
 func get_position_from_coordinate(spawn_coordinate : Vector2) -> Vector2:
 	return Vector2(spawn_coordinate.x * tile_width, spawn_coordinate.y * tile_height)
 
-func set_up_new_room(target_room : Room) -> void:
-	target_room.load_room(previous_room == target_room)
+func set_up_new_room(new_room : Room) -> void:
+	new_room.load_room(previous_room == new_room)
 	previous_room = current_room
-	current_room = target_room
+	current_room = new_room
 
 func unload_last_room() -> void:
 	previous_room.unload_room()
@@ -78,6 +77,9 @@ func unload_last_room() -> void:
 
 func enable(enabled : bool) -> void:
 	current_room.enable(enabled)
+
+func is_processing_room_event() -> bool:
+	return room_state != RoomProcessState.NOT_ACTIVE
 
 #signal callbacks
 func _on_room_entity_created(entity) -> void:

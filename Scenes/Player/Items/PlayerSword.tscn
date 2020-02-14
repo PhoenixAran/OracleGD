@@ -364,7 +364,6 @@ extents = Vector2( 2, 7 )
 
 [node name="PlayerSword" type="Node2D"]
 script = ExtResource( 1 )
-_in_use = true
 use_state = "SwordSwing"
 
 [node name="Sprite" type="Sprite" parent="."]
