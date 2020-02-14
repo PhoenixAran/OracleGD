@@ -24,6 +24,7 @@ var event_stack := []
 var current_event : RoomEvent
 
 func _ready() -> void:
+	show_behind_parent = true
 	for node in get_children():
 		if node is Room:
 			node.connect("entity_created", self, "_on_room_entity_created")

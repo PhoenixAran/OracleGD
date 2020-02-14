@@ -20,11 +20,9 @@ extents = Vector2( 6, 16 )
 [node name="Dummy" type="Node2D"]
 
 [node name="GameControl" parent="." instance=ExtResource( 1 )]
-z_index = 4096
-z_as_relative = false
+z_index = 0
 
 [node name="Level" type="Node2D" parent="GameControl"]
-show_behind_parent = true
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="GameControl/Level"]
