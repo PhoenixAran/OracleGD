@@ -147,7 +147,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "MovingPlatform",
 "language": "GDScript",
-"path": "res://Scripts/Objects/MovingPlatform.gd"
+"path": "res://Scripts/Level/MovingPlatform.gd"
 }, {
 "base": "CombatEntity",
 "class": "Player",
@@ -229,11 +229,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Audio/SoundBank.gd"
 }, {
-"base": "SimpleWanderMonster",
-"class": "Stalfos",
-"language": "GDScript",
-"path": "res://Scripts/Monster/Stalfos/Stalfos.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -304,7 +299,6 @@ _global_script_class_icons={
 "RoomLoadingZone": "",
 "SimpleWanderMonster": "",
 "SoundBank": "",
-"Stalfos": "",
 "State": "",
 "StateMachine": "",
 "SwordSwing": "",

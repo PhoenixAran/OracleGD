@@ -1,5 +1,4 @@
 extends SimpleWanderMonster
-class_name Stalfos
 
 func _ready() -> void:
 	set_interaction(CollisionType.SWORD, Interactions.Damage)
