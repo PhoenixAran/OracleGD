@@ -42,4 +42,6 @@ func _physics_process(delta : float) -> void:
 
 func _draw():
 	if control_state == ControlState.Paused:
-		draw_string(font, Vector2(Globals.screen_width / 2 - 15, Globals.screen_height / 2), "PAUSED")
+		var camera = player.get_node("PlayerCamera")
+		var pos = Vector2(camera.limit_left, camera.limit_top)
+		draw_string(font, pos + Vector2(Globals.screen_width / 2 - 15, Globals.screen_height / 2), "PAUSED")
