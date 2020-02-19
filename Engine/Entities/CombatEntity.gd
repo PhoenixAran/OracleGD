@@ -122,6 +122,14 @@ func has_interaction(type) -> bool:
 func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
 	interactions.resolve_interaction(receiver, sender)
 
+#this method is used when the entity is not configured to automatically respond to
+#a given hitbox type. This allows the entity to check if any of it's items can
+#protect it from the sender. This is usually just used on the player since players
+#are not automatically set to collide with monsters, but they should still be able to block
+#attacks with a shield or parry attacks with a sword
+func trigger_override_interactions(sender : Hitbox) -> bool:
+	return false
+
 #tile interactions
 func set_tile_interaction(type, interaction) -> void:
 	interactions.set_tile_interaction(type, interaction)

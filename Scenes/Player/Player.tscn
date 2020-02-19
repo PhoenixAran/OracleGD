@@ -615,7 +615,6 @@ collision_layer = 4
 collision_mask = 8
 script = ExtResource( 5 )
 TYPE = 0
-detect_only = true
 damage = 0
 knockback_time = 0
 knockback_speed = 0.0

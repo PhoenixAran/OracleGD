@@ -2,7 +2,7 @@ class_name InteractionResolver
 
 var _interaction_map : Dictionary = { }
 var _tile_interaction_map : Dictionary = { }
-var _default_interaction : Interaction = Interactions.Ignore
+var _default_interaction : Interaction = Interactions.ignore
 var _default_tile_interaction
 
 #entity / hitbox interactions
@@ -23,7 +23,9 @@ func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
 	if has_interaction(type):
 		get_interaction(type).resolve(receiver, sender)
 	else:
+		print(type)
 		_default_interaction.resolve(receiver, sender)
+
 
 #tile interactions
 func set_tile_interaction(type, interaction) -> void:

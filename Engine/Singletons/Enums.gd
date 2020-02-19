@@ -28,6 +28,7 @@ enum CollisionType {
 	NPC,
 	
 	#Weapons
+	BOMB_EXPLOSION,
 	SWORD,
 	ARROW,
 	HAMMER,

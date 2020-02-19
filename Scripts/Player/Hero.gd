@@ -3,4 +3,7 @@ extends Player
 #the huge player script file
 
 func _ready() -> void:
-	set_interaction(CollisionType.MONSTER, Interactions.Damage)
+	#Don't automatically set player to take damage from Monsters, let monsters decide 
+	#how to deal with interactions
+	#monsters like Gels and Floormasters won't damage the player and will have a custom interaction
+	set_interaction(CollisionType.BOMB_EXPLOSION, Interactions.damage)
