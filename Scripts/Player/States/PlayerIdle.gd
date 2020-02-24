@@ -30,9 +30,9 @@ func update(delta : float) -> void:
 	player.match_animation_direction(input_vector)
 
 	if item_slot_a.is_action_just_pressed() and item_slot_a.has_item():
-		_change_state(item_slot_a.get_item_use_state(), item_slot_a)
+		_change_state(item_slot_a.get_use_state(), item_slot_a)
 	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
-		_change_state(item_slot_b.get_item_use_state(), item_slot_b)
+		_change_state(item_slot_b.get_use_state(), item_slot_b)
 	elif input_vector != Vector2.ZERO:
 		player.set_vector(input_vector)
 		_change_state("PlayerMove")

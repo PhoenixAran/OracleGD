@@ -34,6 +34,7 @@ enum CollisionType {
 	HAMMER,
 	EXPLOSION,
 	THROWN_PROJECTILE,
+	SHIELD,
 	
 	#Other
 	TILE_ATTRACTER,

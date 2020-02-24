@@ -23,7 +23,6 @@ func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
 	if has_interaction(type):
 		get_interaction(type).resolve(receiver, sender)
 	else:
-		print(type)
 		_default_interaction.resolve(receiver, sender)
 
 

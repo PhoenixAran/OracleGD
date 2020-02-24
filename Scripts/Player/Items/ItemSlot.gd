@@ -42,7 +42,7 @@ func use_item(direction : String) -> void:
 func stop_use() -> void:
 	assigned_item.stop_use()
 
-func get_item_use_state() -> String:
+func get_use_state() -> String:
 	return assigned_item.get_use_state()
 
 func item_in_use() -> bool:

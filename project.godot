@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Engine/Entities/Collisions/Hitbox.gd"
 }, {
+"base": "Interaction",
+"class": "IgnoreInteraction",
+"language": "GDScript",
+"path": "res://Engine/Entities/Collisions/Interactions/IgnoreInteraction.gd"
+}, {
 "base": "Reference",
 "class": "Interaction",
 "language": "GDScript",
@@ -182,7 +187,7 @@ _global_script_classes=[ {
 "base": "Item",
 "class": "PlayerItem",
 "language": "GDScript",
-"path": "res://Engine/Entities/PlayerItem.gd"
+"path": "res://Scripts/Player/PlayerItem.gd"
 }, {
 "base": "State",
 "class": "PlayerKnockback",
@@ -223,6 +228,11 @@ _global_script_classes=[ {
 "class": "RoomLoadingZone",
 "language": "GDScript",
 "path": "res://Engine/Level/RoomLoadingZone.gd"
+}, {
+"base": "PlayerItem",
+"class": "Shield",
+"language": "GDScript",
+"path": "res://Scripts/Player/Items/PlayerShield.gd"
 }, {
 "base": "Monster",
 "class": "SimpleWanderMonster",
@@ -280,6 +290,7 @@ _global_script_class_icons={
 "HUD": "",
 "Health": "",
 "Hitbox": "",
+"IgnoreInteraction": "",
 "Interaction": "",
 "InteractionResolver": "",
 "InventoryEquipmentItem": "",
@@ -303,6 +314,7 @@ _global_script_class_icons={
 "Room": "",
 "RoomEvent": "",
 "RoomLoadingZone": "",
+"Shield": "",
 "SimpleWanderMonster": "",
 "SoundBank": "",
 "State": "",
