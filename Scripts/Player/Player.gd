@@ -1,9 +1,9 @@
 extends CombatEntity
 class_name Player
 
-const animation_states_with_shield := ["idle", "move"]
-
 signal position_tween_completed
+
+export(Array, String) var animation_states_with_shield := ["idle", "move"]
 
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine
@@ -260,7 +260,7 @@ func update_movement_correction(delta : float, slide_value : Vector2) -> void:
 		return
 		
 	#recalculate the movement
-	var new_linear_velocity = recalculate_linear_velocity(delta, new_vector)
+	var new_linear_velocity := recalculate_linear_velocity(delta, new_vector)
 	
 	#use the new movement to override the previous move_and_slide call
 	move_and_slide(new_linear_velocity, Vector2.ZERO)

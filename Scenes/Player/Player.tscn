@@ -1,8 +1,8 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scripts/Player/Hero.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Player/hero_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/hero_spritesheet_tunic_1.png" type="Texture" id=3]
 [ext_resource path="res://Engine/Entities/Animation/EntitySprite.gd" type="Script" id=4]
 [ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Player/PlayerController.gd" type="Script" id=6]
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 8, 9 ]
+"values": [ 65, 38 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 12, 13, 14 ]
+"values": [ 66, 36, 37 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -118,7 +118,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 15, 16, 17 ]
+"values": [ 68, 32, 33 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -159,7 +159,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 10, 11 ]
+"values": [ 67, 34 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -200,7 +200,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 6 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -282,7 +282,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -363,7 +363,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1, 0 ]
+"values": [ 7, 6 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -443,7 +443,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 7, 6 ]
+"values": [ 1, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer:playback_speed")
@@ -510,28 +510,361 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 4, 5 )
+[sub_resource type="Animation" id=20]
+resource_name = "shield1idledown"
+length = 0.5
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "shield1idleleft"
+length = 0.5
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "shield1idleright"
+length = 0.5
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "shield1idleup"
+length = 0.5
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "shield1movedown"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 15, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "shield1moveleft"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 13, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "shield1moveright"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "shield1moveup"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 11, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 5, 6 )
+extents = Vector2( 4, 5 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 1, 1 )
+extents = Vector2( 5, 6 )
 
 [sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 1, 1 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 34
 collision_mask = 67
 script = ExtResource( 1 )
+static_speed = 60
 
 [node name="Equipment" type="Node" parent="."]
 script = ExtResource( 15 )
 abilities = {
 "lift": 0,
-"shield": 0,
+"shield": 1,
 "swim": 0,
 "sword": 1,
 "tunic": 0
@@ -543,8 +876,8 @@ items = {
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 2 )
-_max_health = 16
-_health = 16
+_max_health = 64
+_health = 64
 
 [node name="EnvironmentStateMachine" type="Node" parent="."]
 script = ExtResource( 17 )
@@ -583,7 +916,7 @@ action_listen = "B"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0
-playback_speed = 12.0
+playback_speed = 5.0
 anims/attackdown = SubResource( 1 )
 anims/attackleft = SubResource( 2 )
 anims/attackright = SubResource( 3 )
@@ -596,19 +929,26 @@ anims/movedown = SubResource( 9 )
 anims/moveleft = SubResource( 10 )
 anims/moveright = SubResource( 11 )
 anims/moveup = SubResource( 12 )
+anims/shield1idledown = SubResource( 20 )
+anims/shield1idleleft = SubResource( 22 )
+anims/shield1idleright = SubResource( 23 )
+anims/shield1idleup = SubResource( 21 )
+anims/shield1movedown = SubResource( 13 )
+anims/shield1moveleft = SubResource( 19 )
+anims/shield1moveright = SubResource( 24 )
+anims/shield1moveup = SubResource( 18 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, 4 )
-vframes = 5
-hframes = 6
-frame = 9
+vframes = 29
+hframes = 8
+frame = 15
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -621,9 +961,10 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 14 )
+shape = SubResource( 15 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+process_priority = -1
 current = true
 script = ExtResource( 13 )
 
@@ -639,7 +980,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="ECB/TileCollisionBox"]
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="PlatformCollisionBox" type="Area2D" parent="ECB"]
 collision_layer = 256
@@ -647,7 +988,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 16 )
+shape = SubResource( 17 )
 
 [node name="RayCast1" type="RayCast2D" parent="."]
 process_priority = 1
