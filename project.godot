@@ -157,7 +157,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "MovingPlatform",
 "language": "GDScript",
-"path": "res://Scripts/Level/MovingPlatform.gd"
+"path": "res://Engine/Level/MovingPlatform.gd"
 }, {
 "base": "CombatEntity",
 "class": "Player",
@@ -310,9 +310,9 @@ config/icon="res://custom_icon.png"
 
 Globals="*res://Engine/Singletons/Globals.gd"
 Enums="*res://Engine/Singletons/Enums.gd"
-Interactions="*res://Engine/Singletons/Interactions.gd"
+Interactions="*res://Scripts/Singletons/Interactions.gd"
 Numbers="*res://Scripts/Singletons/Numbers.gd"
-GameRefs="*res://Engine/Singletons/GameRefs.gd"
+GameRefs="*res://Scripts/Singletons/GameRefs.gd"
 
 [debug]
 
