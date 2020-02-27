@@ -169,21 +169,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerCamera.gd"
 }, {
-"base": "StateMachine",
-"class": "PlayerController",
-"language": "GDScript",
-"path": "res://Scripts/Player/PlayerController.gd"
-}, {
-"base": "State",
-"class": "PlayerHitstun",
-"language": "GDScript",
-"path": "res://Scripts/Player/States/PlayerHitstun.gd"
-}, {
-"base": "State",
-"class": "PlayerIdle",
-"language": "GDScript",
-"path": "res://Scripts/Player/States/PlayerIdle.gd"
-}, {
 "base": "Item",
 "class": "PlayerItem",
 "language": "GDScript",
@@ -193,11 +178,6 @@ _global_script_classes=[ {
 "class": "PlayerKnockback",
 "language": "GDScript",
 "path": "res://Scripts/Player/States/PlayerKnockback.gd"
-}, {
-"base": "State",
-"class": "PlayerMove",
-"language": "GDScript",
-"path": "res://Scripts/Player/States/PlayerMove.gd"
 }, {
 "base": "Node",
 "class": "PlayerMovement",
@@ -259,11 +239,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://FSM/StateMachine.gd"
 }, {
-"base": "State",
-"class": "SwordSwing",
-"language": "GDScript",
-"path": "res://Scripts/Player/States/SwordSwing.gd"
-}, {
 "base": "Reference",
 "class": "TileInteraction",
 "language": "GDScript",
@@ -307,12 +282,8 @@ _global_script_class_icons={
 "MovingPlatform": "res://Assets/Objects/moving_platform.png",
 "Player": "",
 "PlayerCamera": "",
-"PlayerController": "",
-"PlayerHitstun": "",
-"PlayerIdle": "",
 "PlayerItem": "",
 "PlayerKnockback": "",
-"PlayerMove": "",
 "PlayerMovement": "",
 "PlayerSword": "",
 "PushTransition": "",
@@ -325,7 +296,6 @@ _global_script_class_icons={
 "SoundBank": "",
 "State": "",
 "StateMachine": "",
-"SwordSwing": "",
 "TileInteraction": "",
 "WallCrawler": ""
 }

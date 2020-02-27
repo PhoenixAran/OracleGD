@@ -1,5 +1,4 @@
 extends StateMachine
-class_name PlayerController
 
 #signal callbacks
 func _on_entity_hit() -> void:

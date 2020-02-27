@@ -510,7 +510,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=13]
 resource_name = "shield1idledown"
 length = 0.5
 loop = true
@@ -552,7 +552,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=14]
 resource_name = "shield1idleleft"
 length = 0.5
 loop = true
@@ -594,7 +594,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=15]
 resource_name = "shield1idleright"
 length = 0.5
 loop = true
@@ -636,7 +636,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=16]
 resource_name = "shield1idleup"
 length = 0.5
 loop = true
@@ -678,8 +678,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "shield1movedown"
+[sub_resource type="Animation" id=17]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -719,7 +718,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=18]
 resource_name = "shield1moveleft"
 loop = true
 step = 0.5
@@ -760,7 +759,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=19]
 resource_name = "shield1moveright"
 loop = true
 step = 0.5
@@ -801,8 +800,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=18]
-resource_name = "shield1moveup"
+[sub_resource type="Animation" id=20]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -842,16 +840,16 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 4, 5 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 1, 1 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -929,26 +927,26 @@ anims/movedown = SubResource( 9 )
 anims/moveleft = SubResource( 10 )
 anims/moveright = SubResource( 11 )
 anims/moveup = SubResource( 12 )
-anims/shield1idledown = SubResource( 20 )
-anims/shield1idleleft = SubResource( 22 )
-anims/shield1idleright = SubResource( 23 )
-anims/shield1idleup = SubResource( 21 )
-anims/shield1movedown = SubResource( 13 )
-anims/shield1moveleft = SubResource( 19 )
-anims/shield1moveright = SubResource( 24 )
-anims/shield1moveup = SubResource( 18 )
+anims/shield1idledown = SubResource( 13 )
+anims/shield1idleleft = SubResource( 14 )
+anims/shield1idleright = SubResource( 15 )
+anims/shield1idleup = SubResource( 16 )
+anims/shield1movedown = SubResource( 17 )
+anims/shield1moveleft = SubResource( 18 )
+anims/shield1moveright = SubResource( 19 )
+anims/shield1moveup = SubResource( 20 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 3 )
 vframes = 29
 hframes = 8
-frame = 15
+frame = 6
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
-shape = SubResource( 14 )
+shape = SubResource( 21 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -961,7 +959,7 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 15 )
+shape = SubResource( 22 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_priority = -1
@@ -980,7 +978,7 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="ECB/TileCollisionBox"]
-shape = SubResource( 16 )
+shape = SubResource( 23 )
 
 [node name="PlatformCollisionBox" type="Area2D" parent="ECB"]
 collision_layer = 256
@@ -988,7 +986,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 17 )
+shape = SubResource( 24 )
 
 [node name="RayCast1" type="RayCast2D" parent="."]
 process_priority = 1

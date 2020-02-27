@@ -1,5 +1,4 @@
 extends State
-class_name PlayerIdle
 
 var player : Entity
 var item_slot_a : ItemSlot

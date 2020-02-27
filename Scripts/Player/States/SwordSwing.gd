@@ -1,5 +1,4 @@
 extends State
-class_name SwordSwing
 
 var player : Entity
 var sword : PlayerItem

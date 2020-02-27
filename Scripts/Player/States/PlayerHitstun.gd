@@ -1,5 +1,4 @@
 extends State
-class_name PlayerHitstun
 
 var player : Entity
 var movement_variables_reset := false
