@@ -8,5 +8,5 @@ Youtube playlist containing gameplay videos can be found [here](https://www.yout
 ![game preview](./gameplay_preview.png)  
 *In-game screenshot*
 
-##Making your own Zelda like game  
-If you want to make your own Zelda like game with your own assets, simply copy the Engine folder into your own project.
+## Making your own Zelda like game  
+If you want to make your own Zelda like game with your own assets, copy the Engine folder into your own project. Note that this is a work in progress.

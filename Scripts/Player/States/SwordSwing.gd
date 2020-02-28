@@ -28,3 +28,7 @@ func update(delta : float) -> void:
 			_change_state("PlayerKnockback")
 		else:
 			_change_state("PlayerIdle")
+
+func end() -> void:
+	sword = null
+	sword_slot = null

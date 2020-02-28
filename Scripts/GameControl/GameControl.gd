@@ -29,7 +29,6 @@ func _physics_process(delta : float) -> void:
 	if Input.is_action_just_pressed("pause") and not level.is_processing_room_event():
 		match control_state:
 			ControlState.Paused:
-
 				player.enable(true)
 				level.enable(true)
 				control_state = ControlState.Playing

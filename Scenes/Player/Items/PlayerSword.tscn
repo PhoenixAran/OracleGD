@@ -383,6 +383,7 @@ anims/attackright = SubResource( 3 )
 anims/attackup = SubResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+modulate = Color( 0.631373, 0, 0.988235, 1 )
 position = Vector2( -16, 2 )
 rotation = -1.5708
 collision_layer = 4

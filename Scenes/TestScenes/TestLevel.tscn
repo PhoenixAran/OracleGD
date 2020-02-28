@@ -85,6 +85,7 @@ bottom_right_tile = Vector2( 19, 8 )
 position = Vector2( 238.186, 69.9805 )
 
 [node name="RoomLoadingZone" type="Area2D" parent="GameControl/Level/Room2"]
+modulate = Color( 0, 0.788235, 0.141176, 1 )
 position = Vector2( 3.11018, 0 )
 collision_layer = 64
 collision_mask = 32
