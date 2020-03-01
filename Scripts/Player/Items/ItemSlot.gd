@@ -17,9 +17,13 @@ func _ready() -> void:
 		connect("owner_hit", get_item(), "_on_owner_hit")
 
 func is_action_pressed() -> bool:
+	if not has_item():
+		return false
 	return Input.is_action_pressed(action_listen)
 
 func is_action_just_pressed() -> bool:
+	if not has_item():
+		return false
 	return Input.is_action_just_pressed(action_listen)
 
 func set_item(item : PlayerItem, free_previous := true) -> void:

@@ -65,3 +65,9 @@ enum Direction {
 	LEFT,
 	RIGHT
 }
+
+enum LevelType {
+	DUNGEON, 
+	OUTSIDE,
+	INSIDE
+}

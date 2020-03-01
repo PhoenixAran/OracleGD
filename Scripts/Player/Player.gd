@@ -126,6 +126,11 @@ func get_active_item_slot() -> ItemSlot:
 	
 	return null
 
+func get_other_item_slot(current_slot : ItemSlot) -> ItemSlot:
+	if current_slot == item_slot_a:
+		return item_slot_b
+	return item_slot_a
+
 func anim_direction_matches_vector() -> bool:
 	match vector:
 		Vector2.UP:

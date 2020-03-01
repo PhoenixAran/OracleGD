@@ -1,10 +1,9 @@
+#PlayerKnockback.gd
 extends State
-class_name PlayerKnockback
 
 var player : Entity
 var item_slot_a : ItemSlot
 var item_slot_b : ItemSlot
-
 
 func initialize(context) -> void:
 	player = context as Entity
@@ -20,7 +19,7 @@ func update(delta : float) -> void:
 		_change_state("PlayerIdle")
 	elif not player.in_hitstun():
 		#player can use their item mid knockback
-		if item_slot_a.has_item() and item_slot_a.is_action_just_pressed():
+		if item_slot_a.is_action_just_pressed():
 			_change_state(item_slot_a.get_item_use_state(), item_slot_a)
-		elif item_slot_b.has_item() and item_slot_b.is_action_just_pressed():
+		elif item_slot_b.is_action_just_pressed():
 			_change_state(item_slot_b.get_item_use_state(), item_slot_b)
