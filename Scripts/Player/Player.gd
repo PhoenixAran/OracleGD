@@ -90,7 +90,7 @@ func _physics_process(delta : float) -> void:
 	update_animation()
 	var slide_value := update_movement(delta)
 	update_movement_correction(delta, slide_value)
-	
+
 #functions
 func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
@@ -169,7 +169,7 @@ func update_movement_correction(delta : float, slide_value : Vector2) -> void:
 
 	#the player can stop moving mid movement correction, movement correction 
 	#should resume when they start moving in the same direction so just exit out
-	if player_controller.get_current_state() != "PlayerMove":
+	if player_controller.get_current_state() != "PlayerMove" and player_controller.get_current_state() != "ShieldMove":
 		return
 	
 	#this check means that the movement correction has completed so reset the

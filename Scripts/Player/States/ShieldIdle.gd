@@ -1,8 +1,10 @@
+#ShieldIdle.gd
 extends State
 
 var player : Entity
 var shield : Shield
 var shield_slot : ItemSlot
+var other_slot : ItemSlot
 
 func initialize(context) -> void:
 	player = context as Entity
@@ -12,6 +14,10 @@ func begin(args = null) -> void:
 	player.update_animation()
 	shield_slot = args as ItemSlot
 	shield = shield_slot.get_item() as Shield
+	if player.get("item_slot_a") == shield_slot:
+		other_slot = player.get("item_slot_b")
+	else:
+		other_slot = player.get("item_slot_a")
 
 func reason() -> void:
 	if player.in_knockback():
@@ -36,10 +42,5 @@ func update(delta : float) -> void:
 		else:
 			_change_state("PlayerMove")
 	elif input_vector != Vector2.ZERO:
-		_change_state("ShieldMove")
-
-func end() -> void:
-	shield_slot.stop_use()
-	shield_slot = null
-	shield = null
+		_change_state("ShieldMove", shield_slot)
 

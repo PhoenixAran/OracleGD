@@ -4,7 +4,7 @@ class_name ItemSlot
 signal item_used
 signal owner_hit
 
-export(String, "A", "B") var action_listen : String
+export(String, "A", "B") var action_listen := "A"
 var assigned_item : PlayerItem
 var active_item := false
 
@@ -42,7 +42,7 @@ func use_item(direction : String) -> void:
 func stop_use() -> void:
 	assigned_item.stop_use()
 
-func get_use_state() -> String:
+func get_use_state(current_state = null) -> String:
 	return assigned_item.get_use_state()
 
 func item_in_use() -> bool:

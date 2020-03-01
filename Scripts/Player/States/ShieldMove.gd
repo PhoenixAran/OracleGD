@@ -33,7 +33,7 @@ func update(delta : float) -> void:
 		else:
 			_change_state("PlayerMove")
 	elif input_vector == Vector2.ZERO:
-		_change_state("ShieldIdle")
+		_change_state("ShieldIdle", shield_slot)
 
 
 func end() -> void:

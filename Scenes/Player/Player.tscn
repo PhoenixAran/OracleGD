@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Scripts/Player/Hero.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -18,6 +18,10 @@
 [ext_resource path="res://Scripts/Player/Items/ItemSlot.gd" type="Script" id=16]
 [ext_resource path="res://FSM/StateMachine.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Player/EnvironmentStates/EnvironmentState.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Player/Items/Shield1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scripts/Player/States/ShieldKnockback.gd" type="Script" id=20]
+[ext_resource path="res://Scripts/Player/States/ShieldIdle.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/Player/States/ShieldMove.gd" type="Script" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 5 )
@@ -834,7 +838,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=22]
 resource_name = "shield1shieldidledown"
 length = 0.5
 loop = true
@@ -876,7 +880,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=23]
 resource_name = "shield1shieldidleleft"
 length = 0.5
 loop = true
@@ -918,7 +922,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=24]
 resource_name = "shield1shieldidleright"
 length = 0.5
 loop = true
@@ -960,7 +964,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=25]
 resource_name = "shield1shieldidleup"
 length = 0.5
 loop = true
@@ -1002,8 +1006,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "shield1shieldmovedown"
+[sub_resource type="Animation" id=26]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1043,8 +1046,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=23]
-resource_name = "shield1shieldmoveleft"
+[sub_resource type="Animation" id=27]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1125,8 +1127,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=24]
-resource_name = "shield1shieldmoveup"
+[sub_resource type="Animation" id=29]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1166,13 +1167,13 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="RectangleShape2D" id=26]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 1, 1 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -1232,8 +1233,22 @@ script = ExtResource( 8 )
 [node name="SwordSwing" type="Node" parent="PlayerController"]
 script = ExtResource( 9 )
 
+[node name="ShieldIdle" type="Node" parent="PlayerController"]
+script = ExtResource( 21 )
+
+[node name="ShieldKnockback" type="Node" parent="PlayerController"]
+script = ExtResource( 20 )
+
+[node name="ShieldMove" type="Node" parent="PlayerController"]
+script = ExtResource( 22 )
+
 [node name="ItemSlotA" type="Node2D" parent="."]
 script = ExtResource( 16 )
+
+[node name="Shield1" parent="ItemSlotA" instance=ExtResource( 19 )]
+condition_states = {
+"PlayerMove": "ShieldMove"
+}
 
 [node name="ItemSlotB" type="Node2D" parent="."]
 script = ExtResource( 16 )
@@ -1264,14 +1279,14 @@ anims/shield1movedown = SubResource( 18 )
 anims/shield1moveleft = SubResource( 19 )
 anims/shield1moveright = SubResource( 20 )
 anims/shield1moveup = SubResource( 21 )
-anims/shield1shieldidledown = SubResource( 29 )
-anims/shield1shieldidleleft = SubResource( 30 )
-anims/shield1shieldidleright = SubResource( 32 )
-anims/shield1shieldidleup = SubResource( 31 )
-anims/shield1shieldmovedown = SubResource( 22 )
-anims/shield1shieldmoveleft = SubResource( 23 )
+anims/shield1shieldidledown = SubResource( 22 )
+anims/shield1shieldidleleft = SubResource( 23 )
+anims/shield1shieldidleright = SubResource( 24 )
+anims/shield1shieldidleup = SubResource( 25 )
+anims/shield1shieldmovedown = SubResource( 26 )
+anims/shield1shieldmoveleft = SubResource( 27 )
 anims/shield1shieldmoveright = SubResource( 28 )
-anims/shield1shieldmoveup = SubResource( 24 )
+anims/shield1shieldmoveup = SubResource( 29 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
@@ -1293,7 +1308,7 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 25 )
+shape = SubResource( 30 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_priority = -1
@@ -1316,7 +1331,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="ECB/TileCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 26 )
+shape = SubResource( 31 )
 
 [node name="PlatformCollisionBox" type="Area2D" parent="ECB"]
 modulate = Color( 0.854902, 1, 0, 1 )
@@ -1326,7 +1341,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 27 )
+shape = SubResource( 32 )
 
 [node name="RayCast1" type="RayCast2D" parent="."]
 process_priority = 1
