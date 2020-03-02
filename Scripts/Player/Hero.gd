@@ -8,3 +8,4 @@ func _ready() -> void:
 	#how to deal with interactions
 	#monsters like Gels and Floormasters won't damage the player and will have a custom interaction
 	set_interaction(CollisionType.BOMB_EXPLOSION, Interactions.damage)
+	item_slot_a.get_item().connect("bump_reaction", self, "_on_shield_bump_reaction")

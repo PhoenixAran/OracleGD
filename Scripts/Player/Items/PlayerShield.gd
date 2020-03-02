@@ -1,6 +1,8 @@
 extends PlayerItem
 class_name Shield
 
+signal bump_reaction(speed, direction, duration)
+
 onready var hitbox := $Hitbox as Hitbox
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 
@@ -25,17 +27,23 @@ func enable(enabled : bool) -> void:
 	set_physics_process(enabled)
 	hitbox.set_physics_process(enabled)
 
+func notify_bump_reaction(speed : float, direction : Vector2, duration : int) -> void:
+	emit_signal("bump_reaction", speed, direction, duration)
+
 func overrides_interaction(sender : Hitbox) -> bool:
+	if sender.TYPE != Enums.CollisionType.MONSTER or in_use():
+		return false
 	if not hitbox.overlaps_area(sender):
 		return false
 	var parent = sender.get_parent()
-	if parent and parent.has("interactions"):
-		var interaction_resolver = parent.get("interactions")
+	if parent and parent.has_method("get_interaction_resolver"):
+		var interaction_resolver = parent.call("get_interaction_resolver")
 		if interaction_resolver.has_interaction(Enums.CollisionType.SHIELD):
-			var shield_interaction = interaction_resolver.get_interaction(Enums.CollisionType.SHIELD)
+			var shield_interaction = interaction_resolver.get_interaction(hitbox.TYPE)
 			if shield_interaction is IgnoreInteraction:
 				return false
 			elif shield_interaction.has_method("override_parent") and shield_interaction.call("override_parent"):
 				return false
 			return true
 	return false
+

@@ -130,7 +130,10 @@ func get_active_item_slot() -> ItemSlot:
 func get_other_item_slot(current_slot : ItemSlot) -> ItemSlot:
 	if current_slot == item_slot_a:
 		return item_slot_b
-	return item_slot_a
+	elif current_slot == item_slot_b:
+		return item_slot_a
+	return null
+
 
 func anim_direction_matches_vector() -> bool:
 	match vector:
@@ -272,6 +275,11 @@ func update_movement_correction(delta : float, slide_value : Vector2) -> void:
 	move_and_slide(new_linear_velocity, Vector2.ZERO)
 	
 
+func trigger_override_interactions(sender : Hitbox) -> bool:
+	if item_slot_a.overrides_interaction(sender) or item_slot_b.overrides_interaction(sender):
+		return true
+	return false
+
 #Signal callbacks
 func _on_item_used() -> void:
 	animation_player.stop()
@@ -284,3 +292,5 @@ func _on_hitbox_entered(other_hitbox : Hitbox) -> void:
 	if not (item_slot_a.overrides_interaction(other_hitbox) or item_slot_b.overrides_interaction(other_hitbox)):
 		interactions.resolve_interaction(hitbox, other_hitbox)
 
+func _on_shield_bump_reaction(speed : float, direction : Vector2, duration : int) -> void:
+	bump(speed, direction, duration)

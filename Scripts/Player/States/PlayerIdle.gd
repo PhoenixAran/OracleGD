@@ -1,12 +1,12 @@
 #PlayerIdle.gd
 extends State
 
-var player : Entity
+var player : CombatEntity
 var item_slot_a : ItemSlot
 var item_slot_b : ItemSlot
 
 func initialize(context) -> void:
-	player = context as Entity
+	player = context as CombatEntity
 	player.current_speed = player.static_speed
 	item_slot_a = player.get("item_slot_a")
 	item_slot_b = player.get("item_slot_b")

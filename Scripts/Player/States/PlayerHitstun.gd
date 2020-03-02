@@ -1,13 +1,13 @@
 #PlayerHitstun.gd
 extends State
 
-var player : Entity
+var player : CombatEntity
 var movement_variables_reset := false
 var item_slot_a : ItemSlot
 var item_slot_b : ItemSlot
 
 func initialize(context) -> void:
-	player = context as Entity
+	player = context as CombatEntity
 
 func begin(args = null) -> void:
 	player.anim_state = "idle"

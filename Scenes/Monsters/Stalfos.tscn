@@ -73,7 +73,7 @@ TYPE = 1
 can_hit_multiple = true
 knockback_time = 8
 knockback_speed = 100.0
-hitstun_time = 8
+hitstun_time = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 modulate = Color( 0.631373, 0, 0.988235, 1 )

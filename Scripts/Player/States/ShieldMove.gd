@@ -8,7 +8,7 @@ var other_slot : ItemSlot
 var other_slot_button_released := false
 
 func initialize(context) -> void:
-	player = context as Entity
+	player = context as CombatEntity
 
 func begin(args = null) -> void:
 	player.anim_state = "shieldmove"
@@ -36,16 +36,15 @@ func update(delta : float) -> void:
 	
 	if other_slot_button_released and other_slot.is_action_pressed():
 		_change_state(other_slot.get_use_state(name), other_slot)
+		shield_slot.stop_use()
 	elif not shield_slot.is_action_pressed():
 		if input_vector == Vector2.ZERO:
 			_change_state("PlayerIdle")
+			shield.stop_use()
 		else:
 			_change_state("PlayerMove")
+			shield.stop_use()
 	elif input_vector == Vector2.ZERO:
 		_change_state("ShieldIdle", shield_slot)
 	else:
 		shield.update_direction(player.anim_direction)
-
-
-func end() -> void:
-	shield_slot.stop_use()

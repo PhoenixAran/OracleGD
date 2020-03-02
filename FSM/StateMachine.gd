@@ -6,6 +6,8 @@ export(String) var _default_state : String
 var _current_state : State
 var _last_state : State
 
+var entity
+
 func _ready() -> void:
 	var children := get_children()
 	for child in children:
@@ -14,6 +16,7 @@ func _ready() -> void:
 
 #context is dynamic so state machines can be used on anything
 func initialize(context) -> void:
+	entity = context
 	var children = get_children()
 	for child in children:
 		assert(child is State)

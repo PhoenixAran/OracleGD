@@ -31,6 +31,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( -4, 3 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "left"
@@ -60,6 +72,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( -6, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 loop = true
@@ -87,6 +111,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 6, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -116,13 +152,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 4, -3 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 4, 5 )
 
 [node name="Shield1" type="Node2D"]
 script = ExtResource( 1 )
-_stop_when_owner_hit = false
 use_state = "ShieldIdle"
 condition_states = {
 "PlayerMove": "ShieldMove"
@@ -137,8 +184,8 @@ anims/up = SubResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 modulate = Color( 0.631373, 0, 0.988235, 1 )
-position = Vector2( 6, 0 )
-collision_layer = 2
+position = Vector2( 4, -3 )
+collision_layer = 4
 collision_mask = 8
 script = ExtResource( 2 )
 TYPE = 9
@@ -149,4 +196,3 @@ hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 5 )
-disabled = true

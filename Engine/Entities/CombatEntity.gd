@@ -55,7 +55,7 @@ func in_hitstun() -> bool:
 	return combat.in_hitstun()
 
 func in_knockback() -> bool:
-	return combat.in_hitstun()
+	return combat.in_knockback()
 
 func reset_combat_variables() -> void:
 	combat.reset_combat_variables()
@@ -81,6 +81,7 @@ func take_damage(value : int) -> void:
 
 func take_hit(damage_info : Dictionary) -> void:
 	clear_counter_vector_and_speed()
+	reset_combat_variables()
 	set_intangibility(18)
 	set_combat_variables(damage_info)
 	take_damage(damage_info.damage)
@@ -92,6 +93,7 @@ func take_hit(damage_info : Dictionary) -> void:
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
 	clear_counter_vector_and_speed()
+	reset_combat_variables()
 	combat.knockback_time = time
 	combat.current_knockback_speed = speed
 	vector = direction
@@ -121,6 +123,9 @@ func has_interaction(type) -> bool:
 
 func resolve_interaction(receiver : Hitbox, sender : Hitbox) -> void:
 	interactions.resolve_interaction(receiver, sender)
+
+func get_interaction_resolver() -> InteractionResolver:
+	return interactions
 
 #this method is used when the entity is not configured to automatically respond to
 #a given hitbox type. This allows the entity to check if any of it's items can

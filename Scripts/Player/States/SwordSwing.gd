@@ -8,7 +8,7 @@ var sword_slot : ItemSlot
 var other_slot : ItemSlot
 
 func initialize(context) -> void:
-	player = context as Entity
+	player = context as CombatEntity
 
 func begin(args = null) -> void:
 	if not player.in_knockback():
@@ -24,6 +24,9 @@ func begin(args = null) -> void:
 func update(delta : float) -> void:
 	if not attack_key_released:
 		attack_key_released = not sword_slot.is_action_pressed()
+
+	if not player.in_knockback() and player.get_vector() != Vector2():
+		player.set_vector(Vector2())
 
 	if sword.in_use():
 		if attack_key_released and sword_slot.is_action_just_pressed():
