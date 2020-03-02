@@ -31,7 +31,7 @@ func notify_bump_reaction(speed : float, direction : Vector2, duration : int) ->
 	emit_signal("bump_reaction", speed, direction, duration)
 
 func overrides_interaction(sender : Hitbox) -> bool:
-	if sender.TYPE != Enums.CollisionType.MONSTER or in_use():
+	if sender.TYPE != Enums.CollisionType.MONSTER or not in_use():
 		return false
 	if not hitbox.overlaps_area(sender):
 		return false

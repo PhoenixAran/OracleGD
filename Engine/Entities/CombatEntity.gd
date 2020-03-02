@@ -63,9 +63,10 @@ func reset_combat_variables() -> void:
 func set_vector_away(other_vector : Vector2) -> void:
 	set_vector(global_position - other_vector)
 
-func set_intangibility(frames : int) -> void:
+func set_intangibility(frames : int, modulate_sprite = true) -> void:
 	combat.set_intangibility(frames)
-	entity_sprite.set_modulate_time(frames)
+	if modulate_sprite:
+		entity_sprite.set_modulate_time(frames)
 
 func set_knockback(frames : int) -> void:
 	combat.set_knockback(frames)
@@ -92,6 +93,7 @@ func take_hit(damage_info : Dictionary) -> void:
 	emit_signal("entity_hit")
 
 func bump(speed : float, direction : Vector2, time : int) -> void:
+	set_intangibility(8, false)
 	clear_counter_vector_and_speed()
 	reset_combat_variables()
 	combat.knockback_time = time

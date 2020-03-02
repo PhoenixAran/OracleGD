@@ -22,8 +22,6 @@ func update(delta : float) -> void:
 	if not other_slot_button_released:
 		other_slot_button_released = not other_slot.is_action_pressed()
 	
-	print(player.animation_player.current_animation)
-	
 	if player.in_knockback():
 		if other_slot_button_released and other_slot.is_action_pressed():
 			_change_state(other_slot.get_use_state(name), other_slot)
@@ -40,7 +38,4 @@ func update(delta : float) -> void:
 		else:
 			_change_state("PlayerIdle")
 			shield_slot.stop_use()
-			
-func _change_state(state : String, args = null) -> void:
-	print("Changing to " + state)
-	._change_state(state, args)
+

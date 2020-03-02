@@ -5,6 +5,7 @@ var current_intangibility_time := 0
 var current_hitstun_time := 0
 var current_knockback_time := 0
 var current_knockback_speed := 0.0
+var current_knockback_intangibility_time := 0
 
 #temporary storage for combat state mutation
 var hitstun_time := 0 setget set_hitstun
@@ -19,7 +20,7 @@ func in_hitstun() -> bool:
 
 func in_knockback() -> bool:
 	return (knockback_time > 0 and current_knockback_time < knockback_time)
-	
+
 func reset_combat_variables() -> void:
 	hitstun_time = 0
 	knockback_time = 0
@@ -29,6 +30,7 @@ func reset_combat_variables() -> void:
 	current_hitstun_time = 0
 	current_knockback_time = 0
 	current_knockback_speed = 0
+	current_knockback_intangibility_time = 0
 	
 func update_combat_variables() -> void:
 	if is_intangible():

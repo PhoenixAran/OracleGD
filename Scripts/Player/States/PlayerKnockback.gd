@@ -14,7 +14,6 @@ func begin(args = null) -> void:
 	player.anim_state = "idle"
 	
 func update(delta : float) -> void:
-	print(player.animation_player.current_animation)
 	if not player.in_knockback():
 		player.reset_movement_variables()
 		_change_state("PlayerIdle")
