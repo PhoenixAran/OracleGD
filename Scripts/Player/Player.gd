@@ -4,6 +4,7 @@ class_name Player
 signal position_tween_completed
 
 export(Array, String) var animation_states_with_shield := ["idle", "move"]
+export(Array, String) var blended_animations := []
 
 #Nodes / Resources
 onready var player_controller := $PlayerController as StateMachine

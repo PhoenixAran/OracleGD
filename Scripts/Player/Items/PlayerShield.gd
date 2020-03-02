@@ -4,9 +4,17 @@ class_name Shield
 onready var hitbox := $Hitbox as Hitbox
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 
+var cached_direction : String
+
 func use_item(direction : String) -> void:
 	_in_use = true
+	cached_direction = direction
 	anim_player.play(direction)
+
+func update_direction(direction : String) -> void:
+	if direction != cached_direction:
+		cached_direction = direction
+		anim_player.play(direction)
 
 func stop_use() -> void:
 	_in_use = false

@@ -3,8 +3,65 @@
 [ext_resource path="res://Scripts/Player/Items/PlayerShield.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=1]
 resource_name = "down"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:extents")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -4, 3 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "left"
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:extents")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -6, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 loop = true
 step = 1.0
 tracks/0/type = "value"
@@ -33,7 +90,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "left"
 loop = true
 step = 1.0
 tracks/0/type = "value"
@@ -46,7 +102,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 7 ) ]
+"values": [ Vector2( 4, 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Hitbox:position")
@@ -58,69 +114,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 6, 0 ) ]
+"values": [ Vector2( 4, -3 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "right"
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:extents")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 7 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Hitbox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, 0 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "up"
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:extents")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 7 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Hitbox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, 0 ) ]
-}
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1, 7 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4, 5 )
 
 [node name="Shield1" type="Node2D"]
 script = ExtResource( 1 )
@@ -131,10 +129,11 @@ condition_states = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/down = SubResource( 5 )
-anims/left = SubResource( 4 )
-anims/right = SubResource( 2 )
-anims/up = SubResource( 3 )
+pause_mode = 2
+anims/down = SubResource( 1 )
+anims/left = SubResource( 2 )
+anims/right = SubResource( 3 )
+anims/up = SubResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 modulate = Color( 0.631373, 0, 0.988235, 1 )
@@ -149,5 +148,5 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 disabled = true

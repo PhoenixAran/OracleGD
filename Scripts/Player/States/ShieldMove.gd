@@ -12,7 +12,6 @@ func initialize(context) -> void:
 
 func begin(args = null) -> void:
 	player.anim_state = "shieldmove"
-	player.update_animation()
 	shield_slot = args as ItemSlot
 	shield = shield_slot.get_item() as Shield
 	other_slot = player.get_other_item_slot(shield_slot)
@@ -44,6 +43,8 @@ func update(delta : float) -> void:
 			_change_state("PlayerMove")
 	elif input_vector == Vector2.ZERO:
 		_change_state("ShieldIdle", shield_slot)
+	else:
+		shield.update_direction(player.anim_direction)
 
 
 func end() -> void:

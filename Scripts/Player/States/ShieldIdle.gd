@@ -17,10 +17,13 @@ func begin(args = null) -> void:
 	shield = shield_slot.get_item() as Shield
 	other_slot = player.get_other_item_slot(shield_slot)
 	other_slot_button_released = not other_slot.is_action_pressed()
+	
+	shield.use_item(player.anim_direction)
 
 func reason() -> void:
 	if player.in_knockback():
 		_change_state("ShieldKnockback", shield_slot)
+
 
 func update(delta : float) -> void:
 	if not other_slot_button_released:
