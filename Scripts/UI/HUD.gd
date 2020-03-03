@@ -8,8 +8,10 @@ const HEART_HEALTH_VALUE := 4
 export(Vector2) var initial_heart_position := Vector2(96, 0)
 export(Vector2) var key_position := Vector2(72, 0)
 export(Vector2) var rupee_count_position := Vector2(92, 0)
+export(Vector2) var item_b_slot_position := Vector2(8, 0)
+export(Vector2) var item_a_slot_position := Vector2(42, 0)
 
-onready var hud_texture : Texture = preload("res://Assets/HUD/UI.png")
+onready var hud_texture : Texture = preload("res://Assets/UI/UI.png")
 onready var heart_src_rects := {
 	0 : Rect2(0, 0, 8, 8),
 	1 : Rect2(8, 0, 8, 8),
@@ -20,7 +22,6 @@ onready var heart_src_rects := {
 onready var heart_positions := []
 onready var heart_count := 0
 onready var font : DynamicFont = preload("res://Engine/Resources/DialogFont.tres")
-onready var item_icon_texture: Texture = preload("res://Assets/HUD/placeholder_item_icons.png")
 
 func init_hud() -> void:
 	GameRefs.get_player().connect("entity_hit", self, "_defer_update")
@@ -95,14 +96,14 @@ func draw_item_icon_borders() -> void:
 #Sword and shield icon are hardcoded, change later when the time comes
 func draw_place_holder_item_icons() -> void:
 	#draw sword icon
-	draw_texture_rect_region(item_icon_texture, Rect2(8, 0, 8, 16), Rect2(0, 0, 8, 16))
-	draw_texture_rect_region(hud_texture, Rect2(16, 8, 8, 8), Rect2(0, 16, 8, 8))
-	Numbers.draw_number(self, Vector2(24, 9), 1, 0, 3)
+	#draw_texture_rect_region(hud_texture, Rect2(16, 8, 8, 8), Rect2(0, 16, 8, 8))
+	#Numbers.draw_number(self, Vector2(24, 9), 1, 0, 3)
 	
 	#draw shield icon
-	draw_texture_rect_region(item_icon_texture, Rect2(42, 0, 8, 16), Rect2(8, 0, 8, 16))
-	draw_texture_rect_region(hud_texture, Rect2(50, 8, 8, 8), Rect2(0, 16, 8, 8))
-	Numbers.draw_number(self, Vector2(58, 9), 1, 0, 3)
+#	draw_texture_rect_region(item_icon_texture, Rect2(42, 0, 8, 16), Rect2(8, 0, 8, 16))
+#	draw_texture_rect_region(hud_texture, Rect2(50, 8, 8, 8), Rect2(0, 16, 8, 8))
+#	Numbers.draw_number(self, Vector2(58, 9), 1, 0, 3)
+	pass
 
 func _defer_update() -> void:
 	call_deferred("update")

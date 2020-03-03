@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/Monsters/Stalfos.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Monsters/AntiFairy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/HUD/HUDCanvas.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/UI/HUDCanvas.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 16 )

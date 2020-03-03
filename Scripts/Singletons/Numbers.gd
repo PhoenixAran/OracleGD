@@ -1,6 +1,6 @@
 extends Node
 
-var number_texture : Texture = preload("res://Assets/HUD/numbers.png") setget, get_number_texture
+var number_texture : Texture = preload("res://Assets/UI/numbers.png") setget, get_number_texture
 var number_src_rects := [
 	Rect2(0, 0, 6, 6),
 	Rect2(6, 0, 6, 6),

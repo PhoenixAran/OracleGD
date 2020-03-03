@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/numbers.png-3bbd6c6db71939587a829f76b2e1955f.stex"
+path="res://.import/placeholder_item_icons.png-ae1810e0b209873f475c153f4f5211f5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HUD/numbers.png"
-dest_files=[ "res://.import/numbers.png-3bbd6c6db71939587a829f76b2e1955f.stex" ]
+source_file="res://Assets/UI/placeholder_item_icons.png"
+dest_files=[ "res://.import/placeholder_item_icons.png-ae1810e0b209873f475c153f4f5211f5.stex" ]
 
 [params]
 
