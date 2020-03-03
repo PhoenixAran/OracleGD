@@ -6,5 +6,5 @@ func resolve(receiver : Hitbox, sender : Hitbox) -> void:
 	var sender_entity = sender.get_parent()
 	var sender_entity_owner = sender_entity.get_parent().get_parent()
 	if not sender_entity_owner.is_intangible() and not receiver_entity.is_intangible():
-		receiver_entity.bump(65, sender_entity.position - receiver_entity.position, 20)
+		receiver_entity.bump(65, receiver_entity.position - sender_entity_owner.position, 20)
 		sender_entity.notify_bump_reaction(65, sender_entity_owner.position -  receiver_entity.position, 20)
