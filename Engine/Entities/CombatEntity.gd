@@ -101,6 +101,8 @@ func bump(speed : float, direction : Vector2, time : int) -> void:
 	vector = direction
 	current_acceleration = 1.0
 	current_deceleration = 1.0
+	target_speed = speed
+	current_speed = speed
 	emit_signal("entity_bumped")
 
 func immobilize(time : int) -> void:

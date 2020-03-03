@@ -78,6 +78,10 @@ func _on_entity_hit() -> void:
 	elif in_knockback():
 		state = EnemyState.IN_KNOCKBACK
 
+func _on_entity_bumped() -> void:
+	animation_player.stop()
+	state = EnemyState.IN_KNOCKBACK
+
 #Override
 func _on_health_depleted(damage : int) -> void:
 	._on_health_depleted(damage)
