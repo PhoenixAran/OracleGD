@@ -18,7 +18,7 @@
 [ext_resource path="res://Scripts/Player/Items/ItemSlot.gd" type="Script" id=16]
 [ext_resource path="res://FSM/StateMachine.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Player/EnvironmentStates/EnvironmentState.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/Player/Items/Shield1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Player/Items/PlayerBoomerangOne.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/Player/States/ShieldKnockback.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Player/States/ShieldIdle.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Player/States/ShieldMove.gd" type="Script" id=22]
@@ -1245,10 +1245,7 @@ script = ExtResource( 22 )
 [node name="ItemSlotA" type="Node2D" parent="."]
 script = ExtResource( 16 )
 
-[node name="Shield1" parent="ItemSlotA" instance=ExtResource( 19 )]
-condition_states = {
-"PlayerMove": "ShieldMove"
-}
+[node name="PlayerBoomerangOne" parent="ItemSlotA" instance=ExtResource( 19 )]
 
 [node name="ItemSlotB" type="Node2D" parent="."]
 script = ExtResource( 16 )

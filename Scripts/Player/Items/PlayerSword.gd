@@ -27,7 +27,7 @@ func _physics_process(delta : float) -> void:
 	if sword_state == SwordState.CHARGING:
 		charge_frame_count += 1
 		if charge_frame_count <= charge_frames:
-			sword_state == SwordState.CHARGED
+			sword_state = SwordState.CHARGED
 			charge_frame_count = 0
 			animation_player.play(cached_direction + "charged")
 

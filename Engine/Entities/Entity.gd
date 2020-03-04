@@ -143,3 +143,6 @@ func match_animation_direction(input_vector : Vector2) -> void:
 	elif input_vector == Vector2(1, 0) and direction != "right":
 		direction = "right"
 	anim_direction = direction
+
+func _on_projectile_created(projectile) -> void:
+	emit_signal("projectile_created", projectile)

@@ -164,6 +164,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
 }, {
+"base": "PlayerItem",
+"class": "PlayerBoomerangOne",
+"language": "GDScript",
+"path": "res://Scripts/Player/Items/PlayerBoomerangOne.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerBoomerangProjectileOne",
+"language": "GDScript",
+"path": "res://Scripts/Player/Items/Projectiles/PlayerBoomerangProjectileOne.gd"
+}, {
 "base": "Camera2D",
 "class": "PlayerCamera",
 "language": "GDScript",
@@ -276,6 +286,8 @@ _global_script_class_icons={
 "Monster": "",
 "MovingPlatform": "res://Assets/Objects/moving_platform.png",
 "Player": "",
+"PlayerBoomerangOne": "",
+"PlayerBoomerangProjectileOne": "",
 "PlayerCamera": "",
 "PlayerItem": "",
 "PlayerMovement": "",

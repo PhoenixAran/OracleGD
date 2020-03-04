@@ -77,7 +77,9 @@ func _ready() -> void:
 	connect("entity_hit", item_slot_b, "_on_owner_hit")
 	
 	item_slot_a.connect("item_used", self, "_on_item_used")
+	item_slot_a.connect("projectile_created", self, "_on_projectile_created")
 	item_slot_b.connect("item_used", self, "_on_item_used")
+	item_slot_b.connect("projectile_created", self, "_on_projectile_created")
 	
 	tween.connect("tween_all_completed", self, "_on_tween_completed")
 	

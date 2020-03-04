@@ -1,6 +1,7 @@
 extends Node2D
 class_name ItemSlot
 
+signal projectile_created(projectile)
 signal item_used
 signal owner_hit
 
@@ -14,6 +15,7 @@ func _ready() -> void:
 	if children.size() == 1:
 		set_item(children[0])
 		get_item().connect("item_used", self, "_on_item_used")
+		get_item().connect("projectile_created", self, "_on_projectile_created")
 		connect("owner_hit", get_item(), "_on_owner_hit")
 
 func is_action_pressed() -> bool:
@@ -72,3 +74,6 @@ func set_active(value := true) -> void:
 
 func _on_item_used() -> void:
 	emit_signal("item_used")
+
+func _on_projectile_created(projectile) -> void:
+	emit_signal("projectile_created", projectile)

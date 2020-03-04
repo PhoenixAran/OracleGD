@@ -3,6 +3,7 @@ class_name Room
 
 signal request_load(room, load_event)
 signal entity_created(entity)
+signal projectile_created(projectile)
 
 export(int) var tile_width := 16
 export(int) var tile_height := 16
@@ -97,6 +98,10 @@ func enable(enabled : bool) -> void:
 		projectile.enable(enabled)
 
 #Signal callbacks
+func _on_projectile_created(projectile) -> void:
+	projectiles.append(projectile)
+	emit_signal("projectile_created", projectile)
+
 func _on_entity_destroyed(entity : Entity) -> void:
 	entities.remove(entities.find(entity))
 	all_enemies_destroyed = entities.size() == 0

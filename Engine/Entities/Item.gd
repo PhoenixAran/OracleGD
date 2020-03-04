@@ -1,6 +1,7 @@
 extends Node2D
 class_name Item
 
+signal projectile_created(projectile)
 signal item_used
 
 export(bool) var _can_use := true setget, can_use

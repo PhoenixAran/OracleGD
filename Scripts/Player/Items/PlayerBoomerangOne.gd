@@ -1,0 +1,54 @@
+extends PlayerItem
+class_name PlayerBoomerangOne
+
+
+var boomerang
+var projectile_packed_scene = preload("res://Scenes/Player/Items/Projectiles/PlayerBoomerangProjectile1.tscn") 
+
+func use_item(direction : String) -> void:
+	_in_use = true
+	_can_use = false
+
+	#direction is useless, poll input to aim boomerang
+	var input_vector := Vector2()
+	
+	if Input.is_action_pressed("ui_up"):
+		input_vector.y = -1
+	elif Input.is_action_pressed("ui_down"):
+		input_vector.y = 1
+	
+	if Input.is_action_pressed("up_left"):
+		input_vector.x = -1
+	elif Input.is_action_pressed("ui_right"):
+		input_vector.x = 1
+	
+	if input_vector == Vector2():
+		match direction:
+			"up":
+				input_vector = Vector2.UP
+			"down": 
+				input_vector = Vector2.DOWN
+			"left":
+				input_vector = Vector2.LEFT
+			"right":
+				input_vector = Vector2.RIGHT
+	
+	boomerang = projectile_packed_scene.instance()
+	boomerang.connect("returned_to_owner", self, "_on_boomerang_returned")
+	boomerang.global_position = global_position
+	boomerang.vector = input_vector
+	boomerang.set_owner_node(self)
+	emit_signal("projectile_created", boomerang)
+
+
+func stop_use() -> void:
+	pass
+
+func enable(enabled : bool) -> void:
+	if boomerang:
+		boomerang.enable(enabled)
+
+func _on_boomerang_returned() -> void:
+	boomerang.queue_free()
+	_can_use = true
+	_in_use = false

@@ -25,12 +25,17 @@ var previous_room : Room
 var event_stack := []
 var current_event : RoomEvent
 
+var room_list := []
+
+
 func _ready() -> void:
 	show_behind_parent = true
 	for node in get_children():
 		if node is Room:
+			room_list.append(node)
 			node.connect("entity_created", self, "_on_room_entity_created")
 			node.connect("request_load", self, "_on_room_request_load")
+			node.connect("projectile_created", self, "_on_room_projectile_created")
 
 func _physics_process(delta : float) -> void:
 	match room_state:
@@ -55,6 +60,7 @@ func _physics_process(delta : float) -> void:
 	
 func initialize_level(player_entity, room = null, spawn_coordinate = null) -> void:
 	player = player_entity
+	player.connect("projectile_created", self, "_on_room_projectile_created")
 	if room == null:
 		room = initial_room
 	current_room = get_node(room) as Room
@@ -92,6 +98,10 @@ func _on_room_entity_created(entity) -> void:
 	ysort.call_deferred("add_child", entity)
 	if transition_queued:
 		entity.call_deferred("enable", false)
+
+func _on_room_projectile_created(projectile) -> void:
+	current_room.projectiles.append(projectile)
+	ysort.call_deferred("add_child", projectile)
 
 func _on_room_request_load(room : Room, event : RoomEvent) -> void:
 	if not transition_queued and room != current_room:
