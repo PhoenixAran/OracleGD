@@ -1,6 +1,8 @@
 extends Node2D
 class_name Level
 
+signal room_changed(room)
+
 enum RoomProcessState {
 	NOT_ACTIVE,
 	PROCESSING_INITIAL,
@@ -71,6 +73,7 @@ func set_up_new_room(new_room : Room) -> void:
 	new_room.load_room(previous_room == new_room)
 	previous_room = current_room
 	current_room = new_room
+	emit_signal("room_changed", current_room)
 
 func unload_last_room() -> void:
 	previous_room.unload_room()

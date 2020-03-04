@@ -20,9 +20,14 @@ var control_state = ControlState.Playing
 var font : DynamicFont = Globals.get_default_font()
 
 func _ready() -> void:
+	level.connect("room_changed", self, "_on_room_changed")
+	
 	player = get_node(player_path)
-	GameRefs.set_player(player)
 	level.call_deferred("initialize_level", player, initial_room, null)
+	
+	GameRefs.set_player(player)
+	GameRefs.set_current_room(level.current_room)
+	
 	hud.call_deferred("init_hud")
 
 func _physics_process(delta : float) -> void:
@@ -44,3 +49,6 @@ func _draw():
 		var camera = player.get_node("PlayerCamera")
 		var pos = Vector2(camera.limit_left, camera.limit_top)
 		draw_string(font, pos + Vector2(Globals.screen_width / 2 - 15, Globals.screen_height / 2), "PAUSED")
+
+func _on_room_changed(room : Room) -> void:
+	GameRefs.set_current_room(room)

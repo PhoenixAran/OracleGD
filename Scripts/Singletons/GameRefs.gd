@@ -8,6 +8,7 @@ extends Node
 var ground_tile_map : TileMap setget set_ground_tile_map, get_ground_tile_map
 #player entity 
 var player : Player setget set_player, get_player
+var current_room : Room setget set_current_room, get_current_room
 
 ##Methods
 func set_ground_tile_map(value : TileMap) -> void:
@@ -24,3 +25,9 @@ func get_player() -> Player:
 
 func get_player_equipment() -> Equipment:
 	return player.get_equipment()
+
+func set_current_room(room : Room) -> void:
+	current_room = room
+
+func get_current_room() -> Room:
+	return current_room
