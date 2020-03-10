@@ -4,4 +4,4 @@
 
 [node name="PlayerBoomerangOne" type="Node2D"]
 script = ExtResource( 1 )
-use_state = "PlayerIdle"
+use_state = "BoomerangThrow"

@@ -21,6 +21,9 @@ var state = BoomerangState.INACTIVE
 var return_timer := 0
 var owner_node : Node2D
 
+func _ready() -> void:
+	hitbox.connect("damaged_other", self, "_on_damaged_other")
+
 func set_owner_node(value : Node2D) -> void:
 	owner_node = value
 
@@ -70,3 +73,7 @@ func begin_return_state() -> void:
 
 func parry() -> void:
 	begin_return_state()
+
+func _on_damaged_other(other : Hitbox) -> void:
+	if state != BoomerangState.RETURNING:
+		begin_return_state()

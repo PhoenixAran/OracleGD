@@ -1,7 +1,7 @@
 #ShieldMove.gd
 extends State
 
-var player : Entity
+var player : CombatEntity
 var shield : Shield
 var shield_slot : ItemSlot
 var other_slot : ItemSlot

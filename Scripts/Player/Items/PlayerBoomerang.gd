@@ -4,7 +4,7 @@ class_name PlayerBoomerang
 
 var boomerang
 var projectile_packed_scene = preload("res://Scenes/Player/Items/Projectiles/PlayerBoomerangProjectile.tscn") 
-var use_delay := 5
+var use_delay := 15
 
 func use_item(direction : String) -> void:
 	_in_use = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Scripts/Player/Hero.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scripts/Player/States/ShieldKnockback.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Player/States/ShieldIdle.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Player/States/ShieldMove.gd" type="Script" id=22]
+[ext_resource path="res://Scripts/Player/States/BoomerangThrow.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 5 )
@@ -190,7 +191,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, -3 ), Vector2( 0, -2 ) ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=6]
 resource_name = "boomerangthrowdown"
 loop = true
 step = 0.5
@@ -231,7 +232,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=7]
 resource_name = "boomerangthrowleft"
 loop = true
 step = 0.5
@@ -272,7 +273,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=8]
 resource_name = "boomerangthrowright"
 loop = true
 step = 0.5
@@ -313,7 +314,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=9]
 resource_name = "boomerangthrowup"
 loop = true
 step = 0.5
@@ -354,7 +355,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=10]
 length = 0.5
 loop = true
 step = 0.5
@@ -395,7 +396,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=11]
 length = 0.5
 loop = true
 step = 0.5
@@ -436,7 +437,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 length = 0.5
 loop = true
 step = 0.5
@@ -477,7 +478,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 length = 0.5
 loop = true
 step = 0.5
@@ -518,7 +519,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=14]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -558,7 +559,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=15]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -598,7 +599,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=16]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -638,7 +639,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=17]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -678,7 +679,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=18]
 length = 0.5
 loop = true
 step = 0.5
@@ -719,7 +720,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=19]
 length = 0.5
 loop = true
 step = 0.5
@@ -760,7 +761,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=20]
 length = 0.5
 loop = true
 step = 0.5
@@ -801,7 +802,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=21]
 length = 0.5
 loop = true
 step = 0.5
@@ -842,7 +843,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=22]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -882,7 +883,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=23]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -922,7 +923,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=24]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -962,7 +963,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=25]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1002,8 +1003,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=22]
-resource_name = "shield1shieldidledown"
+[sub_resource type="Animation" id=26]
 length = 0.5
 loop = true
 step = 0.5
@@ -1044,8 +1044,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=23]
-resource_name = "shield1shieldidleleft"
+[sub_resource type="Animation" id=27]
 length = 0.5
 loop = true
 step = 0.5
@@ -1086,8 +1085,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=24]
-resource_name = "shield1shieldidleright"
+[sub_resource type="Animation" id=28]
 length = 0.5
 loop = true
 step = 0.5
@@ -1128,8 +1126,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=25]
-resource_name = "shield1shieldidleup"
+[sub_resource type="Animation" id=29]
 length = 0.5
 loop = true
 step = 0.5
@@ -1170,7 +1167,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=30]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1210,7 +1207,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=31]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1250,8 +1247,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=28]
-resource_name = "shield1shieldmoveright"
+[sub_resource type="Animation" id=32]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1291,7 +1287,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=33]
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -1331,13 +1327,13 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=34]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="RectangleShape2D" id=31]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 1, 1 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -1406,6 +1402,9 @@ script = ExtResource( 20 )
 [node name="ShieldMove" type="Node" parent="PlayerController"]
 script = ExtResource( 22 )
 
+[node name="BoomerangThrow" type="Node" parent="PlayerController"]
+script = ExtResource( 23 )
+
 [node name="ItemSlotA" type="Node2D" parent="."]
 script = ExtResource( 16 )
 
@@ -1424,34 +1423,34 @@ anims/attackdown = SubResource( 2 )
 anims/attackleft = SubResource( 3 )
 anims/attackright = SubResource( 4 )
 anims/attackup = SubResource( 5 )
-anims/boomerangthrowdown = SubResource( 36 )
-anims/boomerangthrowleft = SubResource( 33 )
-anims/boomerangthrowright = SubResource( 34 )
-anims/boomerangthrowup = SubResource( 35 )
-anims/idledown = SubResource( 6 )
-anims/idleleft = SubResource( 7 )
-anims/idleright = SubResource( 8 )
-anims/idleup = SubResource( 9 )
-anims/movedown = SubResource( 10 )
-anims/moveleft = SubResource( 11 )
-anims/moveright = SubResource( 12 )
-anims/moveup = SubResource( 13 )
-anims/shield1idledown = SubResource( 14 )
-anims/shield1idleleft = SubResource( 15 )
-anims/shield1idleright = SubResource( 16 )
-anims/shield1idleup = SubResource( 17 )
-anims/shield1movedown = SubResource( 18 )
-anims/shield1moveleft = SubResource( 19 )
-anims/shield1moveright = SubResource( 20 )
-anims/shield1moveup = SubResource( 21 )
-anims/shield1shieldidledown = SubResource( 22 )
-anims/shield1shieldidleleft = SubResource( 23 )
-anims/shield1shieldidleright = SubResource( 24 )
-anims/shield1shieldidleup = SubResource( 25 )
-anims/shield1shieldmovedown = SubResource( 26 )
-anims/shield1shieldmoveleft = SubResource( 27 )
-anims/shield1shieldmoveright = SubResource( 28 )
-anims/shield1shieldmoveup = SubResource( 29 )
+anims/boomerangthrowdown = SubResource( 6 )
+anims/boomerangthrowleft = SubResource( 7 )
+anims/boomerangthrowright = SubResource( 8 )
+anims/boomerangthrowup = SubResource( 9 )
+anims/idledown = SubResource( 10 )
+anims/idleleft = SubResource( 11 )
+anims/idleright = SubResource( 12 )
+anims/idleup = SubResource( 13 )
+anims/movedown = SubResource( 14 )
+anims/moveleft = SubResource( 15 )
+anims/moveright = SubResource( 16 )
+anims/moveup = SubResource( 17 )
+anims/shield1idledown = SubResource( 18 )
+anims/shield1idleleft = SubResource( 19 )
+anims/shield1idleright = SubResource( 20 )
+anims/shield1idleup = SubResource( 21 )
+anims/shield1movedown = SubResource( 22 )
+anims/shield1moveleft = SubResource( 23 )
+anims/shield1moveright = SubResource( 24 )
+anims/shield1moveup = SubResource( 25 )
+anims/shield1shieldidledown = SubResource( 26 )
+anims/shield1shieldidleleft = SubResource( 27 )
+anims/shield1shieldidleright = SubResource( 28 )
+anims/shield1shieldidleup = SubResource( 29 )
+anims/shield1shieldmovedown = SubResource( 30 )
+anims/shield1shieldmoveleft = SubResource( 31 )
+anims/shield1shieldmoveright = SubResource( 32 )
+anims/shield1shieldmoveup = SubResource( 33 )
 
 [node name="EntitySprite" type="Sprite" parent="."]
 scale = Vector2( 1, 1.0028 )
@@ -1473,7 +1472,7 @@ knockback_speed = 0.0
 hitstun_time = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 30 )
+shape = SubResource( 34 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_priority = -1
@@ -1496,7 +1495,7 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="ECB/TileCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 31 )
+shape = SubResource( 35 )
 
 [node name="PlatformCollisionBox" type="Area2D" parent="ECB"]
 modulate = Color( 0.854902, 1, 0, 1 )
@@ -1506,7 +1505,7 @@ collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ECB/PlatformCollisionBox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 32 )
+shape = SubResource( 36 )
 
 [node name="RayCast1" type="RayCast2D" parent="."]
 process_priority = 1

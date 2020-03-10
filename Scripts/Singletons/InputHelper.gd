@@ -1,0 +1,3 @@
+#InputHelper.gd
+extends Node
+
