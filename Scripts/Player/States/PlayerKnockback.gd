@@ -19,7 +19,7 @@ func update(delta : float) -> void:
 		_change_state("PlayerIdle")
 	elif player.in_knockback():
 		#player can use their item mid knockback
-		if item_slot_a.is_action_just_pressed():
+		if item_slot_a.can_use() and item_slot_a.is_action_just_pressed():
 			_change_state(item_slot_a.get_use_state(), item_slot_a)
-		elif item_slot_b.is_action_just_pressed():
+		elif item_slot_b.can_use() and item_slot_b.is_action_just_pressed():
 			_change_state(item_slot_b.get_use_state(), item_slot_b)

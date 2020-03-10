@@ -9,8 +9,15 @@ func get_use_state(current_state = null) -> String:
 	if current_state == null or not condition_states.has(current_state):
 		return use_state
 	return condition_states[current_state]
+
 func set_use_state(value : String) -> void:
 	use_state = value
 
 func get_item_level() -> int:
 	return item_level
+
+func has_use_state() -> bool:
+	return true
+
+func _on_room_change() -> void:
+	pass

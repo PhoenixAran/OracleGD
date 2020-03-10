@@ -95,14 +95,13 @@ func is_processing_room_event() -> bool:
 func _on_room_entity_created(entity) -> void:
 	#order matters here. need to add child before
 	#disabling the entity
-	ysort.call_deferred("add_child", entity)
+	ysort.add_child(entity)
 	if transition_queued:
-		entity.call_deferred("enable", false)
+		entity.enable(false)
 
 func _on_room_projectile_created(projectile) -> void:
-	current_room.projectiles.append(projectile)
-	ysort.call_deferred("add_child", projectile)
-
+	ysort.add_child(projectile)
+	
 func _on_room_request_load(room : Room, event : RoomEvent) -> void:
 	if not transition_queued and room != current_room:
 		target_room = room

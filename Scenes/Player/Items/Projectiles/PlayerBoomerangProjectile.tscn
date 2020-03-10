@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Engine/Entities/Collisions/Hitbox.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Player/Items/Projectiles/PlayerBoomerangProjectileOne.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Player/boomerang_one.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/boomerang_one.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Items/Projectiles/PlayerBoomerangProjectile.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
@@ -42,7 +42,7 @@ tracks/1/keys = {
 
 [node name="PlayerBoomerangProjectile" type="KinematicBody2D"]
 collision_layer = 0
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -58,7 +58,7 @@ position = Vector2( 0, 2 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

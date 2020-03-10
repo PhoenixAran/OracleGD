@@ -18,7 +18,6 @@ var entity_spawners := []
 
 #Dynamic objects
 var entities := []
-var projectiles := []
 var dynamic_tiles := []
 var npcs := []
 
@@ -78,10 +77,6 @@ func unload_room() -> void:
 		var entity = entities.pop_front()
 		entity.queue_free()
 	
-	while not projectiles.empty():
-		var projectile = projectiles.pop_front()
-		projectile.queue_free()
-	
 	while not dynamic_tiles.empty():
 		var dynamic_tile = dynamic_tiles.pop_front()
 		dynamic_tile.queue_free()
@@ -93,21 +88,14 @@ func add_entity(entity : Entity) -> void:
 func enable(enabled : bool) -> void:
 	for entity in entities:
 		entity.enable(enabled)
-		
-	for projectile in projectiles:
-		projectile.enable(enabled)
 
 #Signal callbacks
 func _on_projectile_created(projectile) -> void:
-	projectiles.append(projectile)
 	emit_signal("projectile_created", projectile)
 
 func _on_entity_destroyed(entity : Entity) -> void:
 	entities.remove(entities.find(entity))
 	all_enemies_destroyed = entities.size() == 0
-
-func _on_projectile_destroyed(projectile) -> void:
-	projectiles.remove(projectiles.find(projectile))
 
 func _on_dynamic_tile_destroyed(tile : DynamicTile) -> void:
 	dynamic_tiles.remove(dynamic_tiles.find(tile))

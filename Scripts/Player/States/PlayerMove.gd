@@ -28,10 +28,10 @@ func update(delta : float):
 	player.match_animation_direction(input_vector)
 	if input_vector == Vector2.ZERO:
 		_change_state("PlayerIdle")
-	elif item_slot_a.is_action_just_pressed():
+	elif item_slot_a.can_use() and item_slot_a.is_action_just_pressed():
 		player.set_vector(Vector2.ZERO)
 		_change_state(item_slot_a.get_use_state(name), item_slot_a)
-	elif item_slot_b.is_action_just_pressed() and item_slot_b.has_item():
+	elif item_slot_b.can_use() and item_slot_b.is_action_just_pressed():
 		player.set_vector(Vector2.ZERO)
 		_change_state(item_slot_b.get_use_state(name), item_slot_b)
 	else:

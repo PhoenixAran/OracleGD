@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Scripts/Player/Hero.gd" type="Script" id=1]
 [ext_resource path="res://Engine/Entities/Health.gd" type="Script" id=2]
@@ -18,7 +18,7 @@
 [ext_resource path="res://Scripts/Player/Items/ItemSlot.gd" type="Script" id=16]
 [ext_resource path="res://FSM/StateMachine.gd" type="Script" id=17]
 [ext_resource path="res://Scripts/Player/EnvironmentStates/EnvironmentState.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/Player/Items/PlayerBoomerangOne.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Player/Items/PlayerBoomerang.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/Player/States/ShieldKnockback.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/Player/States/ShieldIdle.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/Player/States/ShieldMove.gd" type="Script" id=22]
@@ -188,6 +188,170 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, -3 ), Vector2( 0, -2 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "boomerangthrowdown"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 38 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "boomerangthrowleft"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 37 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "boomerangthrowright"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 33 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "boomerangthrowup"
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("EntitySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 34 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EntitySprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -1260,6 +1424,10 @@ anims/attackdown = SubResource( 2 )
 anims/attackleft = SubResource( 3 )
 anims/attackright = SubResource( 4 )
 anims/attackup = SubResource( 5 )
+anims/boomerangthrowdown = SubResource( 36 )
+anims/boomerangthrowleft = SubResource( 33 )
+anims/boomerangthrowright = SubResource( 34 )
+anims/boomerangthrowup = SubResource( 35 )
 anims/idledown = SubResource( 6 )
 anims/idleleft = SubResource( 7 )
 anims/idleright = SubResource( 8 )
@@ -1290,7 +1458,7 @@ scale = Vector2( 1, 1.0028 )
 texture = ExtResource( 3 )
 vframes = 29
 hframes = 8
-frame = 18
+frame = 34
 script = ExtResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="."]

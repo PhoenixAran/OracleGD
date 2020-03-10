@@ -23,8 +23,12 @@ func _draw() -> void:
 			draw_level(8, 8, item_level)
 			pass
 		ItemIconType.SHOW_AMMO:
+			draw_ammo(8, 8, ammo_key)
 			pass
 
 func draw_level(x, y, level) -> void:
 	draw_texture_rect_region(ui_texture, Rect2(x, y, 8, 8), Rect2(0, 16, 8, 8))
 	Numbers.draw_digit(self, Vector2(16, 9), level)
+
+func draw_ammo(x, y, ammo_key) -> void:
+	pass

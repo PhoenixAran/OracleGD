@@ -32,7 +32,7 @@ func update(delta : float) -> void:
 		if attack_key_released and sword_slot.is_action_just_pressed():
 			sword.swing_sword(player.anim_direction)
 	else:
-		if other_slot.is_action_pressed():
+		if other_slot.can_use() and other_slot.is_action_pressed():
 			_change_state(other_slot.get_use_state(name), other_slot)
 		elif player.in_knockback():
 			_change_state("PlayerKnockback")

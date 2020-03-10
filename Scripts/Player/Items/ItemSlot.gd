@@ -51,6 +51,9 @@ func stop_use() -> void:
 func get_use_state(current_state = null) -> String:
 	return assigned_item.get_use_state()
 
+func can_use() -> bool:
+	return assigned_item.can_use()
+
 func item_in_use() -> bool:
 	return assigned_item.in_use()
 
