@@ -319,6 +319,7 @@ Enums="*res://Engine/Singletons/Enums.gd"
 Interactions="*res://Scripts/Singletons/Interactions.gd"
 Numbers="*res://Scripts/Singletons/Numbers.gd"
 GameRefs="*res://Scripts/Singletons/GameRefs.gd"
+InputHelper="*res://Scripts/Singletons/InputHelper.gd"
 
 [debug]
 

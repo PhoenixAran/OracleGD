@@ -1,7 +1,6 @@
 extends PlayerItem
 class_name PlayerBoomerang
 
-
 var boomerang
 var projectile_packed_scene = preload("res://Scenes/Player/Items/Projectiles/PlayerBoomerangProjectile.tscn") 
 var use_delay := 15
@@ -11,17 +10,7 @@ func use_item(direction : String) -> void:
 	_can_use = false
 
 	#direction is useless, poll input to aim boomerang
-	var input_vector := Vector2()
-	
-	if Input.is_action_pressed("ui_up"):
-		input_vector.y = -1
-	elif Input.is_action_pressed("ui_down"):
-		input_vector.y = 1
-	
-	if Input.is_action_pressed("up_left"):
-		input_vector.x = -1
-	elif Input.is_action_pressed("ui_right"):
-		input_vector.x = 1
+	var input_vector := InputHelper.poll_direction_input()
 	
 	if input_vector == Vector2():
 		match direction:

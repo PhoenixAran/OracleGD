@@ -15,7 +15,7 @@ func begin(args = null) -> void:
 	player.update_animation()
 	shield_slot = args as ItemSlot
 	shield = shield_slot.get_item() as Shield
-	other_slot = player.get_other_item_slot(shield_slot)
+	other_slot = player.call("get_other_item_slot", shield_slot)
 	other_slot_button_released = not other_slot.is_action_pressed()
 	
 	shield.use_item(player.anim_direction)
@@ -28,15 +28,7 @@ func update(delta : float) -> void:
 	if not other_slot_button_released:
 		other_slot_button_released = not other_slot.is_action_pressed()
 	
-	var input_vector := Vector2.ZERO
-	if Input.is_action_pressed("ui_up"):
-		input_vector.y = -1
-	if Input.is_action_pressed("ui_down"):
-		input_vector.y = 1
-	if Input.is_action_pressed("ui_left"):
-		input_vector.x = -1
-	if Input.is_action_pressed("ui_right"):
-		input_vector.x = 1
+	var input_vector = InputHelper.poll_direction_input()
 	
 	player.match_animation_direction(input_vector)
 	player.set_vector(input_vector)

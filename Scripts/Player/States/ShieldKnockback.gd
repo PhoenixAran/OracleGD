@@ -15,7 +15,7 @@ func begin(args = null) -> void:
 	player.update_animation()
 	shield_slot = args as ItemSlot
 	shield = shield_slot.get_item() as Shield
-	other_slot = player.get_other_item_slot(shield_slot)
+	other_slot = player.call("get_other_item_slot", shield_slot)
 	other_slot_button_released = not other_slot.is_action_pressed()
 
 func update(delta : float) -> void:

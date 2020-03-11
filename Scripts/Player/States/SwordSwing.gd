@@ -1,7 +1,7 @@
 #SwordSwing.gd
 extends State
 
-var player : Entity
+var player : CombatEntity
 var sword : PlayerItem
 var attack_key_released : bool  = false
 var sword_slot : ItemSlot
@@ -19,7 +19,7 @@ func begin(args = null) -> void:
 	sword = sword_slot.get_item()
 	sword.swing_sword(player.anim_direction)
 	attack_key_released = not sword_slot.is_action_pressed()
-	other_slot = player.get_other_item_slot(sword_slot)
+	other_slot = player.call("get_other_item_slot", sword_slot)
 
 func update(delta : float) -> void:
 	if not attack_key_released:
