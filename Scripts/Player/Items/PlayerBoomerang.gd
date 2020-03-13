@@ -23,7 +23,6 @@ func use_item(direction : String) -> void:
 				input_vector = Vector2.LEFT
 			"right":
 				input_vector = Vector2.RIGHT
-	
 	boomerang = projectile_packed_scene.instance()
 	boomerang.connect("returned_to_owner", self, "_on_boomerang_returned")
 	boomerang.global_position = global_position
@@ -38,9 +37,7 @@ func can_use() -> bool:
 	return true
 
 func stop_use() -> void:
-	if boomerang:
-		boomerang.queue_free()
-		boomerang = null
+	pass
 
 func enable(enabled : bool) -> void:
 	if boomerang:

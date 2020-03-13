@@ -182,7 +182,7 @@ func update_movement_correction(delta : float, slide_value : Vector2) -> void:
 	#should resume when they start moving in the same direction so just exit out
 	if player_controller.get_current_state() != "PlayerMove" and player_controller.get_current_state() != "ShieldMove":
 		return
-	
+
 	#this check means that the movement correction has completed so reset the
 	#raycast positions and exit out
 	if not is_on_wall():
