@@ -9,8 +9,8 @@ enum BoomerangState {
 
 signal returned_to_owner
 
-export(float) var speed := 80.0
-export(int) var return_delay := 45
+export(float) var speed := 120.0
+export(int) var return_delay := 30
 
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 onready var hitbox := $Hitbox as Hitbox

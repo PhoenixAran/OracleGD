@@ -1,6 +1,7 @@
 extends SimpleWanderMonster
 
 func _ready() -> void:
+	set_interaction(CollisionType.BOOMERANG, Interactions.damage)
 	set_interaction(CollisionType.PLAYER, Interactions.damage_other)
 	set_interaction(CollisionType.SWORD, Interactions.damage)
 	set_interaction(CollisionType.SHIELD, Interactions.shield_bump)

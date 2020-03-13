@@ -23,6 +23,7 @@ func update(delta : float) -> void:
 	var input_vector := InputHelper.poll_direction_input()
 	player.match_animation_direction(input_vector)
 	player.set_vector(input_vector)
+	
 	if delay_counter <= use_delay:
 		delay_counter += 1
 	else:
