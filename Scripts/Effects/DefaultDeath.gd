@@ -1,5 +1,5 @@
+#DefaultDeath.gd
 extends Node2D
-class_name DefaultDeath
 
 onready var animation_player := $AnimationPlayer as AnimationPlayer
 

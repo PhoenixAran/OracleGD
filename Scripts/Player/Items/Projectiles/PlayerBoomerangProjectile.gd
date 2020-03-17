@@ -15,6 +15,7 @@ export(int) var return_delay := 30
 onready var anim_player := $AnimationPlayer as AnimationPlayer
 onready var hitbox := $Hitbox as Hitbox
 onready var interactions := InteractionResolver.new() as InteractionResolver
+onready var parry_effect = preload("res://Scenes/Effects/Parry.tscn")
 
 var vector := Vector2()
 var state = BoomerangState.INACTIVE
@@ -58,6 +59,18 @@ func update_moving_state() -> void:
 	else:
 		move_and_slide(vector * speed)
 		if get_slide_count() > 0:
+			var parry_offset := Vector2()
+			var effect = parry_effect.instance()
+			if vector.x == 1:
+				parry_offset.x = 6
+			elif vector.x == -1:
+				parry_offset.x = -6
+			if vector.y == 1:
+				parry_offset.y = 6
+			elif vector.y == -1:
+				parry_offset.y = -4
+			effect.global_position = global_position + parry_offset
+			get_parent().add_child(effect)
 			begin_return_state()
 
 func update_return_state() -> void:
