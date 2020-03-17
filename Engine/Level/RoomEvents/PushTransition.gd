@@ -49,7 +49,8 @@ func begin() -> void:
 	player.tween_to_position(target_player_position)
 	camera.set_limits(target_room)
 	level.set_up_new_room(target_room)
-
+	player.notify_room_transition_start()
+	
 func update(delta : float) -> void:
 	if player_transition_completed and camera_transition_completed:
 		set_active(false)
@@ -60,6 +61,7 @@ func end() -> void:
 	level.enable(true)
 	player.enable(true)
 	level.transition_queued = false
+	player.notify_room_transition_end()
 
 func _on_player_tween_completed() -> void:
 	player_transition_completed = true

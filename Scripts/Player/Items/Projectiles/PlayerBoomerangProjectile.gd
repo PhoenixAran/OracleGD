@@ -42,6 +42,7 @@ func _physics_process(delta : float) -> void:
 			update_return_state()
 
 func enable(value : bool) -> void:
+	set_physics_process(value)
 	if value:
 		anim_player.play()
 	else:

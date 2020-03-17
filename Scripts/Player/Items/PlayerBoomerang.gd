@@ -48,3 +48,10 @@ func _on_boomerang_returned() -> void:
 	boomerang = null
 	_can_use = true
 	_in_use = false
+
+func notify_room_transition_end() -> void:
+	if boomerang:
+		boomerang.queue_free()
+		boomerang = null
+		_can_use = true
+		_in_use = false

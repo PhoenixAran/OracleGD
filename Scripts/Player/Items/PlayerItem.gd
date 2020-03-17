@@ -19,5 +19,8 @@ func get_item_level() -> int:
 func has_use_state() -> bool:
 	return true
 
-func _on_room_change() -> void:
+func notify_room_transition_start() -> void:
+	pass
+
+func notify_room_transition_end() -> void:
 	pass

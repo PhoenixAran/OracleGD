@@ -282,6 +282,14 @@ func trigger_override_interactions(sender : Hitbox) -> bool:
 		return true
 	return false
 
+func notify_room_transition_start() -> void:
+	item_slot_a.notify_room_transition_start()
+	item_slot_b.notify_room_transition_start()
+
+func notify_room_transition_end() -> void:
+	item_slot_a.notify_room_transition_end()
+	item_slot_b.notify_room_transition_end()
+
 #Signal callbacks
 func _on_item_used() -> void:
 	animation_player.stop()

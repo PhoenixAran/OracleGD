@@ -75,6 +75,14 @@ func is_active() -> bool:
 func set_active(value := true) -> void:
 	active_item = value
 
+func notify_room_transition_start() -> void:
+	if assigned_item:
+		assigned_item.notify_room_transition_start()
+
+func notify_room_transition_end() -> void:
+	if assigned_item:
+		assigned_item.notify_room_transition_end()
+
 func _on_item_used() -> void:
 	emit_signal("item_used")
 
