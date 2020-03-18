@@ -1,5 +1,5 @@
+#PlayerBoomerangProjectile
 extends KinematicBody2D
-class_name PlayerBoomerangProjectile
 
 enum BoomerangState {
 	INACTIVE,
