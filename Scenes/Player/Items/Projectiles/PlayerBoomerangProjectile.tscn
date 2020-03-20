@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Player/Items/Projectiles/PlayerBoomerangProjectile.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 7 )
+extents = Vector2( 7, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 4 )
@@ -64,6 +64,7 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_process_mode = 0

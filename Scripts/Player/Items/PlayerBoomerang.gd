@@ -23,10 +23,10 @@ func use_item(direction : String) -> void:
 				input_vector = Vector2.LEFT
 			"right":
 				input_vector = Vector2.RIGHT
+	
 	boomerang = projectile_packed_scene.instance()
 	boomerang.connect("returned_to_owner", self, "_on_boomerang_returned")
 	boomerang.global_position = global_position
-	boomerang.vector = input_vector
 	boomerang.set_owner_node(self)
 	emit_signal("projectile_created", boomerang)
 	boomerang.throw(input_vector)

@@ -16,7 +16,6 @@ onready var interactions := InteractionResolver.new() as InteractionResolver
 onready var arrow_state = ArrowState.MOVING
 
 var vector := Vector2()
-var points := { }
 
 func _ready() -> void:
 	hitbox.connect("damaged_other", self, "_on_damage_other")
@@ -41,7 +40,8 @@ func _physics_process(delta : float) -> void:
 			update_tumble_state(delta)
 
 func update_move_state(delta : float) -> void:
-	if move_and_slide(vector.normalized() * speed):
+	move_and_slide(vector.normalized() * speed)
+	if get_slide_count() > 0:
 		begin_tumble_state()
 
 func begin_tumble_state() -> void:
@@ -50,40 +50,24 @@ func begin_tumble_state() -> void:
 	collision_mask = 0
 	match vector:
 		Vector2.UP:
-			
-			pass
-#			points["p0"] = global_position
-#			points["p1"] = global_position + Vector2(0, 10)
-#			points["p2"] = global_position + Vector2(0, -16) 
+			anim_player.play("tumbleup")
 		Vector2.DOWN:
-			pass
-#			points["p0"] = global_position
-#			points["p1"] = global_position + Vector2(0, -10)
-#			points["p2"] = global_position + Vector2(0, 16) 
+			anim_player.play("tumbledown")
 		Vector2.RIGHT:
-			pass
-#			points["p0"] = global_position
-#			points["p1"] = global_position + Vector2(-6, 10)
-#			points["p2"] = global_position + Vector2(-12, -2) 
+			anim_player.play("tumbleright")
 		Vector2.LEFT:
-			pass
-#			points["p0"] = global_position
-#			points["p1"] = global_position + Vector2(6, 10)
-#			points["p2"] = global_position + Vector2(12, -2) 
+			anim_player.play("tumbleright")
+	anim_player.connect("animation_finished", self, "_on_tumble_state_end")
 
 func update_tumble_state(delta : float) -> void:
-	var new_position := quadratic_bezier(points["p0"], points["p1"], points["p2"], 1)
-	global_position = new_position
-	if new_position == points["p2"]:
-		emit_signal("projectile_destroyed", self)
-		queue_free()
-	
-func quadratic_bezier(p0: Vector2, p1: Vector2, p2: Vector2, t: float) -> Vector2:
-	var q0 = p0.linear_interpolate(p1, t)
-	var q1 = p1.linear_interpolate(p2, t)
-	var r = q0.linear_interpolate(q1, t)
-	return r
+	pass
 
-func _on_damage_other(other) -> void:
+func _on_tumble_state_end(key) -> void:
+	destroy()
+
+func _on_damage_other(other : Hitbox) -> void:
+	destroy()
+
+func destroy() -> void:
 	emit_signal("projectile_destroyed", self)
 	queue_free()

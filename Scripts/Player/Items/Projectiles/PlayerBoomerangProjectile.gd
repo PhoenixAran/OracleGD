@@ -29,7 +29,7 @@ func set_owner_node(value : Node2D) -> void:
 	owner_node = value
 
 func throw(input_vector : Vector2) -> void:
-	vector = input_vector.normalized()
+	vector = input_vector
 	begin_moving_state()
 	anim_player.play("rotating")
 
