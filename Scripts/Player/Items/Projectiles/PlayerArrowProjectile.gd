@@ -20,6 +20,21 @@ var vector := Vector2()
 func _ready() -> void:
 	hitbox.connect("damaged_other", self, "_on_damage_other")
 
+
+func _physics_process(delta : float) -> void:
+	match arrow_state:
+		ArrowState.MOVING:
+			update_move_state(delta)
+		ArrowState.TUMBLE:
+			update_tumble_state(delta)
+
+func enable(enabled : bool) -> void:
+	set_physics_process(enabled)
+	if enabled:
+		anim_player.play()
+	else:
+		anim_player.stop(false)
+
 func shoot(input_vector : Vector2) -> void:
 	match input_vector:
 		Vector2.UP:
@@ -31,13 +46,6 @@ func shoot(input_vector : Vector2) -> void:
 		Vector2.RIGHT:
 			anim_player.play("right")
 	vector = input_vector
-
-func _physics_process(delta : float) -> void:
-	match arrow_state:
-		ArrowState.MOVING:
-			update_move_state(delta)
-		ArrowState.TUMBLE:
-			update_tumble_state(delta)
 
 func update_move_state(delta : float) -> void:
 	move_and_slide(vector.normalized() * speed)

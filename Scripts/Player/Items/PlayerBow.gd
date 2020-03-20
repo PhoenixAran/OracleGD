@@ -8,17 +8,17 @@ var arrows := []
 var arrow_projectile_scene = preload("res://Scenes/Player/Items/Projectiles/PlayerArrowProjectile.tscn")
 
 func use_item(direction : String) -> void:
-	var input_vector := InputHelper.poll_4_way_direction_input()
-	if input_vector == Vector2():
-		match direction:
-			"up":
-				input_vector = Vector2.UP
-			"down":
-				input_vector = Vector2.DOWN
-			"left":
-				input_vector = Vector2.LEFT
-			"right":
-				input_vector = Vector2.RIGHT
+	var input_vector := Vector2()
+
+	match direction:
+		"up":
+			input_vector = Vector2.UP
+		"down":
+			input_vector = Vector2.DOWN
+		"left":
+			input_vector = Vector2.LEFT
+		"right":
+			input_vector = Vector2.RIGHT
 	
 	var projectile = arrow_projectile_scene.instance()
 	projectile.global_position = global_position
@@ -26,6 +26,10 @@ func use_item(direction : String) -> void:
 	emit_signal("projectile_created", projectile)
 	projectile.shoot(input_vector)
 	arrows.append(projectile)
+
+func enable(enabled : bool) -> void:
+	for projectile in arrows:
+		projectile.enable(enabled)
 
 func can_use() -> bool:
 	return 3 > arrows.size()

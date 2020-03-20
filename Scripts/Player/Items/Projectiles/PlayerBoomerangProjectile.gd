@@ -9,7 +9,7 @@ enum BoomerangState {
 
 signal returned_to_owner
 
-export(float) var speed := 120.0
+export(float) var speed := 160.0
 export(int) var return_delay := 30
 
 onready var anim_player := $AnimationPlayer as AnimationPlayer
@@ -57,7 +57,7 @@ func update_moving_state() -> void:
 	if return_delay <= return_timer:
 		begin_return_state()
 	else:
-		move_and_slide(vector * speed)
+		move_and_slide(vector.normalized() * speed)
 		if get_slide_count() > 0:
 			var effect = parry_effect.instance()
 			var collision := get_slide_collision(0)

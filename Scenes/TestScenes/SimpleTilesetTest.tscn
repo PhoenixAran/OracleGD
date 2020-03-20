@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Tilesets/ProtoDungeon.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Monsters/Stalfos.tscn" type="PackedScene" id=3]
 
 [node name="SimpleTilesetTest" type="TileMap"]
 tile_set = ExtResource( 1 )
@@ -15,9 +14,3 @@ tile_data = PoolIntArray( 0, 9, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 10
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 26.0746, 38.2798 )
-
-[node name="Stalfos2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 104.021, 39.3893 )
-
-[node name="Stalfos" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 83.5176, 65.175 )

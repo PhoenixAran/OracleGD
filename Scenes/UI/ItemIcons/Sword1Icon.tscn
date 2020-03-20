@@ -2,7 +2,9 @@
 
 [ext_resource path="res://Scripts/UI/ItemIcon.gd" type="Script" id=1]
 [ext_resource path="res://Assets/ItemIcons/sword_1_icon.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Player/Items/PlayerSword.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player/Items/PlayerWoodenSword.tscn" type="PackedScene" id=3]
+
+
 
 [node name="Sword1Icon" type="TextureRect"]
 anchor_right = 1.0

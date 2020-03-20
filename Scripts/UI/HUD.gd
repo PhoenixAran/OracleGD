@@ -34,7 +34,6 @@ func _draw() -> void:
 	draw_key_count()
 	draw_rupee_count()
 	draw_item_icon_borders()
-	draw_place_holder_item_icons()
 
 func update_heart_counts() -> void:
 	heart_positions.clear()
@@ -92,18 +91,6 @@ func draw_item_icon_borders() -> void:
 	draw_texture_rect_region(hud_texture, Rect2(34, 0, 8, 8), Rect2(0, 24, 8, 8))
 	draw_texture_rect_region(hud_texture, Rect2(34, 8, 8, 8), Rect2(32, 16, 8, 8))
 	draw_texture_rect_region(hud_texture, Rect2(64, 0, 8, 16), Rect2(40, 8, 8, 16))
-
-#Sword and shield icon are hardcoded, change later when the time comes
-func draw_place_holder_item_icons() -> void:
-	#draw sword icon
-	#draw_texture_rect_region(hud_texture, Rect2(16, 8, 8, 8), Rect2(0, 16, 8, 8))
-	#Numbers.draw_number(self, Vector2(24, 9), 1, 0, 3)
-	
-	#draw shield icon
-#	draw_texture_rect_region(item_icon_texture, Rect2(42, 0, 8, 16), Rect2(8, 0, 8, 16))
-#	draw_texture_rect_region(hud_texture, Rect2(50, 8, 8, 8), Rect2(0, 16, 8, 8))
-#	Numbers.draw_number(self, Vector2(58, 9), 1, 0, 3)
-	pass
 
 func _defer_update() -> void:
 	call_deferred("update")

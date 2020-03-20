@@ -314,9 +314,11 @@ Interactions="*res://Scripts/Singletons/Interactions.gd"
 Numbers="*res://Scripts/Singletons/Numbers.gd"
 GameRefs="*res://Scripts/Singletons/GameRefs.gd"
 InputHelper="*res://Scripts/Singletons/InputHelper.gd"
+AbilityMap="*res://Scripts/Singletons/AbilityMap.gd"
 
 [debug]
 
+settings/stdout/print_fps=true
 gdscript/warnings/unused_variable=false
 gdscript/warnings/unused_argument=false
 gdscript/warnings/unused_signal=false

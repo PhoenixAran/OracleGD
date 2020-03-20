@@ -27,7 +27,6 @@ var current_event : RoomEvent
 
 var room_list := []
 
-
 func _ready() -> void:
 	show_behind_parent = true
 	for node in get_children():

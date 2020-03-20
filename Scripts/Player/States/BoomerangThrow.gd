@@ -25,6 +25,8 @@ func update(delta : float) -> void:
 	player.set_vector(input_vector)
 	if delay_counter <= use_delay:
 		delay_counter += 1
+	elif input_vector == Vector2():
+		_change_state("PlayerIdle")
 	else:
 		_change_state("PlayerMove")
 
